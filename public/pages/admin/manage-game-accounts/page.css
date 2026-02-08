@@ -1,0 +1,24 @@
+#load-more-container.QUERY-is-more .QUERY-no-more-text {
+  display: none;
+}
+#load-more-container.QUERY-no-more .QUERY-load-more-btn {
+  display: none;
+}
+
+#pick-avatar--add-section.QUERY-at-avatar-input-section .QUERY-avatar-preview-section,
+#pick-avatar--update-section.QUERY-at-avatar-input-section .QUERY-avatar-preview-section {
+  display: none;
+}
+#pick-avatar--add-section.QUERY-at-avatar-preview-section .QUERY-avatar-input-section,
+#pick-avatar--update-section.QUERY-at-avatar-preview-section .QUERY-avatar-input-section {
+  display: none;
+}
+
+.QUERY-avatar-preview-section-box.QUERY-is-loading .QUERY-avatar-preview-section-label {
+  display: none;
+}
+.QUERY-avatar-preview-section-box.QUERY-is-loading .QUERY-avatar-preview-section-loading {
+  display: flex;
+}
+
+/*# sourceMappingURL=page.css.map */

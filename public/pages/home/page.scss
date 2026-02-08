@@ -1,0 +1,106 @@
+.CSS-regular-acc-state-cl {
+  background-color: var(--vcn-regular-acc-state-cl);
+}
+
+#load-more-container {
+  &.QUERY-is-more {
+    display: block;
+  }
+
+  &.QUERY-no-more {
+    display: none;
+  }
+}
+
+#arrows-animation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7.8vw;
+  overflow: visible;
+
+  .arrow {
+    width: 3.9vw;
+    height: 3.9vw;
+    border: 1.9vw solid;
+    border-color: var(--vcn-regular-blue-cl) transparent transparent var(--vcn-regular-blue-cl);
+    transform: rotate(-135deg);
+  }
+
+  .arrow-sliding {
+    position: absolute;
+    -webkit-animation: arrows-animation 2s linear infinite;
+    animation: arrows-animation 2s linear infinite;
+    opacity: 0;
+  }
+
+  .delay1 {
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+  }
+  .delay2 {
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+}
+
+.STATE-account-avatar-on-responsive {
+  width: max-content;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+.STATE-account-avatar-wrapper-on-responsive {
+  padding: 40px 100px;
+
+  @media screen and (max-width: 600px) {
+    padding: 40px 20px;
+  }
+}
+
+.CSS-account-card-animate-scaling {
+  animation: animate-scaling 0.5s linear infinite backwards;
+
+  @keyframes animate-scaling {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* animation cho loại acc đặc biệt - đường viền chạy xung quanh card */
+.CSS-acc-type-special-shine-animation {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+
+  &::before {
+    content: "";
+    background-image: conic-gradient(#0011ff 20deg, transparent 120deg);
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    z-index: 10;
+    animation: acc-type-special-shine-animation-rotate-1 1s linear infinite;
+  }
+
+  &::after {
+    content: "";
+    background-image: conic-gradient(#ff00fb 20deg, transparent 120deg);
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    z-index: 10;
+    animation: acc-type-special-shine-animation-rotate-2 1s linear infinite;
+  }
+
+  .CSS-acc-type-special-shine-animation-content {
+    position: relative;
+    z-index: 20;
+  }
+}

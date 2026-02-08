@@ -1,0 +1,14 @@
+.QUERY-copy-btn.QUERY-not-copied .QUERY-copy-icon {
+  display: block;
+}
+.QUERY-copy-btn.QUERY-not-copied .QUERY-copied-icon {
+  display: none;
+}
+.QUERY-copy-btn.QUERY-is-copied .QUERY-copy-icon {
+  display: none;
+}
+.QUERY-copy-btn.QUERY-is-copied .QUERY-copied-icon {
+  display: block;
+}
+
+/*# sourceMappingURL=page.css.map */

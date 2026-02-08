@@ -1,0 +1,440 @@
+@charset "UTF-8";
+:root {
+  --vcn-regular-gradient-blue-cl: linear-gradient(135deg, #00bfff, #87ceeb);
+  --vcn-regular-from-blue-cl: #00bfff;
+  --vcn-regular-via-blue-cl: #3dc2ef;
+  --vcn-regular-to-blue-cl: #87ceeb;
+  --vcn-regular-blue-1: #00bfff;
+  --vcn-regular-blue-2: #006080;
+  --vcn-regular-blue-3: #007faa;
+  --vcn-regular-blue-4: #009fd4;
+  --vcn-regular-blue-5: #89cff3;
+  --vcn-regular-blue-cl: var(--vcn-regular-blue-1);
+  --vcn-regular-for-scroll-blue-hover-cl: var(--vcn-regular-blue-4);
+  --vcn-regular-blue-hover-cl: #01a5f0;
+  --vcn-scrollbar-track-bgcl: #32394033;
+  --vcn-scrollbar-thumb-bgcl: #455159;
+  --vcn-regular-zalo-cl: #0068ff;
+  --vcn-regular-facebook-cl: #3a5998;
+  --vcn-regular-neon-cl: var(--vcn-regular-blue-cl);
+  --vcn-regular-acc-state-cl: #38bdf8;
+  --vcn-regular-acc-state-from-cl: var(--vcn-regular-from-blue-cl);
+  --vcn-regular-acc-state-via-cl: var(--vcn-regular-via-blue-cl);
+  --vcn-regular-acc-state-to-cl: var(--vcn-regular-to-blue-cl);
+  --vcn-regular-acc-card-bgcl: #ecfbff;
+}
+
+@keyframes app-loading-shapes {
+  0% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  33% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    transform: scale(1.2) translateX(-50%) translateY(-50%);
+    width: 60px;
+    height: 60px;
+  }
+  66% {
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+    width: 60px;
+    height: 60px;
+    transform: scale(1.2) translateX(-50%) translateY(-50%);
+  }
+  100% {
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+@keyframes notification-red-dot {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes arrows-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(60px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(240px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+}
+@keyframes hero-section-text-animation {
+  0% {
+    transform: translate(-80px) scale(0.3);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(50px) scale(0.7);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0px) scale(2);
+    opacity: 0;
+  }
+  75% {
+    transform: translate(0px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes acc-type-special-shine-animation-rotate-1 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes acc-type-special-shine-animation-rotate-2 {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  } /* 180 + 360 */
+}
+[hidden] {
+  display: none;
+}
+
+body {
+  min-height: 100vh;
+  background-image: var(--vcn-regular-gradient-dark-cl);
+}
+
+svg {
+  display: flex;
+}
+
+input,
+textarea {
+  border: none;
+  border-width: 0;
+  outline: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+}
+
+.CSS-vertical-divider {
+  width: 2px;
+  height: 20px;
+  background-color: #6b7280;
+}
+
+.CSS-button-shadow-decoration {
+  box-shadow: 0px 4px 0px gray;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.CSS-button-shadow-decoration:hover {
+  box-shadow: 0px 8px 0px gray;
+  transform: translateY(-4px);
+}
+.CSS-button-shadow-decoration:active {
+  box-shadow: 0px 2px 0px gray;
+  transform: translateY(2px);
+}
+
+.CSS-button-white-line-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/UI/button-decoration.png");
+  background-size: 2px;
+  transition: color 0.4s ease-in-out, text-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  border: 1.5px solid rgba(255, 255, 255, 0.2745098039);
+  background-color: #0d161c;
+  color: #ffffff;
+  font-weight: bold;
+  position: relative;
+  border-radius: 6px;
+  gap: 6px;
+  overflow: hidden;
+}
+.CSS-button-white-line-decoration::before {
+  width: 100%;
+  content: "";
+  height: 4px;
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(250, 250, 250, 0.5), #ffffff 20%, #ffffff 80%, rgba(250, 250, 250, 0.5));
+  box-shadow: 0px 0px 5px;
+  top: -4px;
+  left: 0;
+  color: #ffffff;
+  text-shadow: 0px 0px 5px #ffffff;
+  transition: top ease 0.8s;
+}
+.CSS-button-white-line-decoration:hover::before {
+  top: calc(100% + 4px);
+}
+
+.CSS-button-blue-line-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/UI/button-decoration.png");
+  background-size: 2px;
+  transition: color 0.4s ease-in-out, text-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  border: 1.5px solid rgba(255, 255, 255, 0.2745098039);
+  background-color: #0d161c;
+  color: #64b2ff;
+  font-weight: bold;
+  position: relative;
+  border-radius: 6px;
+  gap: 6px;
+  overflow: hidden;
+}
+.CSS-button-blue-line-decoration::before {
+  width: 100%;
+  content: "";
+  height: 4px;
+  display: block;
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(250, 250, 250, 0.5), #64b2ff 20%, #64b2ff 80%, rgba(250, 250, 250, 0.5));
+  box-shadow: 0px 0px 5px;
+  top: -4px;
+  left: 0;
+  color: #64b2ff;
+  text-shadow: 0px 0px 5px #ffffff;
+  transition: top ease 0.8s;
+}
+.CSS-button-blue-line-decoration:hover::before {
+  top: calc(100% + 4px);
+}
+
+.flatpickr-wrapper {
+  width: 100%;
+}
+
+.flatpickr-calendar {
+  font-family: inherit;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.flatpickr-time {
+  border-top: 1px solid #e5e7eb;
+}
+.flatpickr-time input {
+  border: none;
+  background: transparent;
+  color: #374151;
+}
+.flatpickr-time input:focus {
+  outline: none;
+  background-color: #f3f4f6;
+}
+
+.CSS-styled-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.CSS-styled-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--vcn-scrollbar-track-bgcl);
+  border-radius: 5px;
+}
+
+.CSS-styled-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--vcn-regular-blue-cl);
+  border-radius: 5px;
+}
+
+.CSS-styled-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--vcn-regular-for-scroll-blue-hover-cl);
+}
+
+.CSS-small-text-stroke {
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+}
+
+.CSS-shadow-hover-container {
+  position: relative;
+  width: fit-content;
+}
+.CSS-shadow-hover-container .CSS-shadow-hover-shadow {
+  position: absolute;
+  top: 50%;
+  right: calc(50% - 12px);
+  transform: translateX(50%) translateY(-50%);
+  box-sizing: content-box;
+  padding: 0 8px;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  transition: right 0.2s, opacity 0.2s;
+  cursor: pointer;
+  z-index: 10;
+}
+.CSS-shadow-hover-container:hover .CSS-shadow-hover-shadow {
+  right: 50%;
+  opacity: 1;
+}
+.CSS-shadow-hover-container:hover .CSS-shadow-hover-content {
+  color: white;
+}
+
+.QUERY-tooltip-trigger {
+  position: relative;
+}
+
+#app-tooltip {
+  position: fixed;
+  background-color: #111;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 999;
+  max-width: min(300px, 100vw - 40px);
+}
+
+.CSS-neon-text-hover:hover {
+  color: var(--vcn-regular-neon-cl);
+  text-shadow: 0 0 10px var(--vcn-regular-neon-cl);
+}
+
+.QUERY-drawer-menu-board {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 20;
+  height: 100vh;
+  padding: 1rem;
+  overflow-y: auto;
+  transition: transform 0.3s;
+  transform: translateX(100%);
+}
+.QUERY-drawer-menu-board.QUERY-drawer-menu-open {
+  transform: translateX(0);
+}
+
+.CSS-hover-flash-button {
+  position: relative;
+  overflow: hidden;
+}
+.CSS-hover-flash-button .CSS-hover-flash-button-content {
+  z-index: 20;
+}
+.CSS-hover-flash-button::after {
+  cursor: pointer;
+  background-color: white;
+  content: "";
+  height: calc(100% + 50px);
+  left: -120%;
+  opacity: 0.2;
+  position: absolute;
+  top: 50%;
+  transform: rotate(20deg) translateY(-50%);
+  transition: all 0.5s ease-out;
+  width: 100px;
+  z-index: 10;
+}
+.CSS-hover-flash-button:hover::after {
+  left: 120%;
+}
+
+.STYLE-animation-loading-shapes {
+  width: 40px;
+  height: 40px;
+  color: var(--vcn-regular-blue-cl);
+  background: linear-gradient(currentColor 0 0), linear-gradient(currentColor 0 0), linear-gradient(currentColor 0 0), linear-gradient(currentColor 0 0);
+  background-size: 21px 21px;
+  background-repeat: no-repeat;
+  animation: app-loading-shapes 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.CSS-background-dot-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/images/UI/button-decoration.png");
+  background-size: 2px;
+  background-color: #0d161c;
+}
+
+.CSS-notification-red-dot {
+  position: relative;
+}
+.CSS-notification-red-dot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.6em;
+  height: 0.6em;
+  background-color: transparent;
+  outline: 2px solid #ff0000;
+  border-radius: 50%;
+  top: -2px;
+  right: -6px;
+  animation: notification-red-dot 1s infinite ease-in-out;
+}
+.CSS-notification-red-dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: #ff0000;
+  border-radius: 50%;
+  top: 0;
+  right: -5px;
+}
+
+#chasing-dot {
+  position: absolute;
+  width: 0.71em;
+  height: 0.71em;
+  background-color: rgb(0, 140, 255);
+  border-radius: 50%;
+  pointer-events: none;
+  left: -10px;
+  top: -10px;
+  opacity: 1;
+  z-index: 9999;
+  transition: opacity 0.5s, transform 0.1s;
+  will-change: transform, opacity;
+}
+
+/* animation cho nút thuê ngay ở hero section */
+.CSS-hero-section-text-animation {
+  animation: hero-section-text-animation 1s ease infinite normal forwards;
+}
+
+/*# sourceMappingURL=globals.css.map */

@@ -1,0 +1,369 @@
+Tree view of: D:\D-Documents\outsource\webthueaccvalorant\web-thue-acc-valorant
+
+├── .env
+├── .gitignore
+├── .prettierrc.json
+├── add_column_to_table.php
+├── add_table.php
+├── composer.json
+├── composer.lock
+├── create_db.php
+├── database
+│   ├── app.sqlite
+│   └── execute.py
+├── dev.cmd
+├── logs
+│   └── dev.log
+├── move_db.php
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── print_tree.py
+├── project_tree.txt
+├── public
+│   ├── .htaccess
+│   ├── api.php
+│   ├── dev
+│   │   └── sale-account.png
+│   ├── favicon.ico
+│   ├── ghost.webp
+│   ├── images
+│   │   ├── UI
+│   │   │   ├── bg-render.png
+│   │   │   ├── button-decoration.png
+│   │   │   ├── ghost.webp
+│   │   │   └── hero-section-bg.png
+│   │   └── account
+│   │       ├── ValorantWallpaper_Oni.jpg
+│   │       ├── account_114_1751429942_35151a1a2daa5427.jpg
+│   │       ├── account_115_1751429924_1396321a84da27f1.jpg
+│   │       ├── account_116_1751429909_3b2b19e5f216af30.jpg
+│   │       ├── account_118_1752383733_0474f86e3154016b.png
+│   │       ├── account_119_1752400727_2332d56cff3ed326.png
+│   │       ├── account_42_1753011023_99df845b8d3c8a1b.png
+│   │       ├── account_45_1752429434_3c982a22def2c5b1.png
+│   │       ├── account_46_1751255138_5d215caae8399b15.jpg
+│   │       ├── account_46_1752468452_9b1b6876c5a7056b.png
+│   │       ├── account_47_1753005173_b729cc961c0a7209.png
+│   │       ├── account_47_1753084518_e46d168c8f395463.jpg
+│   │       ├── account_48_1754807663_bedfc704121d140f.jpg
+│   │       ├── account_49_1751342396_c9f7eabaa1b199ad.jpg
+│   │       ├── account_51_1753004880_091544548fd1a219.png
+│   │       ├── account_52_1757082901_91d84d549e29b087.jpg
+│   │       ├── account_53_1757040360_c5684d10bab6e536.jpg
+│   │       ├── account_54_1753079165_701ec6f3aa3228dc.jpg
+│   │       ├── account_55_1753079331_365af4a7122ee2a6.jpg
+│   │       ├── account_56_1753079614_642bcbb0c63de31e.jpg
+│   │       ├── account_57_1757080493_7c9834282572f904.jpg
+│   │       ├── account_58_1753079776_9400186cd8387a5e.jpg
+│   │       ├── account_59_1754015167_764f4af3796bec4b.jpg
+│   │       ├── account_60_1751255124_d9ea72b0bf0e5e7c.jpg
+│   │       ├── account_60_1753080089_775ba02023c2f68d.jpg
+│   │       ├── account_61_1753080184_1c980b29f5cca214.jpg
+│   │       ├── account_62_1753080271_e9ccd3b16812cf64.jpg
+│   │       ├── account_63_1753967551_e1b82d0909b128b3.jpg
+│   │       ├── account_64_1751209521_0222160e4374671b.jpg
+│   │       ├── account_64_1753080734_5c9066e592b4a4cb.jpg
+│   │       ├── account_65_1751209489_5a400ec22acc31bc.jpg
+│   │       ├── account_66_1751351228_89cdf9e4106847ef.jpg
+│   │       ├── account_67_1751351953_2ad45fdec192fe25.jpg
+│   │       ├── account_68_1751361894_2746b8811b2b1e66.webp
+│   │       ├── account_68_1753082058_e6735a4956dacd89.png
+│   │       ├── account_69_1751362107_a4b5af5eafa9e273.jpg
+│   │       ├── account_69_1753081015_ddad08ea7da3d5c5.jpg
+│   │       ├── account_70_1751364769_3f423f7b8a7552a4.webp
+│   │       ├── account_70_1753081144_de29864931940a46.jpg
+│   │       ├── account_71_1751368635_e40d665472e4b136.jpg
+│   │       ├── account_71_1753081221_099e00e00d77b644.jpg
+│   │       ├── account_72_1753081316_b69b272e3e2f81e4.jpg
+│   │       ├── account_73_1753081369_6fc144d826178ea5.jpg
+│   │       ├── account_74_1757078183_be73c41c01f39859.jpg
+│   │       ├── account_75_1753081477_51074c20b1aea38e.jpg
+│   │       ├── account_76_1751391209_003daaca539fa811.jpg
+│   │       ├── account_76_1753081577_5f18004a19fca82c.jpg
+│   │       ├── account_77_1753081670_5a9156cf0791080a.jpg
+│   │       ├── account_78_1753246723_72b8f14863e053bc.jpg
+│   │       ├── account_79_1754125005_b34fbe2bc84d5241.jpg
+│   │       ├── account_80_1755106046_e9f2776ad109bb5a.jpg
+│   │       ├── account_82_1757584689_f682eb13a937c740.png
+│   │       ├── account_83_1757584812_10304e4d0615a0c5.png
+│   │       ├── account_83_1757584847_a77cb576f46e9a11.jpg
+│   │       ├── account_84_1757585951_3a3cfef6c28a5ad6.jpg
+│   │       ├── account_84_1757586034_5260db6964ca9c70.png
+│   │       └── default-account-avatar.png
+│   ├── index.php
+│   ├── pages
+│   │   ├── admin
+│   │   │   ├── login
+│   │   │   │   ├── page.css
+│   │   │   │   ├── page.css.map
+│   │   │   │   ├── page.js
+│   │   │   │   └── page.scss
+│   │   │   ├── manage-game-accounts
+│   │   │   │   ├── page.css
+│   │   │   │   ├── page.css.map
+│   │   │   │   ├── page.js
+│   │   │   │   └── page.scss
+│   │   │   ├── profile
+│   │   │   │   ├── page.css
+│   │   │   │   ├── page.css.map
+│   │   │   │   ├── page.js
+│   │   │   │   └── page.scss
+│   │   │   └── sale-accounts
+│   │   │       ├── page.css
+│   │   │       ├── page.css.map
+│   │   │       ├── page.js
+│   │   │       └── page.scss
+│   │   ├── home
+│   │   │   ├── page.css
+│   │   │   ├── page.css.map
+│   │   │   ├── page.js
+│   │   │   └── page.scss
+│   │   ├── intro
+│   │   │   ├── page.css
+│   │   │   ├── page.css.map
+│   │   │   ├── page.js
+│   │   │   └── page.scss
+│   │   └── sale
+│   │       ├── page.css
+│   │       ├── page.css.map
+│   │       ├── page.js
+│   │       └── page.scss
+│   ├── router.php
+│   ├── services
+│   │   ├── admin-service.js
+│   │   ├── auth-service.js
+│   │   ├── game-account-services.js
+│   │   └── sale-account-service.js
+│   ├── utils
+│   │   ├── scripts
+│   │   │   ├── api-client.js
+│   │   │   ├── components.js
+│   │   │   ├── helpers.js
+│   │   │   └── init-utils.js
+│   │   └── styles
+│   │       ├── animations.css
+│   │       ├── animations.css.map
+│   │       ├── animations.scss
+│   │       ├── colors.css
+│   │       ├── colors.css.map
+│   │       ├── colors.scss
+│   │       ├── globals.css
+│   │       ├── globals.css.map
+│   │       ├── globals.scss
+│   │       ├── src.css
+│   │       └── styles.css
+│   └── videos
+│       └── UI
+│           └── intro-bg.mp4
+├── robots.txt
+├── sitemap.xml
+├── src
+│   ├── config
+│   │   └── config.php
+│   ├── controllers
+│   │   ├── AdminController.php
+│   │   ├── AuthController.php
+│   │   ├── HomeController.php
+│   │   ├── SaleController.php
+│   │   └── apis
+│   │       ├── AdminApiController.php
+│   │       ├── AuthApiController.php
+│   │       ├── GameAccountApiController.php
+│   │       └── SaleAccountApiController.php
+│   ├── core
+│   │   ├── ApiRouter.php
+│   │   ├── AuthMiddleware.php
+│   │   ├── Request.php
+│   │   └── Router.php
+│   ├── crons
+│   │   └── auto_update_account_status.php
+│   ├── routes
+│   │   ├── api.php
+│   │   └── web.php
+│   ├── services
+│   │   ├── AuthService.php
+│   │   ├── FileService.php
+│   │   ├── GameAccountService.php
+│   │   ├── JwtService.php
+│   │   ├── RulesService.php
+│   │   ├── SaleAccountService.php
+│   │   └── UserService.php
+│   ├── utils
+│   │   ├── DevLogger.php
+│   │   └── Helper.php
+│   └── views
+│       ├── admin
+│       │   ├── login
+│       │   │   ├── main.php
+│       │   │   └── page.php
+│       │   ├── manage_game_accounts
+│       │   │   ├── accounts_preview.php
+│       │   │   ├── accounts_table.php
+│       │   │   ├── add_new_account.php
+│       │   │   ├── delete_account.php
+│       │   │   ├── filter_accounts.php
+│       │   │   ├── main.php
+│       │   │   ├── page.php
+│       │   │   └── update_account.php
+│       │   ├── profile
+│       │   │   ├── main.php
+│       │   │   └── page.php
+│       │   └── sale_accounts
+│       │       ├── accounts_preview.php
+│       │       ├── accounts_table.php
+│       │       ├── add_new_account.php
+│       │       ├── delete_account.php
+│       │       ├── filter_accounts.php
+│       │       ├── main.php
+│       │       ├── page.php
+│       │       └── update_account.php
+│       ├── errors
+│       │   └── 404.php
+│       ├── home
+│       │   ├── accounts_list.php
+│       │   ├── filter_accounts.php
+│       │   ├── hero_section.php
+│       │   ├── main.php
+│       │   ├── page.php
+│       │   └── rent_now_modal.php
+│       ├── intro
+│       │   ├── main.php
+│       │   └── page.php
+│       ├── sale
+│       │   ├── buy_now_modal.php
+│       │   ├── commitment_modal.php
+│       │   ├── main.php
+│       │   └── page.php
+│       └── templates
+│           ├── admin
+│           │   └── header.php
+│           ├── bottom_scripts.php
+│           ├── btn_scroll_to_bottom.php
+│           ├── head.php
+│           ├── layout.php
+│           └── page_footer.php
+├── tailwind.config.js
+├── update_password.php
+└── vendor
+    ├── autoload.php
+    ├── composer
+    │   ├── ClassLoader.php
+    │   ├── InstalledVersions.php
+    │   ├── LICENSE
+    │   ├── autoload_classmap.php
+    │   ├── autoload_files.php
+    │   ├── autoload_namespaces.php
+    │   ├── autoload_psr4.php
+    │   ├── autoload_real.php
+    │   ├── autoload_static.php
+    │   ├── installed.json
+    │   ├── installed.php
+    │   └── platform_check.php
+    ├── graham-campbell
+    │   └── result-type
+    │       ├── LICENSE
+    │       ├── composer.json
+    │       └── src
+    │           ├── Error.php
+    │           ├── Result.php
+    │           └── Success.php
+    ├── phpoption
+    │   └── phpoption
+    │       ├── LICENSE
+    │       ├── composer.json
+    │       └── src
+    │           └── PhpOption
+    │               ├── LazyOption.php
+    │               ├── None.php
+    │               ├── Option.php
+    │               └── Some.php
+    ├── symfony
+    │   ├── polyfill-ctype
+    │   │   ├── Ctype.php
+    │   │   ├── LICENSE
+    │   │   ├── README.md
+    │   │   ├── bootstrap.php
+    │   │   ├── bootstrap80.php
+    │   │   └── composer.json
+    │   ├── polyfill-mbstring
+    │   │   ├── LICENSE
+    │   │   ├── Mbstring.php
+    │   │   ├── README.md
+    │   │   ├── Resources
+    │   │   │   └── unidata
+    │   │   │       ├── caseFolding.php
+    │   │   │       ├── lowerCase.php
+    │   │   │       ├── titleCaseRegexp.php
+    │   │   │       └── upperCase.php
+    │   │   ├── bootstrap.php
+    │   │   ├── bootstrap80.php
+    │   │   └── composer.json
+    │   └── polyfill-php80
+    │       ├── LICENSE
+    │       ├── Php80.php
+    │       ├── PhpToken.php
+    │       ├── README.md
+    │       ├── Resources
+    │       │   └── stubs
+    │       │       ├── Attribute.php
+    │       │       ├── PhpToken.php
+    │       │       ├── Stringable.php
+    │       │       ├── UnhandledMatchError.php
+    │       │       └── ValueError.php
+    │       ├── bootstrap.php
+    │       └── composer.json
+    └── vlucas
+        └── phpdotenv
+            ├── LICENSE
+            ├── composer.json
+            └── src
+                ├── Dotenv.php
+                ├── Exception
+                │   ├── ExceptionInterface.php
+                │   ├── InvalidEncodingException.php
+                │   ├── InvalidFileException.php
+                │   ├── InvalidPathException.php
+                │   └── ValidationException.php
+                ├── Loader
+                │   ├── Loader.php
+                │   ├── LoaderInterface.php
+                │   └── Resolver.php
+                ├── Parser
+                │   ├── Entry.php
+                │   ├── EntryParser.php
+                │   ├── Lexer.php
+                │   ├── Lines.php
+                │   ├── Parser.php
+                │   ├── ParserInterface.php
+                │   └── Value.php
+                ├── Repository
+                │   ├── Adapter
+                │   │   ├── AdapterInterface.php
+                │   │   ├── ApacheAdapter.php
+                │   │   ├── ArrayAdapter.php
+                │   │   ├── EnvConstAdapter.php
+                │   │   ├── GuardedWriter.php
+                │   │   ├── ImmutableWriter.php
+                │   │   ├── MultiReader.php
+                │   │   ├── MultiWriter.php
+                │   │   ├── PutenvAdapter.php
+                │   │   ├── ReaderInterface.php
+                │   │   ├── ReplacingWriter.php
+                │   │   ├── ServerConstAdapter.php
+                │   │   └── WriterInterface.php
+                │   ├── AdapterRepository.php
+                │   ├── RepositoryBuilder.php
+                │   └── RepositoryInterface.php
+                ├── Store
+                │   ├── File
+                │   │   ├── Paths.php
+                │   │   └── Reader.php
+                │   ├── FileStore.php
+                │   ├── StoreBuilder.php
+                │   ├── StoreInterface.php
+                │   └── StringStore.php
+                ├── Util
+                │   ├── Regex.php
+                │   └── Str.php
+                └── Validator.php

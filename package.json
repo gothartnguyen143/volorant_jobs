@@ -1,0 +1,12 @@
+{
+  "name": "webthueaccvalorant",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx tailwindcss -i ./public/utils/styles/src.css -o ./public/utils/styles/styles.css --watch --minify"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.17"
+  }
+}

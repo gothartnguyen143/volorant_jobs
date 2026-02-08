@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/login
+Disallow: /admin/manage-game-accounts
+
+Allow: /
+
+Sitemap: https://shopthuevalorantime.com/sitemap.xml

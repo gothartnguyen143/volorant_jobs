@@ -1,0 +1,65 @@
+# # ----- TẮT CACHE PHÍA CLIENT -----
+# <IfModule mod_headers.c>
+#     # Luôn gắn header cả khi lỗi 4xx/5xx
+#     Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+#     Header always set Pragma "no-cache"
+#     Header always set Expires "0"
+# </IfModule>
+
+# # Vô hiệu ETag để tránh trình duyệt dựa vào ETag cache
+# <IfModule mod_headers.c>
+#     Header unset ETag
+# </IfModule>
+# FileETag None
+# # ---------------------------------
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+# Nếu truy cập domain/sync, chạy sync_git.php và dừng lại
+# RewriteRule ^sync$ sync_git.php [L]
+RewriteCond %{REQUEST_URI} ^/robots\.txt$ [OR]
+RewriteCond %{REQUEST_URI} ^/sitemap\.xml$
+RewriteRule .* - [L]
+
+
+# #xóa từ đây
+# RewriteCond %{REQUEST_URI} !/baotri\.html$
+# RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg|mp4)$
+# RewriteRule ^.*$ public/baotri.html [L]
+# Khi truy cập /sync → chạy file sync.php
+# RewriteRule ^syncabcbdbchjdscbhjdsbchjdsbcdshjcbdsjcbdjh/?$ sync_git.php [L]
+# #xóa đến đây
+
+#Gỡ comment từ đây
+
+# Nếu request .js .css .mp4 thì tìm trong /public
+RewriteCond %{REQUEST_URI} \.(js|css|mp4)$
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+
+
+# Nếu file tồn tại trong /public → serve trực tiếp
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+
+
+# Nếu thư mục tồn tại trong /public → serve trực tiếp
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+RewriteRule ^(.*)$ public/$1/ [L]
+
+
+# Còn lại → route qua public/index.php
+RewriteRule ^ public/router.php [L]
+#Gỡ comment đến đây
+
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor  # Exclude vendor for better performance, but mount for dev
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    command: >
+      bash -c "
+        composer install &&
+        npm install &&
+        npm run build &&
+        php create_db.php &&
+        php add_table.php &&
+        apache2-foreground
+      "
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,36 @@
+[2025-11-06 17:59:35] 
+
+----------------------------------------
+[2025-11-06 18:00:06]
+
+----------------------------------------
+[2025-11-06 18:00:08]
+
+----------------------------------------
+[2025-11-06 18:00:33]
+
+----------------------------------------
+[2025-11-06 18:00:42]
+a=b
+----------------------------------------
+[2025-11-06 18:00:56]
+{"a":"b"}
+----------------------------------------
+[2025-11-06 18:00:59]
+{"a":"b"}
+----------------------------------------
+[2025-11-06 18:01:29]
+{"code":"00","desc":"success","data":{"orderCode":123,"amount":3000,"description":"VQRIO123","accountNumber":"12345678","reference":"TF230204212323","transactionDateTime":"2023-02-04 18:25:00","paymentLinkId":"124c33293c43417ab7879e14c8d9eb18","code":"00","desc":"Thành công","counterAccountBankId":"","counterAccountBankName":"","counterAccountName":"","counterAccountNumber":"","virtualAccountName":"","virtualAccountNumber":"","currency":"VND"},"signature":"f44f7a5bd3d57093a6a5ee4cd427c881b62e5cc88b7b57356acd943bf24f269a"}
+----------------------------------------
+[2025-11-06 18:02:42]
+{"code":"00","desc":"success","success":true,"data":{"accountNumber":"0990134154901","amount":2000,"description":"12321KKK","reference":"FT25311906137163","transactionDateTime":"2025-11-07 01:02:41","virtualAccountNumber":"","counterAccountBankId":"970422","counterAccountBankName":"","counterAccountName":null,"counterAccountNumber":"2281072020614","virtualAccountName":"","currency":"VND","orderCode":1762452129113,"paymentLinkId":"e3e36e4da66e471997c94bda82eb4dd8","code":"00","desc":"success"},"signature":"991fdeefa824a0848c33b933d3da0ad66e9149e8180473ae21d337c7bb030b95"}
+----------------------------------------
+[2025-11-06 18:17:30]
+{"code":"00","desc":"success","success":true,"data":{"accountNumber":"0990134154901","amount":2000,"description":"Day la mo ta","reference":"FT25311470526586","transactionDateTime":"2025-11-07 01:17:29","virtualAccountNumber":"","counterAccountBankId":"970454","counterAccountBankName":"","counterAccountName":"MOMOIBFT","counterAccountNumber":"0697044105922","virtualAccountName":"","currency":"VND","orderCode":1,"paymentLinkId":"f414035107f6487f96f6f177b7aadc33","code":"00","desc":"success"},"signature":"fe650cd89332a29f1820c7009390fdd047320c9e6a1ef648bb975ad2b0af3664"}
+----------------------------------------
+[2025-11-06 18:31:09]
+{"code":"00","desc":"success","success":true,"data":{"accountNumber":"0990134154901","amount":2000,"description":"Day la mo ta","reference":"FT25311606149424","transactionDateTime":"2025-11-07 01:31:08","virtualAccountNumber":"","counterAccountBankId":"970422","counterAccountBankName":"","counterAccountName":null,"counterAccountNumber":"2281072020614","virtualAccountName":"","currency":"VND","orderCode":3,"paymentLinkId":"c8f051f62e984a2084e08044a5da1f88","code":"00","desc":"success"},"signature":"cb9fca09ec5ded20c08e79b37a66d6901e5898a4296f40b235bffd1c9a01f766"}
+----------------------------------------
+[2025-11-06 23:47:51]
+{"code":"00","desc":"success","success":true,"data":{"accountNumber":"0990134154901","amount":2000,"description":"Day la mo ta","reference":"FT25311441594590","transactionDateTime":"2025-11-07 06:47:50","virtualAccountNumber":"","counterAccountBankId":"970422","counterAccountBankName":"","counterAccountName":null,"counterAccountNumber":"2281072020614","virtualAccountName":"","currency":"VND","orderCode":4,"paymentLinkId":"18225411f74e40679774efb9a807add8","code":"00","desc":"success"},"signature":"6aa09a7a3fb2aa8041a90d1af94a1eb9a409c0f6be0a16c66ced370296be3a8f"}
+----------------------------------------

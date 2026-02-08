@@ -1,0 +1,18 @@
+.QUERY-copy-btn {
+  &.QUERY-not-copied {
+    .QUERY-copy-icon {
+      display: block;
+    }
+    .QUERY-copied-icon {
+      display: none;
+    }
+  }
+  &.QUERY-is-copied {
+    .QUERY-copy-icon {
+      display: none;
+    }
+    .QUERY-copied-icon {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+#hide-show-password-section.QUERY-hide-password .QUERY-show-password-btn {
+  display: none;
+}
+#hide-show-password-section.QUERY-show-password .QUERY-hide-password-btn {
+  display: none;
+}
+
+input.CSS-password-input-patched-styles:-webkit-autofill,
+input.CSS-password-input-patched-styles:-webkit-autofill:focus {
+  background-color: transparent !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/*# sourceMappingURL=page.css.map */

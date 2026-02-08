@@ -1,0 +1,103 @@
+1️⃣ Chọn FONT đúng là 60% độ đẹp
+
+Phong cách này hợp sci-fi / esport / futuristic
+
+Font gợi ý (rất hợp chữ bạn):
+
+Orbitron (chuẩn Valorant vibe)
+
+Oxanium
+
+Rajdhani
+
+Teko
+
+Bebas Neue (nếu muốn gọn, mạnh)
+
+👉 Tránh font bo tròn / handwritten / serif ❌
+
+📌 Tip:
+
+Dùng ALL CAPS
+
+Letter spacing: +5 → +20
+
+2️⃣ Màu sắc: ít nhưng “chất”
+
+Bạn đang làm đúng rồi, chỉ cần tinh chỉnh:
+
+Công thức chuẩn:
+
+Tên người: Trắng / xám nhạt
+
+Dấu X: Đỏ (để tạo điểm nhấn collab)
+
+Brand/game: Xanh cyan / neon
+
+Ví dụ:
+
+DUONG ANH TUAN   (white)
+X               (#ff3b3b)
+VALORANTIME     (#00f0ff)
+
+
+🚫 Đừng dùng quá 3 màu chính
+
+3️⃣ Glow / Neon: ít nhưng phải “sắc”
+
+Sai lầm thường gặp: glow quá mạnh → chữ bị mờ
+
+Chuẩn glow đẹp:
+
+2 lớp glow
+
+Lớp 1: mờ nhẹ, lan rộng
+
+Lớp 2: sắc, nhỏ
+
+Nếu làm bằng CSS:
+
+text-shadow:
+  0 0 4px rgba(0, 240, 255, 0.8),
+  0 0 12px rgba(0, 240, 255, 0.6);
+
+
+Nếu làm bằng Photoshop:
+
+Outer Glow
+
+Spread thấp
+
+Size vừa phải
+
+4️⃣ Độ dày chữ (Font weight)
+
+Tên người: Medium / SemiBold
+
+Brand (VALORANTIME): Bold
+
+👉 Brand phải “đập vào mắt” hơn tên
+
+5️⃣ Bố cục: để chữ “thở”
+
+Không ép chữ sát mép
+
+Chừa khoảng trống hai bên
+
+X nằm giữa, nhỏ hơn chữ chính một chút
+
+💡 Có thể thêm:
+
+1 đường line mảnh
+
+1 icon hình kim cương / chấm sáng nhỏ (như trong ảnh bạn)
+
+6️⃣ Nền: tối + gradient nhẹ
+
+Nền đẹp giúp chữ nổi hơn rất nhiều:
+
+Đen / xanh đậm
+
+Gradient nhẹ từ trái sang phải
+
+Có noise nhẹ (5–10%) cho đỡ “phẳng”
