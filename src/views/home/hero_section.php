@@ -6,10 +6,23 @@
     <div class="absolute inset-0 bg-black/40"></div>
   </div>
 
+  <!-- Intro Header Nav (full-width bar, centered content) -->
+  <div class="absolute inset-x-0 top-0 z-30">
+    <nav class="w-full bg-black/60 backdrop-blur-sm px-2 py-2 shadow-lg">
+      <div class="max-w-[1200px] mx-auto w-full flex items-center justify-center gap-6 text-white font-medium">
+        <a href="/thong-tin" class="hover:underline">Thông tin trò chơi</a>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Facebook">Facebook</a>
+        <a href="https://zalo.me" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Zalo">Zalo</a>
+        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Discord">Discord</a>
+        <a href="/sale" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Sale">Sale</a>
+      </div>
+    </nav>
+  </div>
+
   <div class="relative z-10 min-h-screen flex items-center font-bold">
     <div class="w-full px-2 pb-[60px] pt-[30px] min-[1900px]:px-[350px] min-[1400px]:px-[240px] min-[1200px]:px-[200px]">
       <div class="w-full relative z-[90]">
-        <div class="text-center mb-4 relative">
+        <div class="text-center mb-4 relative mt-8">
           <div class="absolute inset-0 pointer-events-none">
             <?php
             $particles = [];
@@ -23,7 +36,7 @@
             }
             ?>
           </div>
-          <h1 class="text-[2.5em] leading-tight flex flex-row items-center justify-center text-center uppercase tracking-wider whitespace-nowrap italic" style="font-family: 'Orbitron', monospace; filter: brightness(1.3) contrast(1.2);">
+          <h1 class="text-[3em] leading-tight flex flex-row items-center justify-center text-center uppercase tracking-wider whitespace-nowrap italic" style="font-family: 'Orbitron', monospace; filter: brightness(1.3) contrast(1.2);">
             <span class="font-medium text-gray-100" style="text-shadow: 0 0 8px rgba(0, 240, 255, 1), 0 0 16px rgba(0, 240, 255, 0.9), 0 0 24px rgba(255, 0, 255, 0.7); -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);">
               DUONG ANH TUAN
             </span>
@@ -168,8 +181,17 @@
           </div>
         </div>
 
+        <!-- Buttons to toggle notes (same row) -->
+        <div class="w-full flex items-center justify-center gap-4 mt-2 mb-2">
+          <button id="btn-deduct" class="px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition">Lưu ý trừ cọc</button>
+          <button id="btn-rent" class="px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition">Lưu ý khi thuê Account</button>
+        </div>
+
+        <!-- Display area for notes (buttons will inject content here). Details below kept hidden. -->
+        <div id="notes-display" class="mx-auto mt-6 max-w-[900px] w-[90%] bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 p-4 text-white text-[1em] hidden"></div>
+
         <div class="flex flex-col gap-2 mt-2">
-          <details class="bg-red-500/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 flex-1">
+          <details id="detail-deduct" style="display:none" class="bg-red-500/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 flex-1">
             <summary class="text-pink-400 text-[1.51em] font-bold leading-none cursor-pointer hover:text-pink-300 transition-colors duration-300 list-none mb-2 px-2 rounded-lg flex items-center justify-between">
               <span>Lưu ý trừ cọc</span>
               <div class="flex items-center gap-2">
@@ -225,7 +247,7 @@
         </div>
 
         <div class="flex flex-col gap-2 mt-2">
-          <details class="bg-red-500/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 flex-1">
+          <details id="detail-rent" style="display:none" class="bg-red-500/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 flex-1">
             <summary class="text-pink-400 text-[1.51em] font-bold leading-none cursor-pointer hover:text-pink-300 transition-colors duration-300 list-none mb-2 px-2 rounded-lg flex items-center justify-between">
               <span>Lưu ý khi thuê Account</span>
               <div class="flex items-center gap-2">
@@ -275,21 +297,72 @@
         </div>
       </div>
         <script>
+          // Disabled automatic scroll on <details> open: user requested no automatic focusing.
           document.addEventListener('DOMContentLoaded', function() {
-            const detailsElements = document.querySelectorAll('details');
-            detailsElements.forEach(details => {
-              details.addEventListener('toggle', function() {
-                if (details.open) {
-                  setTimeout(() => {
-                    const rect = details.getBoundingClientRect();
-                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-                    if (!isVisible) {
-                      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }, 100);
-                }
+            // Intentionally left blank to avoid auto-scrolling when a <details> is toggled.
+            // If needed later, we can re-enable a milder behavior here.
+          });
+        </script>
+        <script>
+          // Buttons to open/close the details and scroll into view
+          document.addEventListener('DOMContentLoaded', function(){
+            const btnDeduct = document.getElementById('btn-deduct');
+            const btnRent = document.getElementById('btn-rent');
+            const detDeduct = document.getElementById('detail-deduct');
+            const detRent = document.getElementById('detail-rent');
+
+            function closeOthers(openOne){
+              [detDeduct, detRent].forEach(d => {
+                if(!d) return;
+                if(d !== openOne) d.open = false;
               });
-            });
+            }
+
+            function openAndScroll(detail, id){
+              // Copy the <details> content (excluding the <summary>) into #notes-display.
+              const display = document.getElementById('notes-display');
+              if(!display) return;
+              if(!detail) return;
+
+              // Build HTML from detail children, skipping the <summary>
+              let contentHTML = '';
+              const children = Array.from(detail.children || []);
+              children.forEach(child => {
+                if(!child) return;
+                if(child.tagName && child.tagName.toLowerCase() === 'summary') return;
+                contentHTML += child.outerHTML || child.innerHTML || '';
+              });
+
+              // Fallback: clone and remove summary then use remaining innerHTML
+              if(!contentHTML.trim()){
+                try{
+                  const clone = detail.cloneNode(true);
+                  const summary = clone.querySelector('summary');
+                  if(summary) summary.remove();
+                  contentHTML = clone.innerHTML || '';
+                }catch(e){
+                  contentHTML = detail.innerHTML || '';
+                }
+              }
+
+              display.innerHTML = contentHTML;
+              display.classList.remove('hidden');
+              // subtle entry animation
+              display.style.opacity = 0;
+              display.style.transform = 'translateY(6px)';
+              requestAnimationFrame(()=>{
+                display.style.transition = 'opacity 220ms ease, transform 220ms ease';
+                display.style.opacity = 1;
+                display.style.transform = 'translateY(0)';
+              });
+                // Do not auto-scroll to the injected content — user requested no automatic focus.
+
+              closeOthers(detail);
+              try{ console.log('openAndScroll: injected content length', contentHTML.length); }catch(e){}
+            }
+
+            if(btnDeduct) btnDeduct.addEventListener('click', function(e){ openAndScroll(detDeduct, 'deduct'); });
+            if(btnRent) btnRent.addEventListener('click', function(e){ openAndScroll(detRent, 'rent'); });
           });
         </script>
       <div class="flex-col items-center gap-3 min-[1170px]:flex hidden pt-2 absolute bottom-[500px] left-[40px] z-[80]">

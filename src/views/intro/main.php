@@ -10,7 +10,7 @@
   </div>
 
   <!-- Intro Header Nav (flush top, centered) -->
-  <div class="absolute inset-x-0 top-0 z-30 flex justify-center">
+  <!-- <div class="absolute inset-x-0 top-0 z-30 flex justify-center">
     <nav class="bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 flex gap-6 items-center text-white font-medium shadow-lg">
       <a href="/thong-tin" class="hover:underline">Thông tin trò chơi</a>
       <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Facebook">Facebook</a>
@@ -19,9 +19,9 @@
       <a href="/sale" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Sale">Sale</a>
 
     </nav>
-  </div>
+  </div> -->
 
-  <!-- Left Side - Main Title -->
+  Left Side - Main Title
   <div class="QUERY-left-side-container">
     <div class="flex flex-col items-start space-y-4">
       <div class="flex items-center gap-2">
