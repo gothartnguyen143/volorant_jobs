@@ -50,141 +50,178 @@
           <div class="w-80 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 mx-auto rounded-full lightning-bar" style="box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 255, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);"></div>
         </div>
 
-        <div class="grid min-[1170px]:grid-cols-3 min-[600px]:grid-cols-2 grid-cols-1 gap-y-2 gap-x-2 items-start text-[1.22em]">
-          <div class="bg-white/10 backdrop-blur-md rounded-2xl px-2 py-1 border border-white/20 flex-1 h-full">
-            <h3 class="text-[1.15em] font-bold text-sky-300 mb-2 flex items-center gap-3 text-center">
-              Giá Máy Nét (Tất cả)
-            </h3>
-            <div class="space-y-2" style="font-size: 0.8em;">
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                  <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 240, 255, 0.8); letter-spacing: 0.05em;">20K - 2 Giờ</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                  <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 240, 255, 0.8); letter-spacing: 0.05em;">30K - 3 Giờ</span>
-                  <span class="text-yellow-400 font-bold">+ 1 Giờ</span>
-                </div>
-              </div>
-              <!--<div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">-->
-              <!--  <div class="flex items-center gap-3">-->
-              <!--    <span class="text-white font-bold">40K - 4 GIỜ</span>-->
-              <!--    <span class="text-yellow-400 font-bold">+ 2 GIỜ</span>-->
-              <!--  </div>-->
-              <!--</div>-->
-            </div>
-            <div class="space-y-2 mt-4" style="font-size: 0.8em;">
-              <div class="flex items-center gap-1 text-sky-400 max-w-full w-fit">
-                <svg class="w-6 h-6 flex-grow-[1]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="text-white flex items-start justify-between w-max flex-grow-[3]">
-                    <span class="font-bold text-sky-400 text-left" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8); letter-spacing: 0.05em;">Combo đêm:</span>
-                    <div class="flex flex-col items-end">
-                      <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8); letter-spacing: 0.05em;">50k</span>
-                      <span class="text-[0.68em]">(22PM - 7AM)</span>
-                    </div>
-                  </span>
-                </div>
-                <div class="flex items-center gap-1 text-cyan-400 max-w-full w-fit">
-                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  <span class="text-white">
-                    <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 255, 255, 0.8); letter-spacing: 0.05em;">Combo ngày: 120k</span>
-                </span>
-              </div>
-            </div>
-          </div>
+        <div class="bg-slate-950 p-2 rounded-xl relative overflow-hidden font-sans">
+  <div class="grid min-[1170px]:grid-cols-3 min-[600px]:grid-cols-2 grid-cols-1 gap-y-2 gap-x-2 items-start text-[1.22em]">
 
-          <div class="bg-yellow-500/10 backdrop-blur-md rounded-2xl px-2 py-1 border border-white/20 flex-1 h-full">
-            <h3 class="text-[1.15em] font-bold text-yellow-400 mb-2 text-center">Giá Máy Nhà (Tất cả + Only Máy nhà)</h3>
-            <div class="space-y-2 mb-4" style="font-size: 0.8em;">
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                  <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8); letter-spacing: 0.05em;">20K - 2 Giờ</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                  <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8); letter-spacing: 0.05em;">30K - 3 Giờ</span>
-                </div>
-              </div>
-              <!--<div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">-->
-              <!--  <div class="flex items-center gap-3">-->
-              <!--    <span class="text-white">40k - 4 Giờ <span class="text-yellow-400 font-bold">+ 1 Giờ</span></span>-->
-              <!--  </div>-->
-              <!--</div>-->
-              <div class="space-y-2 mt-4">
-                <div class="flex items-center gap-1 text-sky-400 max-w-full w-fit">
-                  <svg class="w-6 h-6 flex-grow-[1]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  <span class="text-white flex items-start justify-between w-max flex-grow-[3]">
-                    <span class="font-bold text-sky-400 text-left" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 240, 255, 0.8); letter-spacing: 0.05em;">Combo đêm:</span>
-                    <div class="flex flex-col items-end">
-                      <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 240, 255, 0.8); letter-spacing: 0.05em;">40k</span>
-                      <span class="text-[0.68em]">(22PM - 7AM)</span>
-                    </div>
-                  </span>
-                </div>
-                <div class="flex items-center gap-1 text-cyan-400 max-w-full w-fit">
-                  <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  <span class="text-white">
-                    <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(0, 255, 255, 0.8); letter-spacing: 0.05em;">Combo ngày: 120k</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="text-[0.86em] text-red-300 leading-tight" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 3px rgba(255, 0, 0, 0.6); letter-spacing: 0.02em; font-size: 0.8em;">
-              Lưu ý : Nếu chơi Account Only máy nhà sẽ có cơ hội + thêm 1 giờ nữa !
-            </div>
-          </div>
+    <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-sky-500/30 shadow-[0_0_10px_rgba(14,165,233,0.15)] flex-1 h-full flex flex-col justify-between group hover:border-sky-400 transition-colors duration-300">
+      
+      <h3 class="text-[1.15em] font-bold text-sky-400 mb-2 flex items-center justify-center gap-2 text-center uppercase border-b border-sky-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);">
+        Giá Máy Nét <span class="text-[0.7em] normal-case opacity-80">(Tất cả)</span>
+      </h3>
 
-          <div class="min-[600px]:col-span-2 min-[1170px]:col-span-1 bg-yellow-500/10 backdrop-blur-md rounded-2xl px-2 py-1 border border-white/20 flex-1 h-full w-full">
-            <h3 class="text-[1.15em] font-bold text-red-400 mb-2 text-center">Giá Account Đặc Biệt </h3>
-            <div class="space-y-2 mb-4" style="font-size: 0.8em;">
-                <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                      <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 0, 0, 0.8); letter-spacing: 0.05em;">30k - 2 Giờ <span class="text-yellow-400 font-bold">+ 1 Giờ</span></span></span>
-                    </div>
-                </div>
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3">
-                  <span class="text-white font-bold" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 0, 0, 0.8); letter-spacing: 0.05em;">40k - 4 Giờ</span>
-                </div>
-              </div>
-              
-              <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div class="flex items-center gap-3 text-white">
-                    <span class="font-bold min-w-max inline-block text-left" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 0, 0, 0.8); letter-spacing: 0.05em;">Combo đêm :</span>
-                    <span class="inline-block">
-                      <span class="block">Nét: 50k</span>
-                      <span class="block">Nhà: 60k</span>
-                    </span>
-                  </div>
-                </div>
-                <div class="flex items-center justify-between px-2 py-0 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                  <div class="flex items-center gap-3">
-                    <span class="text-white font-bold text-left" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(255, 0, 0, 0.8); letter-spacing: 0.05em;">Combo ngày : 140k</span>
-                </div>
-              </div>
-            </div>
-            <div class="text-[0.86em] text-red-300 leading-tight" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 3px rgba(255, 0, 0, 0.6); letter-spacing: 0.02em; font-size: 0.8em;">
-              Lưu ý : Áp dụng cho Account có bundle mới trong vòng 3 ngày đầu ra mắt
-            </div>
+      <div class="space-y-2 flex-1" style="font-size: 0.8em;">
+        <div class="flex items-center justify-between px-3 py-1 bg-sky-950/30 rounded-lg border border-sky-500/10 hover:bg-sky-500/10 transition-all duration-300">
+          <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">20K</span>
+          <span class="text-sky-200">- 2 Giờ</span>
+        </div>
+        
+        <div class="flex items-center justify-between px-3 py-1 bg-sky-950/30 rounded-lg border border-sky-500/10 hover:bg-sky-500/10 transition-all duration-300 relative overflow-hidden">
+          <div class="absolute right-0 top-0 h-full w-[2px] bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.8)]"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
+            <span class="text-sky-200">- 3 Giờ</span>
           </div>
+          <span class="text-yellow-400 font-bold text-[0.9em] animate-pulse">+ 1 Giờ</span>
         </div>
 
+        <div class="h-[1px] bg-sky-500/20 my-2"></div>
+
+        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
+            </div>
+            <div class="text-right">
+                <span class="font-bold text-white text-[1.1em] block leading-none" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(56, 189, 248, 0.8);">50k</span>
+                <span class="text-[0.7em] text-sky-500/80 block leading-none">(22h-7h)</span>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
+            </div>
+            <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(34, 211, 238, 0.8);">120k</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-yellow-500/30 shadow-[0_0_10px_rgba(234,179,8,0.15)] flex-1 h-full flex flex-col justify-between group hover:border-yellow-400 transition-colors duration-300">
+      
+      <h3 class="text-[1.15em] font-bold text-yellow-400 mb-2 flex flex-col items-center justify-center text-center uppercase border-b border-yellow-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(234, 179, 8, 0.6);">
+        <span>Giá Máy Nhà</span>
+        <span class="text-[0.6em] normal-case opacity-80 text-yellow-200/70 tracking-wide">(Tất cả + Only Máy nhà)</span>
+      </h3>
+
+      <div class="space-y-2 mb-2 flex-1" style="font-size: 0.8em;">
+        <div class="flex items-center justify-between px-3 py-1 bg-yellow-950/30 rounded-lg border border-yellow-500/10 hover:bg-yellow-500/10 transition-all duration-300">
+            <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">20K</span>
+            <span class="text-yellow-100">- 2 Giờ</span>
+        </div>
+        <div class="flex items-center justify-between px-3 py-1 bg-yellow-950/30 rounded-lg border border-yellow-500/10 hover:bg-yellow-500/10 transition-all duration-300">
+            <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
+            <span class="text-yellow-100">- 3 Giờ</span>
+        </div>
+
+        <div class="h-[1px] bg-yellow-500/20 my-2"></div>
+
+        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
+            </div>
+            <div class="text-right">
+                <span class="font-bold text-white text-[1.1em] block leading-none" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(56, 189, 248, 0.8);">40k</span>
+                <span class="text-[0.7em] text-sky-500/80 block leading-none">(22h-7h)</span>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
+            </div>
+            <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(34, 211, 238, 0.8);">120k</span>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-2 border-t border-white/5">
+        <div class="text-[0.75em] text-red-300 leading-tight italic opacity-90 text-center" style="font-family: 'Orbitron', monospace;">
+             ⚠ Lưu ý: Chơi Account Only máy nhà có cơ hội + thêm 1 giờ!
+        </div>
+      </div>
+    </div>
+
+    <div class="min-[600px]:col-span-2 min-[1170px]:col-span-1 bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-red-500/30 shadow-[0_0_10px_rgba(239,68,68,0.15)] flex-1 h-full w-full flex flex-col justify-between group hover:border-red-400 transition-colors duration-300">
+      
+      <h3 class="text-[1.15em] font-bold text-red-400 mb-2 flex items-center justify-center gap-2 text-center uppercase border-b border-red-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);">
+        Giá Acc Đặc Biệt
+      </h3>
+
+      <div class="space-y-2 mb-2 flex-1" style="font-size: 0.8em;">
+        <div class="flex items-center justify-between px-3 py-1 bg-red-950/30 rounded-lg border border-red-500/10 hover:bg-red-500/10 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute right-0 top-0 h-full w-[2px] bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.8)]"></div>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
+              <span class="text-red-200">- 2 Giờ</span>
+            </div>
+            <span class="text-yellow-400 font-bold text-[0.9em] animate-pulse">+ 1 Giờ</span>
+        </div>
+
+        <div class="flex items-center justify-between px-3 py-1 bg-red-950/30 rounded-lg border border-red-500/10 hover:bg-red-500/10 transition-all duration-300">
+            <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">40K</span>
+            <span class="text-red-200">- 4 Giờ</span>
+        </div>
+
+        <div class="h-[1px] bg-red-500/20 my-2"></div>
+
+        <div class="flex items-start justify-between px-2 py-1 text-white w-full">
+            <div class="flex items-center gap-2 mt-1">
+                <span class="font-bold text-red-400 uppercase" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
+            </div>
+            <div class="text-right flex flex-col items-end">
+                <div class="flex items-center gap-2">
+                    <span class="text-[0.9em] text-red-300">Nét:</span>
+                    <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace;">50k</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[0.9em] text-yellow-300">Nhà:</span>
+                    <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace;">60k</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between px-2 py-1 text-white w-full">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-red-400 uppercase" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
+            </div>
+            <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(239, 68, 68, 0.8);">140k</span>
+        </div>
+      </div>
+
+      <div class="mt-auto pt-2 border-t border-white/5">
+        <div class="text-[0.75em] text-red-300 leading-tight italic opacity-90 text-center" style="font-family: 'Orbitron', monospace;">
+            ⚠ Áp dụng cho Account có bundle mới trong 3 ngày đầu
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         <!-- Buttons to toggle notes (same row) -->
+        <style>
+          /* Pulsing animation for note buttons */
+          @keyframes note-pulse {
+            0% { transform: scale(1); filter: brightness(1); box-shadow: none; }
+            50% { transform: scale(1.10); filter: brightness(1.15); box-shadow: 0 12px 30px rgba(255,99,132,0.18), 0 0 24px rgba(255,105,180,0.18); }
+            100% { transform: scale(1); filter: brightness(1); box-shadow: none; }
+          }
+          .note-pulse {
+            animation: note-pulse 2000ms ease-in-out infinite;
+            transition: box-shadow 180ms ease, transform 180ms ease;
+            transform-origin: center center;
+          }
+          .note-pulse:hover, .note-pulse:focus {
+            animation-play-state: paused;
+            transform: scale(1.10);
+            box-shadow: 0 16px 40px rgba(255,105,180,0.22), 0 0 36px rgba(255,105,180,0.22);
+          }
+          .note-pulse .btn-label { display: inline-block; text-shadow: 0 0 8px rgba(255,105,180,0.95), 0 0 18px rgba(255,99,132,0.55); }
+        </style>
         <div class="w-full flex items-center justify-center gap-4 mt-2 mb-2">
-          <button id="btn-deduct" class="px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition">Lưu ý trừ cọc</button>
-          <button id="btn-rent" class="px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition">Lưu ý khi thuê Account</button>
+          <button id="btn-deduct" class="note-pulse px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition"><span class="btn-label">Lưu ý trừ cọc</span></button>
+          <button id="btn-rent" class="note-pulse px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition"><span class="btn-label">Lưu ý khi thuê Account</span></button>
         </div>
 
         <!-- Display area for notes (buttons will inject content here). Details below kept hidden. -->
