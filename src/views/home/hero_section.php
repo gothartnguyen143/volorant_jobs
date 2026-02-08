@@ -50,46 +50,47 @@
           <div class="w-80 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 mx-auto rounded-full lightning-bar" style="box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 255, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);"></div>
         </div>
 
-        <div class="bg-slate-950 p-2 rounded-xl relative overflow-hidden font-sans">
+        <div class="bg-black/20 backdrop-blur-sm p-2 rounded-xl relative overflow-hidden font-sans border border-white/5 shadow-2xl">
+  
   <div class="grid min-[1170px]:grid-cols-3 min-[600px]:grid-cols-2 grid-cols-1 gap-y-2 gap-x-2 items-start text-[1.22em]">
 
-    <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-sky-500/30 shadow-[0_0_10px_rgba(14,165,233,0.15)] flex-1 h-full flex flex-col justify-between group hover:border-sky-400 transition-colors duration-300">
+    <div class="bg-slate-900/30 backdrop-blur-xl rounded-2xl px-2 py-2 border border-sky-500/30 shadow-[0_0_15px_rgba(14,165,233,0.1)] flex-1 h-full flex flex-col justify-between group hover:bg-slate-900/40 hover:border-sky-400 transition-all duration-300">
       
       <h3 class="text-[1.15em] font-bold text-sky-400 mb-2 flex items-center justify-center gap-2 text-center uppercase border-b border-sky-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);">
-        Giá Máy Nét <span class="text-[0.7em] normal-case opacity-80">(Tất cả)</span>
+        Giá Máy Nét <span class="text-[0.7em] normal-case opacity-80 text-sky-200">(Tất cả)</span>
       </h3>
 
       <div class="space-y-2 flex-1" style="font-size: 0.8em;">
-        <div class="flex items-center justify-between px-3 py-1 bg-sky-950/30 rounded-lg border border-sky-500/10 hover:bg-sky-500/10 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-sky-500/20 transition-all duration-300">
           <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">20K</span>
-          <span class="text-sky-200">- 2 Giờ</span>
+          <span class="text-sky-100/80">- 2 Giờ</span>
         </div>
         
-        <div class="flex items-center justify-between px-3 py-1 bg-sky-950/30 rounded-lg border border-sky-500/10 hover:bg-sky-500/10 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-sky-500/20 transition-all duration-300 relative overflow-hidden">
           <div class="absolute right-0 top-0 h-full w-[2px] bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.8)]"></div>
           <div class="flex items-center gap-2">
             <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
-            <span class="text-sky-200">- 3 Giờ</span>
+            <span class="text-sky-100/80">- 3 Giờ</span>
           </div>
           <span class="text-yellow-400 font-bold text-[0.9em] animate-pulse">+ 1 Giờ</span>
         </div>
 
-        <div class="h-[1px] bg-sky-500/20 my-2"></div>
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-sky-500/20 to-transparent my-2"></div>
 
-        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full">
+        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <svg class="w-4 h-4 opacity-80" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
             </div>
             <div class="text-right">
                 <span class="font-bold text-white text-[1.1em] block leading-none" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(56, 189, 248, 0.8);">50k</span>
-                <span class="text-[0.7em] text-sky-500/80 block leading-none">(22h-7h)</span>
+                <span class="text-[0.7em] text-sky-200/60 block leading-none">(22h-7h)</span>
             </div>
         </div>
 
-        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full">
+        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <svg class="w-4 h-4 opacity-80" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
             </div>
             <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(34, 211, 238, 0.8);">120k</span>
@@ -97,39 +98,39 @@
       </div>
     </div>
 
-    <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-yellow-500/30 shadow-[0_0_10px_rgba(234,179,8,0.15)] flex-1 h-full flex flex-col justify-between group hover:border-yellow-400 transition-colors duration-300">
+    <div class="bg-slate-900/30 backdrop-blur-xl rounded-2xl px-2 py-2 border border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.1)] flex-1 h-full flex flex-col justify-between group hover:bg-slate-900/40 hover:border-yellow-400 transition-all duration-300">
       
       <h3 class="text-[1.15em] font-bold text-yellow-400 mb-2 flex flex-col items-center justify-center text-center uppercase border-b border-yellow-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(234, 179, 8, 0.6);">
         <span>Giá Máy Nhà</span>
-        <span class="text-[0.6em] normal-case opacity-80 text-yellow-200/70 tracking-wide">(Tất cả + Only Máy nhà)</span>
+        <span class="text-[0.6em] normal-case opacity-80 text-yellow-100/70 tracking-wide">(Tất cả + Only Máy nhà)</span>
       </h3>
 
       <div class="space-y-2 mb-2 flex-1" style="font-size: 0.8em;">
-        <div class="flex items-center justify-between px-3 py-1 bg-yellow-950/30 rounded-lg border border-yellow-500/10 hover:bg-yellow-500/10 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-yellow-500/20 transition-all duration-300">
             <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">20K</span>
-            <span class="text-yellow-100">- 2 Giờ</span>
+            <span class="text-yellow-100/80">- 2 Giờ</span>
         </div>
-        <div class="flex items-center justify-between px-3 py-1 bg-yellow-950/30 rounded-lg border border-yellow-500/10 hover:bg-yellow-500/10 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-yellow-500/20 transition-all duration-300">
             <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
-            <span class="text-yellow-100">- 3 Giờ</span>
+            <span class="text-yellow-100/80">- 3 Giờ</span>
         </div>
 
-        <div class="h-[1px] bg-yellow-500/20 my-2"></div>
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent my-2"></div>
 
-        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full">
+        <div class="flex items-center justify-between px-2 py-1 text-sky-400 w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <svg class="w-4 h-4 opacity-80" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 <span class="font-bold text-sky-400" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
             </div>
             <div class="text-right">
                 <span class="font-bold text-white text-[1.1em] block leading-none" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(56, 189, 248, 0.8);">40k</span>
-                <span class="text-[0.7em] text-sky-500/80 block leading-none">(22h-7h)</span>
+                <span class="text-[0.7em] text-sky-200/60 block leading-none">(22h-7h)</span>
             </div>
         </div>
 
-        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full">
+        <div class="flex items-center justify-between px-2 py-1 text-cyan-400 w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <svg class="w-4 h-4 opacity-80" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span class="font-bold text-cyan-400" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
             </div>
             <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 5px rgba(34, 211, 238, 0.8);">120k</span>
@@ -143,46 +144,46 @@
       </div>
     </div>
 
-    <div class="min-[600px]:col-span-2 min-[1170px]:col-span-1 bg-slate-900/90 backdrop-blur-md rounded-2xl px-2 py-2 border border-red-500/30 shadow-[0_0_10px_rgba(239,68,68,0.15)] flex-1 h-full w-full flex flex-col justify-between group hover:border-red-400 transition-colors duration-300">
+    <div class="min-[600px]:col-span-2 min-[1170px]:col-span-1 bg-slate-900/30 backdrop-blur-xl rounded-2xl px-2 py-2 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.1)] flex-1 h-full w-full flex flex-col justify-between group hover:bg-slate-900/40 hover:border-red-400 transition-all duration-300">
       
       <h3 class="text-[1.15em] font-bold text-red-400 mb-2 flex items-center justify-center gap-2 text-center uppercase border-b border-red-500/20 pb-2" style="font-family: 'Orbitron', monospace; text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);">
         Giá Acc Đặc Biệt
       </h3>
 
       <div class="space-y-2 mb-2 flex-1" style="font-size: 0.8em;">
-        <div class="flex items-center justify-between px-3 py-1 bg-red-950/30 rounded-lg border border-red-500/10 hover:bg-red-500/10 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-red-500/20 transition-all duration-300 relative overflow-hidden">
             <div class="absolute right-0 top-0 h-full w-[2px] bg-yellow-400 shadow-[0_0_5px_rgba(250,204,21,0.8)]"></div>
             <div class="flex items-center gap-2">
               <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">30K</span>
-              <span class="text-red-200">- 2 Giờ</span>
+              <span class="text-red-200/80">- 2 Giờ</span>
             </div>
             <span class="text-yellow-400 font-bold text-[0.9em] animate-pulse">+ 1 Giờ</span>
         </div>
 
-        <div class="flex items-center justify-between px-3 py-1 bg-red-950/30 rounded-lg border border-red-500/10 hover:bg-red-500/10 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-1 bg-white/5 rounded-lg border border-white/10 hover:bg-red-500/20 transition-all duration-300">
             <span class="text-white font-bold tracking-wide" style="font-family: 'Orbitron', monospace;">40K</span>
-            <span class="text-red-200">- 4 Giờ</span>
+            <span class="text-red-200/80">- 4 Giờ</span>
         </div>
 
-        <div class="h-[1px] bg-red-500/20 my-2"></div>
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-red-500/20 to-transparent my-2"></div>
 
-        <div class="flex items-start justify-between px-2 py-1 text-white w-full">
+        <div class="flex items-start justify-between px-2 py-1 text-white w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2 mt-1">
                 <span class="font-bold text-red-400 uppercase" style="font-family: 'Orbitron', monospace;">Combo đêm</span>
             </div>
             <div class="text-right flex flex-col items-end">
                 <div class="flex items-center gap-2">
-                    <span class="text-[0.9em] text-red-300">Nét:</span>
+                    <span class="text-[0.9em] text-red-200/70">Nét:</span>
                     <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace;">50k</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-[0.9em] text-yellow-300">Nhà:</span>
+                    <span class="text-[0.9em] text-yellow-200/70">Nhà:</span>
                     <span class="font-bold text-white text-[1.1em]" style="font-family: 'Orbitron', monospace;">60k</span>
                 </div>
             </div>
         </div>
 
-        <div class="flex items-center justify-between px-2 py-1 text-white w-full">
+        <div class="flex items-center justify-between px-2 py-1 text-white w-full hover:bg-white/5 rounded-lg transition-colors">
             <div class="flex items-center gap-2">
                 <span class="font-bold text-red-400 uppercase" style="font-family: 'Orbitron', monospace;">Combo ngày</span>
             </div>
