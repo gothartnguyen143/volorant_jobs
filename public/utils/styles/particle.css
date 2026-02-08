@@ -50,3 +50,7 @@
   border-radius: 50%;
   animation: lightning 3s infinite 0.5s;
 }
+
+details[open] .arrow-icon {
+  transform: rotate(180deg);
+}

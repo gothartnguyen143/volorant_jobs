@@ -9,6 +9,18 @@
     </div>
   </div>
 
+  <!-- Intro Header Nav (flush top, centered) -->
+  <div class="absolute inset-x-0 top-0 z-30 flex justify-center">
+    <nav class="bg-black/40 backdrop-blur-sm rounded-full px-4 py-2 flex gap-6 items-center text-white font-medium shadow-lg">
+      <a href="/thong-tin" class="hover:underline">Thông tin trò chơi</a>
+      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Facebook">Facebook</a>
+      <a href="https://zalo.me" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Zalo">Zalo</a>
+      <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Discord">Discord</a>
+      <a href="/sale" target="_blank" rel="noopener noreferrer" class="hover:underline" aria-label="Mở Sale">Sale</a>
+
+    </nav>
+  </div>
+
   <!-- Left Side - Main Title -->
   <div class="QUERY-left-side-container">
     <div class="flex flex-col items-start space-y-4">
@@ -63,9 +75,8 @@
         <div class="text-[1.71em] font-bold text-white">7h - 00h hàng ngày</div>
         <div class="text-gray-400 text-[1em]">Hỗ trợ</div>
       </div>
-    </div>
 
-    <div class="block min-[700px]:hidden mt-6">
+      <div class="block min-[700px]:hidden mt-6">
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 hover:scale-105 cursor-pointer transition duration-200">
           <a href="/thueacc" class="flex items-center gap-2 w-max text-[1.43em] lg:text-[2.29em] font-bold text-white leading-tight">
@@ -89,6 +100,8 @@
         </div>
       </div>
     </div>
+
+    
   </div>
 </div>
 
