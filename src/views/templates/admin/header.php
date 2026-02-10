@@ -32,6 +32,18 @@
           </div>
         </a>
 
+        <a href="/admin/rotation" class="flex items-center gap-2 hover:bg-gray-100 rounded-lg p-2 transition duration-300 cursor-pointer">
+          <div class="w-8 h-8 bg-gradient-to-r from-regular-from-blue-cl to-regular-to-blue-cl rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-rotate-icon text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10v6h-6" />
+              <path d="M3 14a9 9 0 1 0 4.95-7.95" />
+            </svg>
+          </div>
+          <div class="text-sm">
+            <span class="font-medium text-gray-700">Vòng quay may mắn</span>
+          </div>
+        </a>
+
         <a href="/admin/profile" class="flex items-center gap-3 hover:bg-gray-100 rounded-lg p-2 transition duration-300 cursor-pointer">
           <div class="w-8 h-8 bg-gradient-to-r from-regular-from-blue-cl to-regular-to-blue-cl rounded-full flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-circle-user-icon lucide-circle-user text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -89,6 +101,11 @@
           <li>
             <a href="/admin/manage-game-accounts" class="flex items-center py-2 rounded-lg CSS-neon-text-hover group">
               <span>Quản lý acc</span>
+            </a>
+          </li>
+            <li>
+            <a href="/admin/rotation" class="flex items-center py-2 rounded-lg CSS-neon-text-hover group">
+              <span>Vòng quay may mắn</span>
             </a>
           </li>
           <li>
