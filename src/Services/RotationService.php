@@ -130,11 +130,10 @@ class RotationService
       }
 
       // Ghi lịch sử
-      $insertHist = $this->db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id, prize_snapshot, created_at) VALUES (:player_id, :prize_id, :prize_snapshot, datetime("now"))');
+      $insertHist = $this->db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id, created_at) VALUES (:player_id, :prize_id, datetime("now"))');
       $insertHist->execute([
         'player_id' => $player['id'],
-        'prize_id' => $prizeId,
-        'prize_snapshot' => $prizeSnapshot
+        'prize_id' => $prizeId
       ]);
 
       // Cập nhật used_turns và last_spin_time
@@ -148,8 +147,6 @@ class RotationService
         'prize' => $prize ? [
           'id' => $prizeId,
           'name' => $prize['name'],
-          'type' => $prize['type'],
-          'value' => $prize['value'] ?? null,
         ] : null,
         'index' => $prizeIndex
       ];
@@ -179,11 +176,11 @@ class RotationService
 
   /**
    * List spin history joined with player identifier and prize name.
-   * Returns array of records with fields: id, player_id, prize_id, prize_snapshot, created_at, player_identifier, prize_name
+   * Returns array of records with fields: id, player_id, prize_id, created_at, player_identifier, prize_name
    */
   public function listHistory(): array
   {
-    $sql = 'SELECT h.id, h.player_id, h.prize_id, h.prize_snapshot, h.created_at, '
+    $sql = 'SELECT h.id, h.player_id, h.prize_id, h.created_at, '
          . 'p.identifier AS player_identifier, pr.name AS prize_name '
          . 'FROM lucky_spin_history h '
          . 'LEFT JOIN lucky_spin_players p ON h.player_id = p.id '
@@ -206,20 +203,17 @@ class RotationService
   }
 
   /**
-   * Create a prize. $data may contain keys: name,type,value,probability,quantity,is_active,image
+   * Create a prize. $data may contain keys: name,probability,quantity,is_active
    * Returns inserted id.
    */
   public function createPrize(array $data): int
   {
-    $stmt = $this->db->prepare('INSERT INTO lucky_spin_prizes (name, type, value, probability, quantity, is_active, image) VALUES (:name, :type, :value, :probability, :quantity, :is_active, :image)');
+    $stmt = $this->db->prepare('INSERT INTO lucky_spin_prizes (name, probability, quantity, is_active) VALUES (:name, :probability, :quantity, :is_active)');
     $stmt->execute([
       'name' => $data['name'] ?? null,
-      'type' => $data['type'] ?? 'TEXT',
-      'value' => $data['value'] ?? null,
       'probability' => isset($data['probability']) ? (float)$data['probability'] : 0,
       'quantity' => isset($data['quantity']) ? (int)$data['quantity'] : -1,
       'is_active' => isset($data['is_active']) ? (int)$data['is_active'] : 1,
-      'image' => $data['image'] ?? null,
     ]);
 
     return (int)$this->db->lastInsertId();
@@ -233,7 +227,7 @@ class RotationService
     $fields = [];
     $params = [];
 
-    $allowed = ['name','type','value','probability','quantity','is_active','image'];
+    $allowed = ['name','probability','quantity','is_active'];
     foreach ($allowed as $k) {
       if (array_key_exists($k, $data)) {
         $fields[] = "$k = :$k";

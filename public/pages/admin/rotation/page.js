@@ -19,8 +19,6 @@ function renderPrizes(list) {
     tr.innerHTML = `
       <td class="px-3 py-3 text-sm text-gray-900">${p.id}</td>
       <td class="px-3 py-3 text-sm text-gray-900">${p.name}</td>
-      <td class="px-3 py-3 text-sm text-gray-900">${p.type}</td>
-      <td class="px-3 py-3 text-sm text-gray-900">${p.value ?? ''}</td>
       <td class="px-3 py-3 text-sm text-gray-900">${p.probability}</td>
       <td class="px-3 py-3 text-sm text-gray-900">${p.quantity}</td>
       <td class="px-3 py-3 text-sm text-gray-900">
@@ -62,11 +60,8 @@ function openModal(mode='create', prize={}){
   form.dataset.mode = mode;
   form.dataset.id = prize.id || '';
   form.querySelector('[name=name]').value = prize.name || '';
-  form.querySelector('[name=type]').value = prize.type || 'TEXT';
-  form.querySelector('[name=value]').value = prize.value || '';
   form.querySelector('[name=probability]').value = prize.probability || '';
   form.querySelector('[name=quantity]').value = prize.quantity ?? -1;
-  form.querySelector('[name=image]').value = prize.image || '';
   form.querySelector('[name=is_active]').checked = prize.is_active == 1 || prize.is_active === true;
 }
 function closeModal(){ document.getElementById('prize-modal').hidden = true; }
@@ -85,11 +80,8 @@ window.addEventListener('load', () => {
     const id = form.dataset.id;
     const payload = {
       name: form.name.value,
-      type: form.type.value,
-      value: form.value.value,
       probability: parseFloat(form.probability.value) || 0,
       quantity: parseInt(form.quantity.value) || -1,
-      image: form.image.value,
       is_active: form.is_active.checked ? 1 : 0
     };
 

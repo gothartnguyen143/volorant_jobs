@@ -18,7 +18,7 @@ class RotationApiController
   /**
    * API: /api/v1/rotation/spin
    * Body: JSON { identifier: string }
-   * Response: { success: bool, prize: null|{id,name,type,value}, message?: string }
+   * Response: { success: bool, prize: null|{id,name}, message?: string }
    *
    * Comments:
    * - Controller chịu trách nhiệm nhận request, validate input cơ bản và gọi service.
@@ -29,7 +29,7 @@ class RotationApiController
     // Hỗ trợ JSON body hoặc form-data
     $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
     $identifier = isset($input['identifier']) ? trim((string)$input['identifier']) : '';
-    
+
     if ($identifier === '') {
       // Tạm thời dùng số mặc định khi người dùng không nhập
       $identifier = '0399793159';

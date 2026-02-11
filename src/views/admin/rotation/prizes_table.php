@@ -41,8 +41,6 @@ try {
       <tr class="border-b">
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">STT</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tên</th>
-        <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Loại</th>
-        <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Giá trị</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tỷ lệ(%)</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Số lượng</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kích hoạt</th>
@@ -55,8 +53,6 @@ try {
         <tr class="hover:bg-gray-50">
           <td class="px-3 py-3 text-sm text-gray-900"><?= $stt++ ?></td>
           <td class="px-3 py-3 text-sm text-gray-900"><?= htmlspecialchars($p['name']) ?></td>
-          <td class="px-3 py-3 text-sm text-gray-900"><?= htmlspecialchars($p['type']) ?></td>
-          <td class="px-3 py-3 text-sm text-gray-900"><?= htmlspecialchars($p['value']) ?></td>
           <td class="px-3 py-3 text-sm text-gray-900"><?= htmlspecialchars($p['probability']) ?></td>
           <td class="px-3 py-3 text-sm text-gray-900"><?= $p['quantity'] === null || intval($p['quantity']) === -1 ? '∞' : intval($p['quantity']) ?></td>
           <td class="px-3 py-3 text-sm text-gray-900">

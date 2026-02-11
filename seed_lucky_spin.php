@@ -17,22 +17,19 @@ try {
     $cnt = (int) $db->query('SELECT COUNT(*) FROM lucky_spin_prizes')->fetchColumn();
     if ($cnt === 0) {
         $prizes = [
-            ['name' => 'Tiền mặt 10.000', 'type' => 'REAL', 'value' => '10000', 'probability' => 30, 'quantity' => -1, 'is_active' => 1, 'image' => ''],
-            ['name' => 'Mã giảm giá 50%', 'type' => 'CODE', 'value' => 'GIFT50', 'probability' => 10, 'quantity' => 100, 'is_active' => 1, 'image' => ''],
-            ['name' => 'Quay miễn phí', 'type' => 'TEXT', 'value' => 'Free Spin', 'probability' => 60, 'quantity' => -1, 'is_active' => 1, 'image' => '']
+            ['name' => 'Tiền mặt 10.000', 'probability' => 30, 'quantity' => -1, 'is_active' => 1],
+            ['name' => 'Mã giảm giá 50%', 'probability' => 10, 'quantity' => 100, 'is_active' => 1],
+            ['name' => 'Quay miễn phí', 'probability' => 60, 'quantity' => -1, 'is_active' => 1]
         ];
 
-        $stmt = $db->prepare('INSERT INTO lucky_spin_prizes (name, type, value, probability, quantity, is_active, image) VALUES (:name, :type, :value, :probability, :quantity, :is_active, :image)');
+        $stmt = $db->prepare('INSERT INTO lucky_spin_prizes (name, probability, quantity, is_active) VALUES (:name, :probability, :quantity, :is_active)');
         $db->beginTransaction();
         foreach ($prizes as $p) {
             $stmt->execute([
                 ':name' => $p['name'],
-                ':type' => $p['type'],
-                ':value' => $p['value'],
                 ':probability' => $p['probability'],
                 ':quantity' => $p['quantity'],
-                ':is_active' => $p['is_active'],
-                ':image' => $p['image']
+                ':is_active' => $p['is_active']
             ]);
         }
         $db->commit();
@@ -63,12 +60,10 @@ try {
         $playerId = (int) $db->query("SELECT id FROM lucky_spin_players ORDER BY id ASC LIMIT 1")->fetchColumn();
         $prizeId = (int) $db->query("SELECT id FROM lucky_spin_prizes ORDER BY id ASC LIMIT 1")->fetchColumn();
         if ($playerId && $prizeId) {
-            $snapshot = json_encode(['prize_id' => $prizeId, 'note' => 'Seed entry']);
-            $stmt = $db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id, prize_snapshot) VALUES (:player_id, :prize_id, :prize_snapshot)');
+            $stmt = $db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id) VALUES (:player_id, :prize_id)');
             $stmt->execute([
                 ':player_id' => $playerId,
-                ':prize_id' => $prizeId,
-                ':prize_snapshot' => $snapshot
+                ':prize_id' => $prizeId
             ]);
             echo "Inserted one history row.\n";
         } else {

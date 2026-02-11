@@ -19,11 +19,8 @@
 
       <div class="grid grid-cols-1 gap-2">
         <input name="name" class="input" placeholder="Tên" required>
-        <input name="type" class="input" placeholder="Loại (TEXT/CODE/REAL)" value="TEXT">
-        <input name="value" class="input" placeholder="Value (mã, số tiền)">
         <input name="probability" class="input" placeholder="Tỷ lệ" type="number" step="0.01">
         <input name="quantity" class="input" placeholder="Số lượng (-1 = vô hạn)" type="number" value="-1">
-        <input name="image" class="input" placeholder="Đường dẫn ảnh">
         <label class="flex items-center gap-2"><input name="is_active" type="checkbox" checked> Active</label>
       </div>
 
