@@ -242,27 +242,63 @@
 
         <!-- Buttons to toggle notes (same row) -->
         <style>
-          /* Pulsing animation for note buttons */
-          @keyframes note-pulse {
-            0% { transform: scale(1); filter: brightness(1); box-shadow: none; }
-            50% { transform: scale(1.10); filter: brightness(1.15); box-shadow: 0 12px 30px rgba(255,99,132,0.18), 0 0 24px rgba(255,105,180,0.18); }
-            100% { transform: scale(1); filter: brightness(1); box-shadow: none; }
+          /* Gaming button animation */
+          @keyframes gaming-pulse {
+            0% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 10px rgba(239,68,68,0.6)); box-shadow: 0 0 15px rgba(239,68,68,0.4); }
+            50% { transform: scale(1.05); filter: brightness(1.15) drop-shadow(0 0 20px rgba(239,68,68,1)); box-shadow: 0 0 30px rgba(239,68,68,0.8); }
+            100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 10px rgba(239,68,68,0.6)); box-shadow: 0 0 15px rgba(239,68,68,0.4); }
           }
-          .note-pulse {
-            animation: note-pulse 2000ms ease-in-out infinite;
-            transition: box-shadow 180ms ease, transform 180ms ease;
+          @keyframes shine-line {
+            0% { left: -100%; }
+            100% { left: 100%; }
+          }
+          .gaming-btn {
+            animation: gaming-pulse 2s ease-in-out infinite;
+            transition: all 0.3s ease;
             transform-origin: center center;
+            clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(239,68,68,0.5);
           }
-          .note-pulse:hover, .note-pulse:focus {
+          .gaming-btn::after {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(239,68,68,0.8) 90deg, transparent 180deg, rgba(239,68,68,0.8) 270deg, transparent 360deg);
+            border-radius: 15px;
+            animation: border-glow 3s linear infinite;
+            z-index: -1;
+          }
+          @keyframes border-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          .gaming-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine-line 3s infinite;
+          }
+          .gaming-btn:hover {
             animation-play-state: paused;
-            transform: scale(1.10);
-            box-shadow: 0 16px 40px rgba(255,105,180,0.22), 0 0 36px rgba(255,105,180,0.22);
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(239,68,68,1), 0 0 60px rgba(239,68,68,0.6);
+            filter: drop-shadow(0 0 25px rgba(239,68,68,1.2)) brightness(1.3);
           }
-          .note-pulse .btn-label { display: inline-block; text-shadow: 0 0 8px rgba(255,105,180,0.95), 0 0 18px rgba(255,99,132,0.55); }
+          .gaming-btn .btn-label { 
+            display: inline-block; 
+            text-shadow: 0 0 15px rgba(239,68,68,1), 0 0 30px rgba(239,68,68,0.8); 
+            position: relative; z-index: 1; 
+            font-size: 1.1em;
+          }
         </style>
         <div class="w-full flex items-center justify-center gap-4 mt-2 mb-2">
-          <button id="btn-deduct" class="note-pulse px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition"><span class="btn-label">Lưu ý trừ cọc</span></button>
-          <button id="btn-rent" class="note-pulse px-4 py-2 bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-bold rounded-xl backdrop-blur-sm border border-pink-400/30 shadow-md transition"><span class="btn-label">Lưu ý khi thuê Account</span></button>
+          <button id="btn-deduct" class="gaming-btn px-6 py-3 bg-gradient-to-r from-red-500/20 to-red-600/20 hover:from-red-500/30 hover:to-red-600/30 text-red-300 font-bold rounded-xl backdrop-blur-sm border-2 border-red-400/50 shadow-lg transition transform hover:scale-110"><span class="btn-label">Lưu ý trừ cọc</span></button>
+          <button id="btn-rent" class="gaming-btn px-6 py-3 bg-gradient-to-r from-red-500/20 to-red-600/20 hover:from-red-500/30 hover:to-red-600/30 text-red-300 font-bold rounded-xl backdrop-blur-sm border-2 border-red-400/50 shadow-lg transition transform hover:scale-110"><span class="btn-label">Lưu ý khi thuê Account</span></button>
+          <button id="btn-lucky-wheel" class="gaming-btn px-6 py-3 bg-gradient-to-r from-red-500/20 to-red-600/20 hover:from-red-500/30 hover:to-red-600/30 text-red-300 font-bold rounded-xl backdrop-blur-sm border-2 border-red-400/50 shadow-lg transition transform hover:scale-110"><span class="btn-label">Vòng xoay may mắn</span></button>
         </div>
 
         <!-- Display area for notes (buttons will inject content here). Details below kept hidden. -->
@@ -470,7 +506,7 @@
       </div>
   </div>
 
-  <div class="fixed z-50 right-6 bottom-6 group">
+  <div class="fixed z-50 right-6 bottom-6 group" style="display: none;">
 
     <button id="lucky-wheel-btn" aria-label="Vòng quay may mắn" 
             class="relative w-16 h-16 rounded-full flex items-center justify-center 
@@ -529,11 +565,11 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      const btn = document.getElementById('lucky-wheel-btn');
+      const btn = document.getElementById('btn-lucky-wheel');
       if(!btn) return;
       
       btn.addEventListener('click', function(e){
-        // Mở trang quay trong tab mới (hoặc mở modal tùy bạn)
+        // Mở trang quay trong tab mới
         window.open('/rotation', '_blank');
       });
     });
