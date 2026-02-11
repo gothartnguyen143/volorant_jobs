@@ -13,6 +13,7 @@ error_reporting(E_ALL);
 
 <div class="gaming-wrapper">
   <div class="bg-layer">
+    <img src="/images/UI/rotate_background.png" class="bg-image-static" alt="Background">
     <video autoplay muted loop playsinline class="bg-video">
       <source src="https://assets.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt7c224254bc81f868/6530a614d3a246944b0292f7/VAL_Ep7_Act3_Cinematic_30s_1920x1080.mp4" type="video/mp4">
     </video>
@@ -22,8 +23,8 @@ error_reporting(E_ALL);
 
   <div class="main-container">
     <div class="header-branding">
+      <div class="brand-sub">DỊCH VỤ CHO THUÊ ACC </div>
       <h1 class="brand-name" data-text="DƯƠNG ANH TUẤN">DƯƠNG ANH TUẤN</h1>
-      <div class="brand-sub">DỊCH VỤ CHO THUÊ ACC VALORANT</div>
     </div>
 
     <div class="content-layout">

@@ -2,7 +2,7 @@
   --val-dark: #0f1923;
   --val-dark-blue: #1c252e;
   --val-red: #ff4655;
-  --val-cyan: #00f0ff; /* Màu chủ đạo của ảnh mẫu */
+  --val-cyan: #0077be; /* Màu xanh biển đậm */
   --val-white: #ece8e1;
   --text-main: 'Rajdhani', sans-serif;
   --text-title: 'Teko', sans-serif;
@@ -22,6 +22,13 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
 }
 
 .bg-layer { position: absolute; inset: 0; z-index: 0; }
+.bg-image-static {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.15; /* Độ mờ của ảnh nền */
+  z-index: 1;
+}
 .bg-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; filter: contrast(1.2) hue-rotate(10deg); }
 .bg-overlay {
   position: absolute; inset: 0;
@@ -83,14 +90,14 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
   width: 600px; height: 600px;
   border-radius: 50%;
   padding: 15px;
-  background: conic-gradient(from 0deg, #1c252e, #0f1923);
-  box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.1),
-              0 0 60px rgba(0, 240, 255, 0.15);
+  background: conic-gradient(from 0deg, #0077be, #004080);
+  box-shadow: 0 0 0 4px rgba(0, 119, 190, 0.1),
+              0 0 60px rgba(0, 119, 190, 0.15);
 }
 /* Border trang trí quanh vòng quay */
 .wheel-outer-ring::after {
   content: ''; position: absolute; inset: -15px; border-radius: 50%;
-  border: 2px solid rgba(0, 240, 255, 0.3);
+  border: 2px solid rgba(0, 119, 190, 0.3);
   border-left-color: transparent; border-right-color: transparent;
   animation: spinBorder 10s linear infinite;
 }
@@ -101,8 +108,8 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
 
 /* SVG Styles */
 /* Màu các mảnh: Xen kẽ Đen/Xanh như ảnh */
-.wheel-segment.seg-even { fill: rgba(15, 25, 35, 0.95); } /* Màu đen */
-.wheel-segment.seg-odd { fill: rgba(0, 160, 180, 0.8); } /* Màu xanh tối */
+.wheel-segment.seg-even { fill: rgba(15, 25, 35, 0.95); filter: drop-shadow(0 0 5px rgba(167, 206, 246, 0.3)); } /* Màu đen */
+.wheel-segment.seg-odd { fill: rgba(0, 119, 190, 0.6); filter: drop-shadow(0 0 10px rgba(0, 119, 190, 0.3)); } /* Màu xanh biển đậm */
 
 /* Mảnh trúng thưởng */
 .wheel-segment.winner {
@@ -122,7 +129,7 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
 .wheel-pointer-container {
   position: absolute; top: -25px; left: 50%;
   transform: translateX(-50%); z-index: 20;
-  filter: drop-shadow(0 0 10px var(--val-cyan));
+  filter: drop-shadow(0 0 15px rgba(0, 119, 190, 0.8));
 }
 .pointer-triangle {
   width: 0; height: 0;
@@ -162,13 +169,14 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
   position: relative;
   width: 100%; height: 80px;
   border: none; outline: none;
-  background: linear-gradient(90deg, #00d9ff, #00f0ff);
+  background: linear-gradient(90deg, #0077be, #0077be);
   transform: skewX(-20deg); /* Vát chéo khối */
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex; align-items: center; justify-content: center;
   margin: 10px 0 30px 10px; /* Căn chỉnh do skew */
-  box-shadow: 5px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.7), 0 0 20px rgba(0, 119, 190, 0.8);
+  filter: brightness(1.1);
 }
 .btn-valorant:hover {
   transform: skewX(-20deg) translate(-2px, -2px);
