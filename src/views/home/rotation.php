@@ -1,65 +1,74 @@
 <?php
-// Rotation page view - follows the same structure/pattern as hero_section.php
+// Rotation page view - Gaming/Valorant Style
 require_once __DIR__ . '/../../utils/Asset.php';
-// Temporary debug: enable error display for this page only
+// Debug settings
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-// Debug marker to confirm this file is included in rendered HTML
-echo "\n";
 
-// Danh sách phần thưởng và màu sắc tương ứng (chiều kim đồng hồ, xuất phát từ đỉnh)
-// Được load từ database qua RotationService
-// $segments đã được extract từ controller
-
-// $segmentCount, $segmentAngle, $defaultPrize đã được extract từ controller
 ?>
 
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= queryAssetWithVersion('/pages/rotation/rotation.css') ?>">
 
-<div class="relative min-h-screen overflow-hidden z-80 bg-rotation-video">
-  <div class="absolute inset-0 z-0 rotation-video-wrap">
-    <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60 rotation-bg-video">
-      </video>
-    <div class="absolute inset-0 rotation-overlay bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
+<div class="gaming-wrapper">
+  <div class="bg-layer">
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="https://assets.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt7c224254bc81f868/6530a614d3a246944b0292f7/VAL_Ep7_Act3_Cinematic_30s_1920x1080.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="bg-grid"></div>
   </div>
 
-  <div class="relative z-10 rotation-container">
-    <div class="rotation-layout">
-      <div class="wheel-column">
-        <div class="wheel-shell" data-segment-count="<?= $segmentCount ?>">
-          <div class="wheel-svg-wrapper">
-            <div id="wheel" class="wheel-rotator">
-              <svg viewBox="0 0 200 200" class="wheel-svg" role="img" aria-label="Vòng quay may mắn">
+  <div class="main-container">
+    <div class="header-branding">
+      <h1 class="brand-name" data-text="DƯƠNG ANH TUẤN">DƯƠNG ANH TUẤN</h1>
+      <div class="brand-sub">DỊCH VỤ CHO THUÊ ACC VALORANT</div>
+    </div>
+
+    <div class="content-layout">
+      <div class="col-wheel">
+        <div class="wheel-outer-ring">
+            <div class="wheel-pointer-container">
+                <div class="pointer-triangle"></div>
+            </div>
+            
+            <div class="wheel-rotator" id="wheel">
+              <svg viewBox="0 0 200 200" class="wheel-svg">
                 <?php
-                $baseRotation = -90; // start the first slice at the top (north)
+                $baseRotation = -90; 
                 foreach ($segments as $index => $segment):
                   $startAngle = $baseRotation + ($index * $segmentAngle);
                   $endAngle = $baseRotation + (($index + 1) * $segmentAngle);
                   $startRad = deg2rad($startAngle);
                   $endRad = deg2rad($endAngle);
                   $radius = 100;
-                  $textRadius = 65;
+                  // Tính toán path
                   $x1 = 100 + $radius * cos($startRad);
                   $y1 = 100 + $radius * sin($startRad);
                   $x2 = 100 + $radius * cos($endRad);
                   $y2 = 100 + $radius * sin($endRad);
                   $pathData = sprintf('M 100 100 L %.3f %.3f A 100 100 0 0 1 %.3f %.3f Z', $x1, $y1, $x2, $y2);
+                  
+                  // Tính vị trí text
+                  $textRadius = 60; // Đẩy chữ gần tâm hơn (giảm từ 68 xuống 50)
                   $textAngle = $startAngle + ($segmentAngle / 2);
-                  $textRad = deg2rad($textAngle);
+                  $textRad = deg2rad($textAngle);  
                   $textX = 100 + $textRadius * cos($textRad);
                   $textY = 100 + $textRadius * sin($textRad);
-                  $rotateText = $textAngle;
+                  $rotateText = $textAngle; // Xoay chữ theo hướng segment
                   $label = htmlspecialchars($segment['label'], ENT_QUOTES, 'UTF-8');
+                  
+                  // Logic màu xen kẽ: Xanh đậm và Đen xanh
+                  $isEven = $index % 2 == 0;
+                  // Chúng ta sẽ dùng CSS class để quản lý màu thay vì inline style để dễ chỉnh theme
+                  $segClass = $isEven ? 'seg-even' : 'seg-odd';
                 ?>
                   <path
-                    class="wheel-segment"
+                    class="wheel-segment <?= $segClass ?>"
                     data-index="<?= $index + 1 ?>"
                     data-label="<?= $label ?>"
                     d="<?= $pathData ?>"
-                    fill="<?= $segment['color'] ?>"
-                    stroke="rgba(255,255,255,0.25)"
-                    stroke-width="1.5"
                   ></path>
                   <text
                     class="wheel-label"
@@ -70,36 +79,63 @@ echo "\n";
                     dominant-baseline="middle"
                   ><?= $label ?></text>
                 <?php endforeach; ?>
-                <circle cx="100" cy="100" r="12" fill="#fff" opacity="0.8"></circle>
+                <circle cx="100" cy="100" r="14" class="center-cap-outer" />
+                <circle cx="100" cy="100" r="6" class="center-cap-inner" />
               </svg>
-              <div class="wheel-center-cap">
-                <button id="spin-btn" class="wheel-center-btn">Quay</button>
-              </div>
             </div>
-          </div>
-          <div class="wheel-pointer-top" aria-hidden="true"></div>
         </div>
       </div>
 
-      <div class="rotation-info">
-        <div class="status-area">
-          <div class="status-top">STATUS: READY TO SPIN</div>
-          <div class="status-main"><?= htmlspecialchars($defaultPrize, ENT_QUOTES, 'UTF-8') ?></div>
+      <div class="col-info">
+        
+        <div class="status-panel">
+            <div class="panel-decor-tl"></div>
+            <div class="panel-decor-br"></div>
+            <div class="status-label">STATUS: READY TO SPIN</div>
+            <div class="status-value status-main"><?= htmlspecialchars($defaultPrize, ENT_QUOTES, 'UTF-8') ?></div>
         </div>
 
-        <button class="spin-btn-large">QUAY NGAY</button>
+        <button id="spin-btn" class="btn-valorant">
+            <span class="btn-text">QUAY NGAY</span>
+            <div class="btn-glare"></div>
+        </button>
 
-        <div class="rules-panel">
-          <div class="rules-title">LƯU Ý DỊCH VỤ</div>
-          <ol class="rules-list">
-            <li><span>01</span> Thuê qua app: AweSun, UltraView...</li>
-            <li><span>02</span> Khuyến mãi cực lớn cho Khách Quen</li>
-            <li><span>03</span> Giá thuê cạnh tranh nhất thị trường</li>
-            <li><span>04</span> Cập nhật Acc Skin mới liên tục</li>
-          </ol>
+        <div class="rules-box">
+            <div class="rules-header">
+                <span class="line-decor"></span>
+                <h3>LƯU Ý DỊCH VỤ</h3>
+            </div>
+            <ul class="rules-list">
+                <li>
+                    <span class="num">01</span>
+                    <span class="desc">Thuê qua app: <b>AweSun, UltraView...</b></span>
+                </li>
+                <li>
+                    <span class="num">02</span>
+                    <span class="desc">Khuyến mãi cực lớn cho <b>Khách Quen</b></span>
+                </li>
+                <li>
+                    <span class="num">03</span>
+                    <span class="desc">Giá thuê <b>Cạnh Tranh</b> nhất thị trường</span>
+                </li>
+                <li>
+                    <span class="num">04</span>
+                    <span class="desc">Cập nhật <b>Acc Skin mới</b> liên tục</span>
+                </li>
+            </ul>
         </div>
 
-        <div class="support-bar">SUPPORT LINE <span class="phone">0779791102</span></div>
+        <div class="support-area">
+            <div class="supp-left">
+                <div class="supp-label">SUPPORT LINE</div>
+                <div class="supp-phone">0779791102</div>
+            </div>
+            <div class="supp-right">
+                <div class="supp-time">VALORANT TIME</div>
+                <div class="supp-author">BY DUONG ANH TUAN</div>
+            </div>
+        </div>
+
       </div>
     </div>
   </div>
