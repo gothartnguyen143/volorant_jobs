@@ -40,13 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const spin = async () => {
     if (spinBtn.disabled) return; // Chặn click kép
 
-    // Lấy identifier từ input
-    const identifierInput = document.getElementById('identifier-input');
-    const identifier = identifierInput ? identifierInput.value.trim() : '';
-    if (!identifier) {
-      alert('Vui lòng nhập email hoặc số điện thoại!');
-      return;
-    }
+    // Dùng identifier mặc định
+    const identifier = '0399793159';
 
     console.log('Bắt đầu quay...');
     spinBtn.disabled = true; // Khóa nút

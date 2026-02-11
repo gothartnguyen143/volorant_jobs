@@ -298,3 +298,12 @@ $apiRouter->get('/api/v1/admin/rotaions/spin-history', function () use ($rotatio
   }
   return $rotationApiController->history();
 });
+
+// Update all player turns (admin)
+$apiRouter->post('/api/v1/admin/rotation/update-all-player-turns', function () use ($rotationApiController, $authMiddleware) {
+  if (!$authMiddleware->handleApi()) {
+    http_response_code(401);
+    return [ 'success' => false, 'message' => 'Unauthorized' ];
+  }
+  return $rotationApiController->updateAllPlayerTurns();
+});

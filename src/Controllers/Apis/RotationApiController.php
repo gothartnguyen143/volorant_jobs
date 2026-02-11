@@ -29,13 +29,9 @@ class RotationApiController
     // Hỗ trợ JSON body hoặc form-data
     $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
     $identifier = isset($input['identifier']) ? trim((string)$input['identifier']) : '';
-
     if ($identifier === '') {
-      http_response_code(400);
-      return [
-        'success' => false,
-        'message' => 'Thiếu identifier (email hoặc số điện thoại)'
-      ];
+      // Tạm thời dùng số mặc định khi người dùng không nhập
+      $identifier = '0399793159';
     }
 
     try {
@@ -128,6 +124,30 @@ class RotationApiController
     try {
       $hist = $this->rotationService->listHistory();
       return ['history' => $hist];
+    } catch (\Throwable $e) {
+      http_response_code(500);
+      return ['success' => false, 'message' => $e->getMessage()];
+    }
+  }
+
+  /**
+   * POST /api/v1/admin/rotation/update-all-player-turns
+   * Body: JSON { total_turns: int }
+   * Response: { success: bool, message?: string }
+   */
+  public function updateAllPlayerTurns(): array
+  {
+    $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
+    $totalTurns = isset($input['total_turns']) ? (int)$input['total_turns'] : 0;
+
+    if ($totalTurns < 0) {
+      http_response_code(400);
+      return ['success' => false, 'message' => 'Total turns must be non-negative'];
+    }
+
+    try {
+      $this->rotationService->updateAllPlayersTurns($totalTurns);
+      return ['success' => true, 'message' => 'All player turns updated successfully'];
     } catch (\Throwable $e) {
       http_response_code(500);
       return ['success' => false, 'message' => $e->getMessage()];

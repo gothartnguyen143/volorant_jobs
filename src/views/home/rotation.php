@@ -87,10 +87,6 @@ echo "\n";
           <div class="status-main"><?= htmlspecialchars($defaultPrize, ENT_QUOTES, 'UTF-8') ?></div>
         </div>
 
-        <div class="input-area mb-4">
-          <input type="text" id="identifier-input" placeholder="Nhập email hoặc số điện thoại" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-
         <button class="spin-btn-large">QUAY NGAY</button>
 
         <div class="rules-panel">

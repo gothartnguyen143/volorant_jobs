@@ -156,4 +156,29 @@ window.addEventListener('load', () => {
       el.checked = !el.checked;
     }
   });
+
+  // Handle update all player turns
+  document.getElementById('btn-update-all-turns').addEventListener('click', async () => {
+    const totalTurns = parseInt(document.getElementById('all-turns-input').value) || 0;
+    if (totalTurns < 0) {
+      alert('Số lượt quay phải >= 0');
+      return;
+    }
+
+    if (!confirm(`Cập nhật lượt quay cho tất cả người chơi thành ${totalTurns}?`)) return;
+
+    try {
+      const res = await fetch(`${apiBase}/update-all-player-turns`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ total_turns: totalTurns })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Error');
+      alert('Cập nhật lượt quay cho tất cả người chơi thành công!');
+    } catch (e) {
+      alert('Lỗi: ' + (e.message || e));
+    }
+  });
 });

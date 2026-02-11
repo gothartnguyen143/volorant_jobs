@@ -29,8 +29,9 @@ class RotationService
       return $player;
     }
 
+    $defaultTurns = $this->getDefaultTurns();
     $insert = $this->db->prepare("INSERT INTO lucky_spin_players (identifier, total_turns, used_turns, created_at) VALUES (:identifier, :total_turns, 0, datetime('now'))");
-    $insert->execute(['identifier' => $identifier, 'total_turns' => 1]);
+    $insert->execute(['identifier' => $identifier, 'total_turns' => $defaultTurns]);
 
     $id = (int)$this->db->lastInsertId();
     $stmt->execute(['identifier' => $identifier]);
@@ -90,11 +91,12 @@ class RotationService
       $player = $this->ensurePlayer($identifier);
 
       // Kiểm tra lượt còn hay hết
-      $used = (int)($player['used_turns'] ?? 0);
-      $total = (int)($player['total_turns'] ?? 0);
-      if ($used >= $total) {
-        throw new \RuntimeException('No turns left', 400);
-      }
+
+      // $used = (int)($player['used_turns'] ?? 0);
+      // $total = (int)($player['total_turns'] ?? 0);
+      // if ($used >= $total) {
+      //   throw new \RuntimeException('No turns left', 400);
+      // }
 
       $prizes = $this->getAvailablePrizes();
       $prize = $this->pickPrizeByWeight($prizes);
@@ -266,5 +268,64 @@ class RotationService
     $upd = $this->db->prepare('UPDATE lucky_spin_prizes SET quantity = quantity - 1 WHERE id = :id');
     $upd->execute(['id' => $prizeId]);
     return true;
+  }
+
+  /**
+   * Lấy thông tin lượt quay của player.
+   * Trả về ['total_turns', 'used_turns', 'remaining'] hoặc null nếu player không tồn tại.
+   */
+  public function getPlayerTurns(string $identifier): ?array
+  {
+    $stmt = $this->db->prepare("SELECT total_turns, used_turns FROM lucky_spin_players WHERE identifier = :identifier LIMIT 1");
+    $stmt->execute(['identifier' => $identifier]);
+    $player = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$player) {
+      return null;
+    }
+
+    $total = (int)($player['total_turns'] ?? 0);
+    $used = (int)($player['used_turns'] ?? 0);
+    $remaining = max(0, $total - $used);
+
+    return [
+      'total_turns' => $total,
+      'used_turns' => $used,
+      'remaining' => $remaining
+    ];
+  }
+
+  /**
+   * Cập nhật lượt quay cho tất cả players
+   */
+  public function updateAllPlayersTurns(int $totalTurns): void
+  {
+    $stmt = $this->db->prepare("UPDATE lucky_spin_players SET total_turns = :total_turns");
+    $stmt->execute(['total_turns' => $totalTurns]);
+    
+    // Cập nhật default cho players mới
+    $this->setDefaultTurns($totalTurns);
+  }
+
+  /**
+   * Lấy giá trị mặc định lượt quay cho player mới từ file config
+   */
+  public function getDefaultTurns(): int
+  {
+    $configFile = __DIR__ . '/../../config/default_turns.php';
+    if (file_exists($configFile)) {
+      return include $configFile;
+    }
+    return 1; // fallback
+  }
+
+  /**
+   * Cập nhật giá trị mặc định lượt quay cho player mới vào file config
+   */
+  public function setDefaultTurns(int $turns): void
+  {
+    $configFile = __DIR__ . '/../../config/default_turns.php';
+    $content = "<?php\n// Default turns for new players\nreturn {$turns};";
+    file_put_contents($configFile, $content);
   }
 }
