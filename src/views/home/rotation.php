@@ -140,6 +140,27 @@ error_reporting(E_ALL);
       </div>
     </div>
   </div>
+
+  <!-- Gaming Modal Thông Báo Trúng Thưởng -->
+  <div id="gaming-modal" class="gaming-modal">
+    <div class="modal-bg"></div>
+    <div class="modal-container">
+      <div class="modal-header-gaming">
+        <div class="header-line"></div>
+        <h2 class="modal-title">KẾT QUẢ ĐẠT ĐƯỢC</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="modal-body-gaming">
+        <div class="prize-icon">🏆</div>
+        <p class="prize-message">Bạn đã trúng:</p>
+        <div class="prize-name" id="modal-prize-name"></div>
+        <div class="particle-effect">✨💥🎉</div>
+      </div>
+      <div class="modal-footer-gaming">
+        <button class="btn-gaming-close" id="modal-close-btn">XÁC NHẬN</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="<?= queryAssetWithVersion('/pages/rotation/rotation.js') ?>" defer></script>

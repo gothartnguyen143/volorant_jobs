@@ -43,6 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (statusMain) statusMain.textContent = prize;
   };
 
+  const showGamingModal = (prize) => {
+    const modal = document.getElementById('gaming-modal');
+    const prizeName = document.getElementById('modal-prize-name');
+    prizeName.textContent = prize;
+    modal.style.display = 'flex';
+  };
+
+  const closeGamingModal = () => {
+    const modal = document.getElementById('gaming-modal');
+    modal.style.display = 'none';
+  };
+
+  // Gắn sự kiện đóng modal
+  document.getElementById('modal-close-btn').addEventListener('click', closeGamingModal);
+
   const spin = async () => {
     if (isSpinning) return; // Chặn click khi đang quay
 
@@ -117,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         isSpinning = false;
         spinBtns.forEach(btn => btn.disabled = false);
         showResult(targetIndex);
-        alert(`Chúc mừng! Bạn trúng: ${prizeName}`);
+        showGamingModal(prizeName);
       }, 4100); // Thêm 100ms buffer
 
     } catch (error) {
