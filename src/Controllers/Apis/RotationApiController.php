@@ -29,6 +29,7 @@ class RotationApiController
     // Hỗ trợ JSON body hoặc form-data
     $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
     $identifier = isset($input['identifier']) ? trim((string)$input['identifier']) : '';
+    
     if ($identifier === '') {
       // Tạm thời dùng số mặc định khi người dùng không nhập
       $identifier = '0399793159';

@@ -21,7 +21,7 @@ class RotationController
   public function showPage(): void
   {
     try {
-      $prizes = $this->rotationService->listPrizes(true); // Chỉ lấy active prizes
+      $prizes = $this->rotationService->getAvailablePrizes(); // Chỉ lấy active prizes có quantity > 0
 
       // Chuẩn bị dữ liệu cho view
       $segments = [];
@@ -30,13 +30,6 @@ class RotationController
         $segments[] = [
           'label' => $prize['name'],
           'color' => $colors[$index % count($colors)] ?? '#CCCCCC', // Lặp màu nếu nhiều hơn
-        ];
-      }
-
-      // Nếu không có prizes, dùng mặc định
-      if (empty($segments)) {
-        $segments = [
-          ['label' => 'Chúc may mắn', 'color' => '#FF6B6B'],
         ];
       }
 

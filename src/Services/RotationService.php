@@ -41,9 +41,9 @@ class RotationService
   /**
    * Lấy danh sách giải đang active và có quantity != 0 (0 nghĩa đã hết).
    */
-  private function getAvailablePrizes(): array
+  public function getAvailablePrizes(): array
   {
-    $stmt = $this->db->prepare("SELECT * FROM lucky_spin_prizes WHERE is_active = 1 AND (quantity IS NULL OR quantity <> 0)");
+    $stmt = $this->db->prepare("SELECT * FROM lucky_spin_prizes WHERE is_active = 1 AND (quantity IS NULL OR quantity <> 0) ORDER BY id ASC");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
