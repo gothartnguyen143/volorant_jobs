@@ -1,3 +1,3 @@
 <?php
 // Default turns for new players
-return 3;
+return 4;

@@ -138,6 +138,7 @@ class InitUtils {
 
   initChasingDot() {
     const dot = document.getElementById("chasing-dot")
+    if (!dot) return
 
     let mouseX = 0,
       mouseY = 0

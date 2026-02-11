@@ -61,17 +61,29 @@ function openModal(mode='create', prize={}){
   form.dataset.id = prize.id || '';
   form.querySelector('[name=name]').value = prize.name || '';
   form.querySelector('[name=probability]').value = prize.probability || '';
-  form.querySelector('[name=quantity]').value = prize.quantity ?? -1;
+  form.querySelector('[name=quantity]').value = prize.quantity ?? '';
   form.querySelector('[name=is_active]').checked = prize.is_active == 1 || prize.is_active === true;
 }
 function closeModal(){ document.getElementById('prize-modal').hidden = true; }
 
+function openUpdateTurnsModal(){
+  const modal = document.getElementById('update-turns-modal');
+  const input = document.getElementById('modal-turns-input');
+  input.value = document.getElementById('all-turns-input').value;
+  modal.hidden = false;
+}
+function closeUpdateTurnsModal(){ document.getElementById('update-turns-modal').hidden = true; }
+
 // Event bindings
 window.addEventListener('load', () => {
-  loadAndRender();
   document.getElementById('btn-refresh').addEventListener('click', loadAndRender);
   document.getElementById('btn-add').addEventListener('click', () => openModal('create'));
   document.getElementById('btn-cancel').addEventListener('click', closeModal);
+  document.getElementById('btn-cancel-turns').addEventListener('click', closeUpdateTurnsModal);
+  document.getElementById('btn-update-all-turns').addEventListener('click', openUpdateTurnsModal);
+
+  
+
 
   document.getElementById('prize-form').addEventListener('submit', async (ev) => {
     ev.preventDefault();
@@ -96,8 +108,44 @@ window.addEventListener('load', () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Error');
+      await Swal.fire({
+        icon: 'success',
+        title: 'Thành công',
+        text: mode === 'create' ? 'Thêm phần thưởng thành công!' : 'Cập nhật phần thưởng thành công!',
+      });
       closeModal();
       loadAndRender();
+    } catch (e) {
+      alert('Lỗi: ' + (e.message || e));
+    }
+  });
+
+  document.getElementById('update-turns-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const form = ev.target;
+    const totalTurns = parseInt(form.total_turns.value) || 0;
+    if (totalTurns < 0) {
+      alert('Số lượt quay phải >= 0');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${apiBase}/update-all-player-turns`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ total_turns: totalTurns })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Error');
+      Swal.fire({
+        icon: 'success',
+        title: 'Thành công',
+        text: 'Cập nhật lượt quay cho tất cả người chơi thành công!',
+      }).then(() => {
+        closeUpdateTurnsModal();
+        location.reload();
+      });
     } catch (e) {
       alert('Lỗi: ' + (e.message || e));
     }
@@ -115,15 +163,35 @@ window.addEventListener('load', () => {
       if (!res.ok) { alert(data.message || 'Không tìm thấy'); return; }
       openModal('edit', data.prize);
     }
-    if (t.classList.contains('btn-del')){
-      if (!confirm('Xóa phần thưởng này?')) return;
+    if (btn.classList.contains('btn-del')){
       const id = btn.dataset.id;
+      const result = await Swal.fire({
+        title: 'Xác nhận xóa',
+        text: 'Bạn có chắc chắn muốn xóa phần thưởng này?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+      });
+      if (!result.isConfirmed) return;
+
       try {
         const res = await fetch(`${apiBase}/prizes/${id}`, { method: 'DELETE', credentials: 'same-origin' });
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Error');
+        await Swal.fire({
+          icon: 'success',
+          title: 'Thành công',
+          text: 'Xóa phần thưởng thành công!',
+        });
         loadAndRender();
-      } catch (e) { alert('Lỗi xóa: ' + e.message); }
+      } catch (e) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi',
+          text: 'Lỗi xóa: ' + e.message,
+        });
+      }
     }
   });
 
@@ -150,27 +218,5 @@ window.addEventListener('load', () => {
   });
 
   // Handle update all player turns
-  document.getElementById('btn-update-all-turns').addEventListener('click', async () => {
-    const totalTurns = parseInt(document.getElementById('all-turns-input').value) || 0;
-    if (totalTurns < 0) {
-      alert('Số lượt quay phải >= 0');
-      return;
-    }
-
-    if (!confirm(`Cập nhật lượt quay cho tất cả người chơi thành ${totalTurns}?`)) return;
-
-    try {
-      const res = await fetch(`${apiBase}/update-all-player-turns`, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ total_turns: totalTurns })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Error');
-      alert('Cập nhật lượt quay cho tất cả người chơi thành công!');
-    } catch (e) {
-      alert('Lỗi: ' + (e.message || e));
-    }
-  });
+  document.getElementById('btn-update-all-turns').addEventListener('click', openUpdateTurnsModal);
 });

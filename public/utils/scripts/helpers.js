@@ -96,15 +96,18 @@ export class AppLoadingHelper {
   static element = document.getElementById("app-loading")
 
   static show(message) {
+    if (!this.element) return
     this.setMessage(message)
     this.element.hidden = false
   }
 
   static hide() {
+    if (!this.element) return
     this.element.hidden = true
   }
 
   static setMessage(message) {
+    if (!this.element) return
     this.element.querySelector(".QUERY-app-loading-message").textContent = message
   }
 }

@@ -40,7 +40,7 @@ try {
     <thead class="bg-gray-50">
       <tr class="border-b">
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">STT</th>
-        <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tên</th>
+        <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tên giải thưởng</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tỷ lệ(%)</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Số lượng</th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Kích hoạt</th>

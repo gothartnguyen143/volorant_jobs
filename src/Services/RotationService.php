@@ -129,16 +129,24 @@ class RotationService
         }
       }
 
+      // Lấy thời gian hiện tại theo múi giờ Việt Nam
+      $vietnamTime = new \DateTime('now', new \DateTimeZone('Asia/Ho_Chi_Minh'));
+      $now = $vietnamTime->format('Y-m-d H:i:s');
+
       // Ghi lịch sử
-      $insertHist = $this->db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id, created_at) VALUES (:player_id, :prize_id, datetime("now"))');
+      $insertHist = $this->db->prepare('INSERT INTO lucky_spin_history (player_id, prize_id, created_at) VALUES (:player_id, :prize_id, :created_at)');
       $insertHist->execute([
         'player_id' => $player['id'],
-        'prize_id' => $prizeId
+        'prize_id' => $prizeId,
+        'created_at' => $now
       ]);
 
       // Cập nhật used_turns và last_spin_time
-      $updatePlayer = $this->db->prepare('UPDATE lucky_spin_players SET used_turns = used_turns + 1, last_spin_time = datetime("now") WHERE id = :id');
-      $updatePlayer->execute(['id' => $player['id']]);
+      $updatePlayer = $this->db->prepare('UPDATE lucky_spin_players SET used_turns = used_turns + 1, last_spin_time = :last_spin_time WHERE id = :id');
+      $updatePlayer->execute([
+        'id' => $player['id'],
+        'last_spin_time' => $now
+      ]);
 
       $this->db->commit();
 
@@ -204,23 +212,41 @@ class RotationService
 
   /**
    * Create a prize. $data may contain keys: name,probability,quantity,is_active
+   * If probability is provided, rescale existing prizes to maintain total 100%.
    * Returns inserted id.
    */
   public function createPrize(array $data): int
   {
-    $stmt = $this->db->prepare('INSERT INTO lucky_spin_prizes (name, probability, quantity, is_active) VALUES (:name, :probability, :quantity, :is_active)');
-    $stmt->execute([
-      'name' => $data['name'] ?? null,
-      'probability' => isset($data['probability']) ? (float)$data['probability'] : 0,
-      'quantity' => isset($data['quantity']) ? (int)$data['quantity'] : -1,
-      'is_active' => isset($data['is_active']) ? (int)$data['is_active'] : 1,
-    ]);
+    $newProb = isset($data['probability']) ? (float)$data['probability'] : 0;
 
-    return (int)$this->db->lastInsertId();
+    $this->db->beginTransaction();
+    try {
+      // If new probability > 0, rescale existing prizes
+      if ($newProb > 0) {
+        $this->rescaleProbabilities(null, $newProb);
+      }
+
+      // Insert new prize
+      $stmt = $this->db->prepare('INSERT INTO lucky_spin_prizes (name, probability, quantity, is_active) VALUES (:name, :probability, :quantity, :is_active)');
+      $stmt->execute([
+        'name' => $data['name'] ?? null,
+        'probability' => $newProb,
+        'quantity' => isset($data['quantity']) ? (int)$data['quantity'] : -1,
+        'is_active' => isset($data['is_active']) ? (int)$data['is_active'] : 1,
+      ]);
+
+      $id = (int)$this->db->lastInsertId();
+      $this->db->commit();
+      return $id;
+    } catch (\Exception $e) {
+      $this->db->rollBack();
+      throw $e;
+    }
   }
 
   /**
    * Update prize by id. $data same as createPrize.
+   * If probability is updated, rescale other prizes to maintain total 100%.
    */
   public function updatePrize(int $id, array $data): void
   {
@@ -239,10 +265,61 @@ class RotationService
 
     if (empty($fields)) return;
 
-    $params['id'] = $id;
-    $sql = 'UPDATE lucky_spin_prizes SET ' . implode(', ', $fields) . ' WHERE id = :id';
-    $stmt = $this->db->prepare($sql);
+    $this->db->beginTransaction();
+    try {
+      // If updating probability, rescale others
+      if (isset($data['probability'])) {
+        $newProb = (float)$data['probability'];
+        $this->rescaleProbabilities($id, $newProb);
+      }
+
+      // Update the target prize
+      $params['id'] = $id;
+      $sql = 'UPDATE lucky_spin_prizes SET ' . implode(', ', $fields) . ' WHERE id = :id';
+      $stmt = $this->db->prepare($sql);
+      $stmt->execute($params);
+
+      $this->db->commit();
+    } catch (\Exception $e) {
+      $this->db->rollBack();
+      throw $e;
+    }
+  }
+
+  /**
+   * Rescale probabilities of all prizes except the specified one to maintain total 100%.
+   * @param int|null $excludeId ID of prize to exclude from rescaling (e.g., the one being updated).
+   * @param float $newProbForExcluded New probability for the excluded prize (used for calculation).
+   */
+  private function rescaleProbabilities(?int $excludeId, float $newProbForExcluded): void
+  {
+    // Get all prizes except the excluded one
+    $query = 'SELECT id, probability FROM lucky_spin_prizes';
+    $params = [];
+    if ($excludeId !== null) {
+      $query .= ' WHERE id != :excludeId';
+      $params['excludeId'] = $excludeId;
+    }
+    $stmt = $this->db->prepare($query);
     $stmt->execute($params);
+    $otherPrizes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Calculate old total of others
+    $oldTotalOthers = array_sum(array_column($otherPrizes, 'probability'));
+
+    // Remaining space for others
+    $remaining = 100 - $newProbForExcluded;
+
+    if ($oldTotalOthers > 0) {
+      $scaleFactor = $remaining / $oldTotalOthers;
+
+      // Update all other prizes
+      foreach ($otherPrizes as $prize) {
+        $newVal = $prize['probability'] * $scaleFactor;
+        $updStmt = $this->db->prepare('UPDATE lucky_spin_prizes SET probability = :prob WHERE id = :id');
+        $updStmt->execute(['prob' => $newVal, 'id' => $prize['id']]);
+      }
+    }
   }
 
   /**
@@ -299,6 +376,35 @@ class RotationService
     
     // Cập nhật default cho players mới
     $this->setDefaultTurns($totalTurns);
+  }
+
+  /**
+   * Delete prize by id. If it has probability > 0, rescale other prizes to maintain total 100%.
+   */
+  public function deletePrize(int $id): void
+  {
+    // Get the prize to check its probability
+    $prize = $this->getPrize($id);
+    if (!$prize) {
+      throw new \Exception("Prize not found");
+    }
+
+    $this->db->beginTransaction();
+    try {
+      // If probability > 0, rescale others
+      if ($prize['probability'] > 0) {
+        $this->rescaleProbabilities($id, 0);
+      }
+
+      // Delete the prize
+      $stmt = $this->db->prepare('DELETE FROM lucky_spin_prizes WHERE id = :id');
+      $stmt->execute(['id' => $id]);
+
+      $this->db->commit();
+    } catch (\Exception $e) {
+      $this->db->rollBack();
+      throw $e;
+    }
   }
 
   /**
