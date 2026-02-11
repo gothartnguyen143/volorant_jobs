@@ -1,0 +1,95 @@
+CREATE TABLE sqlite_sequence(name,seq);
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  [password] TEXT NOT NULL,
+  full_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  [role] TEXT NOT NULL CHECK(role IN ('ADMIN')),
+  zalo_link TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+, [facebook_link] TEXT);
+CREATE TABLE ranks (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  [type] TEXT NOT NULL
+);
+
+CREATE TABLE sale_accounts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  [status] TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  gmail TEXT NOT NULL,
+  letter TEXT NOT NULL CHECK(letter IN ('Back', 'Có')),
+  [description] TEXT NOT NULL,
+  avatar TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+, sell_to_time DATETIME);
+CREATE TABLE IF NOT EXISTS "rules" (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  rent_acc_rules TEXT NOT NULL,
+  commitment TEXT NOT NULL,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS "game_accounts" (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    acc_name TEXT NOT NULL,
+    rank TEXT NOT NULL,
+    acc_code TEXT NOT NULL,
+    [status] TEXT NOT NULL DEFAULT 'Rảnh' CHECK (
+        [status] IN ('Rảnh', 'Bận', 'Check')
+    ),
+    [description] TEXT,
+    acc_type TEXT NOT NULL DEFAULT 'Thường' CHECK (
+        acc_type IN ('Thường', 'Đặc biệt')
+    ),
+    device_type TEXT NOT NULL DEFAULT 'Tất cả' CHECK (
+        device_type IN ('Only máy nhà', 'Tất cả')
+    ),
+    avatar TEXT,
+    avatar_2 TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    rent_to_time DATETIME,
+    rent_from_time DATETIME,
+    acc_username TEXT
+);
+
+CREATE TABLE account_avatars (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  avatar TEXT,
+  account_id INTEGER NOT NULL,
+  FOREIGN KEY (account_id) REFERENCES game_accounts(id)
+);
+
+CREATE TABLE lucky_spin_prizes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  value TEXT,
+  probability INTEGER DEFAULT 0,
+  quantity INTEGER DEFAULT 0,
+  is_active INTEGER DEFAULT 1,
+  image TEXT
+);
+
+CREATE TABLE lucky_spin_players (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  identifier TEXT UNIQUE,
+  total_turns INTEGER DEFAULT 0,
+  used_turns INTEGER DEFAULT 0,
+  last_spin_time TEXT,
+  created_at TEXT DEFAULT (datetime('now'))
+);
+
+CREATE TABLE lucky_spin_history (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  player_id INTEGER,
+  prize_id INTEGER,
+  prize_snapshot TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (player_id) REFERENCES lucky_spin_players(id),
+  FOREIGN KEY (prize_id) REFERENCES lucky_spin_prizes(id)
+);
+-- EXPORT COMPLETE

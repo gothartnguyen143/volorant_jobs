@@ -82,5 +82,12 @@ $accounts = [
 
 $stmt = $db->prepare("INSERT INTO account_avatars (avatar, account_id) VALUES (?, ?)");
 foreach ($accounts as $acc) {
-  $stmt->execute($acc);
+  try {
+    $stmt->execute($acc);
+  } catch (\Throwable $e) {
+    // Nếu insert avatar thất bại do khoá ngoại hoặc bản ghi đã tồn tại, bỏ qua
+    // Ghi tạm vào STDERR để dễ debug khi build
+    file_put_contents('php://stderr', "Warning: insert account_avatar failed: " . $e->getMessage() . "\n");
+    continue;
+  }
 }

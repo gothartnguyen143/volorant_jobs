@@ -1,0 +1,206 @@
+import { useState } from "react";
+import { SpinningWheel } from "./components/SpinningWheel";
+
+export default function App() {
+  const [segments] = useState([
+    { text: "Giải nhất", color: "#FF6B6B" },
+    { text: "Giải nhì", color: "#4ECDC4" },
+    { text: "Giải ba", color: "#45B7D1" },
+    { text: "May mắn lần sau", color: "#FFA07A" },
+    { text: "Thử lại", color: "#98D8C8" },
+    { text: "Giải khuyến khích", color: "#FFD93D" },
+    { text: "Chúc mừng!", color: "#6BCB77" },
+    { text: "Tiếp tục", color: "#A8E6CF" },
+  ]);
+
+  return (
+    <div className="size-full flex items-center justify-center bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100">
+      <SpinningWheel segments={segments} />
+    </div>
+  );
+}
+
+import { useState, useRef } from "react";
+import { motion } from "motion/react";
+import { Play } from "lucide-react";
+
+interface Segment {
+  text: string;
+  color: string;
+}
+
+interface SpinningWheelProps {
+  segments: Segment[];
+}
+
+export function SpinningWheel({ segments }: SpinningWheelProps) {
+  const [rotation, setRotation] = useState(0);
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [result, setResult] = useState<string>("");
+  const currentRotationRef = useRef(0);
+
+  const spinWheel = () => {
+    if (isSpinning) return;
+
+    setIsSpinning(true);
+    setResult("");
+
+    // Random number of rotations (5-10 full rotations) plus random degree
+    const randomSpin = 360 * (5 + Math.random() * 5) + Math.random() * 360;
+    const newRotation = currentRotationRef.current + randomSpin;
+    
+    setRotation(newRotation);
+    currentRotationRef.current = newRotation;
+
+    // Calculate which segment we landed on
+    setTimeout(() => {
+      const normalizedRotation = newRotation % 360;
+      const segmentAngle = 360 / segments.length;
+      // Adjust for pointer at top (270 degrees in our coordinate system)
+      const adjustedRotation = (360 - normalizedRotation + 90) % 360;
+      const segmentIndex = Math.floor(adjustedRotation / segmentAngle) % segments.length;
+      
+      setResult(segments[segmentIndex].text);
+      setIsSpinning(false);
+    }, 4000);
+  };
+
+  const segmentAngle = 360 / segments.length;
+
+  return (
+    <div className="flex flex-col items-center gap-8 p-8">
+      <div className="relative">
+        {/* Pointer/Arrow at top */}
+        <div className="absolute left-1/2 -translate-x-1/2 -top-8 z-10">
+          <div className="w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-t-[40px] border-t-red-500 drop-shadow-lg" />
+        </div>
+
+        {/* Wheel Container */}
+        <div className="relative w-[400px] h-[400px]">
+          <motion.div
+            className="w-full h-full relative rounded-full shadow-2xl"
+            animate={{ rotate: rotation }}
+            transition={{
+              duration: 4,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+          >
+            <svg
+              viewBox="0 0 200 200"
+              className="w-full h-full -rotate-90"
+            >
+              {segments.map((segment, index) => {
+                const startAngle = index * segmentAngle;
+                const endAngle = (index + 1) * segmentAngle;
+                
+                // Convert to radians
+                const startRad = (startAngle * Math.PI) / 180;
+                const endRad = (endAngle * Math.PI) / 180;
+                
+                // Calculate path for segment
+                const x1 = 100 + 100 * Math.cos(startRad);
+                const y1 = 100 + 100 * Math.sin(startRad);
+                const x2 = 100 + 100 * Math.cos(endRad);
+                const y2 = 100 + 100 * Math.sin(endRad);
+                
+                const pathData = [
+                  `M 100 100`,
+                  `L ${x1} ${y1}`,
+                  `A 100 100 0 0 1 ${x2} ${y2}`,
+                  `Z`,
+                ].join(" ");
+
+                // Calculate text position
+                const textAngle = startAngle + segmentAngle / 2;
+                const textRad = (textAngle * Math.PI) / 180;
+                const textX = 100 + 65 * Math.cos(textRad);
+                const textY = 100 + 65 * Math.sin(textRad);
+
+                return (
+                  <g key={index}>
+                    <path
+                      d={pathData}
+                      fill={segment.color}
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                    <text
+                      x={textX}
+                      y={textY}
+                      fill="white"
+                      fontSize="8"
+                      fontWeight="bold"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      transform={`rotate(${textAngle + 90}, ${textX}, ${textY})`}
+                      className="pointer-events-none select-none drop-shadow-md"
+                    >
+                      {segment.text}
+                    </text>
+                  </g>
+                );
+              })}
+              
+              {/* Center circle */}
+              <circle cx="100" cy="100" r="15" fill="white" stroke="#333" strokeWidth="2" />
+            </svg>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Spin Button */}
+      <button
+        onClick={spinWheel}
+        disabled={isSpinning}
+        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-400 disabled:to-gray-500 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg hover:shadow-xl transition-all disabled:cursor-not-allowed flex items-center gap-3"
+      >
+        <Play className="w-6 h-6 fill-current" />
+        {isSpinning ? "Đang quay..." : "Quay ngay!"}
+      </button>
+
+      {/* Result Display */}
+      {result && (
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="bg-white rounded-2xl px-8 py-6 shadow-xl"
+        >
+          <p className="text-gray-600 text-sm mb-1">Kết quả:</p>
+          <p className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            {result}
+          </p>
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+import React, { useState } from 'react'
+
+const ERROR_IMG_SRC =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODgiIGhlaWdodD0iODgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIzLjciPjxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjU2IiBoZWlnaHQ9IjU2IiByeD0iNiIvPjxwYXRoIGQ9Im0xNiA1OCAxNi0xOCAzMiAzMiIvPjxjaXJjbGUgY3g9IjUzIiBjeT0iMzUiIHI9IjciLz48L3N2Zz4KCg=='
+
+export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+  const [didError, setDidError] = useState(false)
+
+  const handleError = () => {
+    setDidError(true)
+  }
+
+  const { src, alt, style, className, ...rest } = props
+
+  return didError ? (
+    <div
+      className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
+      style={style}
+    >
+      <div className="flex items-center justify-center w-full h-full">
+        <img src={ERROR_IMG_SRC} alt="Error loading image" {...rest} data-original-url={src} />
+      </div>
+    </div>
+  ) : (
+    <img src={src} alt={alt} className={className} style={style} {...rest} onError={handleError} />
+  )
+}
+
+

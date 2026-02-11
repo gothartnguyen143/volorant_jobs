@@ -72,4 +72,34 @@ class AdminController
 
     require_once __DIR__ . '/../views/admin/sale_accounts/page.php';
   }
+
+  public function showRotationPage(): void
+  {
+    // verify admin auth and load admin data similar to other admin pages
+    $auth = $this->authService->verifyAuth();
+    $admin = $this->userService->findAdminById($auth['user']['id']);
+
+    $data = [
+      'admin' => $admin,
+      'auth' => $auth
+    ];
+    extract($data);
+
+    // Render admin rotation management page
+    require_once __DIR__ . '/../views/admin/rotation/page.php';
+  }
+
+  public function showRotationHistoryPage(): void
+  {
+    $auth = $this->authService->verifyAuth();
+    $admin = $this->userService->findAdminById($auth['user']['id']);
+
+    $data = [
+      'admin' => $admin,
+      'auth' => $auth
+    ];
+    extract($data);
+
+    require_once __DIR__ . '/../views/admin/rotation/rotation_history/page.php';
+  }
 }

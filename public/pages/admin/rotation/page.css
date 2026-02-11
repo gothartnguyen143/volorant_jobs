@@ -1,0 +1,60 @@
+/* Rotation admin page styles (aligned with manage-game-accounts) */
+
+/* Layout */
+.container { max-width:1100px; margin:24px auto; padding:0 16px; }
+.w-full-max { width:100%; max-width:100%; }
+.actions { display:flex; gap:8px; margin-bottom:12px; }
+
+/* Buttons */
+.btn { padding:8px 12px; border:1px solid rgba(0,0,0,0.08); background:#fff; cursor:pointer; border-radius:8px; }
+.btn-primary { background:linear-gradient(90deg,#3b82f6,#06b6d4); color:#fff; border:none; box-shadow:0 6px 18px rgba(59,130,246,0.18); }
+
+/* Table (match manage-game-accounts look) */
+.overflow-x-auto { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+thead.bg-gray-50 { background:#f9fafb; }
+th { padding:12px 12px; text-align:left; font-size:12px; color:#4b5563; text-transform:uppercase; letter-spacing:0.03em; }
+td { padding:12px 12px; font-size:14px; color:#111827; }
+tbody tr:hover { background:#f8fafc; }
+.divide-y > tr + tr { border-top:1px solid #e5e7eb; }
+
+/* Modal */
+.modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.4); }
+.modal[hidden] { display: none !important; }
+.modal-content { background:#fff; padding:18px; min-width:360px; display:flex; flex-direction:column; gap:12px; border-radius:8px; }
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; }
+
+/* Inputs */
+.input { padding:10px 12px; border:1px solid #e5e7eb; border-radius:8px; width:100%; }
+
+/* Utility helpers used by templates */
+.text-sm { font-size:0.875rem; }
+.font-semibold { font-weight:600; }
+.bg-white { background:#fff; }
+.rounded-lg { border-radius:12px; }
+.shadow { box-shadow:0 6px 18px rgba(0,0,0,0.05); }
+
+/* Merge rules from manage-game-accounts small file */
+#load-more-container.QUERY-is-more .QUERY-no-more-text { display: none; }
+#load-more-container.QUERY-no-more .QUERY-load-more-btn { display: none; }
+
+/* Icon button */
+.icon-btn { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; border:1px solid transparent; background:transparent; cursor:pointer; }
+.icon-btn:hover { background:rgba(0,0,0,0.04); }
+
+/* Toggle checkbox styling (simple) */
+.toggle-active { position:absolute; opacity:0; width:0; height:0; }
+
+/* Switch wrapper */
+.toggle-switch { position:relative; display:inline-flex; align-items:center; }
+.toggle-switch .switch-track { width:40px; height:22px; background:#e5e7eb; border-radius:18px; position:relative; display:inline-block; transition:background .2s ease; }
+.toggle-switch .switch-track::after { content:''; position:absolute; left:3px; top:3px; width:16px; height:16px; background:white; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,0.12); transition:transform .18s ease; }
+.toggle-switch input.toggle-active:checked + .switch-track { background: linear-gradient(90deg,#06b6d4,#3b82f6); }
+.toggle-switch input.toggle-active:checked + .switch-track::after { transform: translateX(18px); }
+
+/* Colored icon buttons */
+.btn-edit.icon-btn { background: linear-gradient(90deg,#3b82f6,#06b6d4); color: #fff; border: none; }
+.btn-edit.icon-btn svg { stroke: #fff; }
+.btn-del.icon-btn { background: linear-gradient(90deg,#ef4444,#dc2626); color: #fff; border: none; }
+.btn-del.icon-btn svg { stroke: #fff; }
+

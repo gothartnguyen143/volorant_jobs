@@ -54,7 +54,6 @@
                   </span>
               </div>
           </a>
-
         </div>
       </div>
     </nav>
@@ -464,4 +463,79 @@
   <div id="ghost-logo" class="absolute bottom-2 min-[1170px]:left-[-70px] min-[1170px]:rotate-[40deg] right-[-70px] rotate-[-40deg] h-[180px] w-[180px] overflow-hidden">
     <img src="/images/UI/ghost.webp" alt="Logo" class="absolute top-[-50px] left-[-60px] h-[280px] min-w-[280px]">
   </div>
+
+  <div class="fixed z-60 right-6 bottom-24 pointer-events-none">
+      <div class="w-max pointer-events-auto font-extrabold py-2 px-4 uppercase tracking-widest clip-path-polygon text-[1.15em]" style="font-family: 'Orbitron', monospace; color: #7eeaf6; text-shadow: 0 0 8px rgba(0,240,255,0.95), 0 0 16px rgba(0,240,255,0.6); -webkit-text-stroke: 1px rgba(255,255,255,0.06);">
+        Thử vận may
+      </div>
+  </div>
+
+  <div class="fixed z-50 right-6 bottom-6 group">
+
+    <button id="lucky-wheel-btn" aria-label="Vòng quay may mắn" 
+            class="relative w-16 h-16 rounded-full flex items-center justify-center 
+                   bg-[#0f1923] border-2 border-[#00f0ff] 
+                   shadow-[0_0_15px_rgba(0,240,255,0.4)] 
+                   hover:shadow-[0_0_25px_rgba(255,70,85,0.8)] 
+                   hover:border-[#ff4655] hover:scale-110 
+                   transition-all duration-300 ease-out overflow-hidden">
+        
+        <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(0,240,255,0.1)_0%,transparent_70%)]"></div>
+
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="wheel-rotate relative z-10">
+            <g transform="translate(50,50)">
+                <circle cx="0" cy="0" r="48" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1" stroke-dasharray="4 4" />
+                
+                <path d="M0 0 L50 0 A50 50 0 0 1 35.35 35.35 Z" fill="#00f0ff" fill-opacity="0.8"></path> 
+                <path d="M0 0 L0 50 A50 50 0 0 1 -35.35 35.35 Z" fill="#00f0ff" fill-opacity="0.8"></path>
+                <path d="M0 0 L-50 0 A50 50 0 0 1 -35.35 -35.35 Z" fill="#00f0ff" fill-opacity="0.8"></path>
+                <path d="M0 0 L0 -50 A50 50 0 0 1 35.35 -35.35 Z" fill="#00f0ff" fill-opacity="0.8"></path>
+
+                <path d="M0 0 L35.35 35.35 A50 50 0 0 1 0 50 Z" fill="#1c252e"></path>
+                <path d="M0 0 L-35.35 35.35 A50 50 0 0 1 -50 0 Z" fill="#1c252e"></path>
+                <path d="M0 0 L-35.35 -35.35 A50 50 0 0 1 0 -50 Z" fill="#1c252e"></path>
+                <path d="M0 0 L35.35 -35.35 A50 50 0 0 1 50 0 Z" fill="#1c252e"></path>
+
+                <circle cx="0" cy="0" r="12" fill="#0f1923" stroke="#ff4655" stroke-width="2"></circle>
+                <circle cx="0" cy="0" r="4" fill="#ff4655"></circle>
+            </g>
+        </svg>
+
+        <div class="absolute top-1 left-1/2 -translate-x-1/2 z-20 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-[#ff4655] drop-shadow-md"></div>
+    </button>
+  </div>
+
+  <style>
+    /* Animation quay chậm */
+    .wheel-rotate {
+        transform-origin: 50% 50%;
+        animation: spin-slow 8s linear infinite;
+    }
+    /* Khi hover thì quay nhanh hơn chút */
+    #lucky-wheel-btn:hover .wheel-rotate {
+        animation-duration: 2s;
+    }
+
+    @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Tạo hình vát góc cho Tooltip (giống UI Valorant) */
+    .clip-path-polygon {
+        clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const btn = document.getElementById('lucky-wheel-btn');
+      if(!btn) return;
+      
+      btn.addEventListener('click', function(e){
+        // Mở trang quay trong tab mới (hoặc mở modal tùy bạn)
+        window.open('/rotation', '_blank');
+      });
+    });
+  </script>
 </div>

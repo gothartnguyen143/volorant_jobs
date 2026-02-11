@@ -1,0 +1,66 @@
+:root{
+  --accent: #00d9ff;
+  --accent2: #ff5f8f;
+  --panel-bg: rgba(9,16,28,0.7);
+}
+
+.bg-rotation-video{ background: radial-gradient(circle at 20% 20%, rgba(0,217,255,0.08), transparent); }
+.rotation-video-wrap{ position:absolute; inset:0; overflow:hidden; }
+.rotation-bg-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; pointer-events:none; }
+.rotation-overlay{ z-index:5; pointer-events:none; background: radial-gradient(circle at 30% 20%, rgba(3,105,161,0.4), transparent 55%), radial-gradient(circle at 80% 70%, rgba(255,95,143,0.32), transparent 60%); }
+
+.rotation-container{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:4rem 1.5rem; }
+.rotation-layout{ display:flex; flex-direction:column; gap:3rem; align-items:center; justify-content:center; min-height:70vh; width:100%; max-width:1400px; margin:0 auto; }
+.rotation-info{ width:100%; max-width:520px; }
+
+@media (min-width: 1024px){
+  .rotation-layout{ flex-direction:row; align-items:center; justify-content:center; min-height:calc(100vh - 200px); gap:4rem; }
+  .wheel-column{ flex:0 0 64%; max-width:64%; display:flex; align-items:center; justify-content:center; }
+  .rotation-info{ flex:0 0 33%; max-width:33%; margin-left:auto; }
+}
+
+.wheel-column{ width:100%; max-width:648px; flex-shrink:0; margin:0 auto; display:flex; align-items:center; justify-content:center; }
+.wheel-shell{ position:relative; width:100%; max-width:576px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; padding:12px; margin:0 auto; }
+.wheel-pointer-top{ position:absolute; top:-50px; left:50%; transform:translateX(-50%) rotate(180deg); width:0; height:0; border-left:29px solid transparent; border-right:29px solid transparent; border-bottom:53px solid var(--accent2); filter:drop-shadow(0 6px 12px rgba(0,0,0,0.35)); z-index:1000; }
+.wheel-svg-wrapper{ position:relative; width:100%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.18), rgba(5,10,25,0.95)); box-shadow:0 20px 60px rgba(0,0,0,0.55), inset 0 0 30px rgba(255,255,255,0.08); padding:29px; display:flex; align-items:center; justify-content:center; z-index:1; }
+.wheel-rotator{ position:relative; width:100%; height:100%; transition: transform 4s cubic-bezier(0.25,0.1,0.25,1); will-change:transform; }
+.wheel-svg{ width:100%; height:100%; }
+.wheel-svg text{ font-family:'Inter', 'SF Pro Display', sans-serif; font-size:11px; font-weight:700; letter-spacing:0.6px; fill:#fff; text-transform:uppercase; filter:drop-shadow(0 0 6px rgba(0,0,0,0.55)); }
+.wheel-segment{ transition:filter 0.3s ease, opacity 0.3s ease; opacity:0.95; }
+.wheel-segment.winner{ filter:drop-shadow(0 0 18px rgba(255,255,255,0.8)); opacity:1; }
+.wheel-center-cap{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:28%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:900; letter-spacing:0.2em; color:#7a1138; text-transform:uppercase; }
+.wheel-center-cap button{ font-size:0.85rem; background:none; border:none; color:#7a1138; font-weight:900; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.wheel-center-dot{ position:absolute; width:22%; height:22%; border-radius:50%; background:#fff; box-shadow:0 0 12px rgba(255,255,255,0.8); }
+
+.spin-btn-large{ display:block; width:100%; padding:20px; margin-top:24px; border:none; border-radius:999px; font-size:1.1rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#050914; background:linear-gradient(90deg, #ff5f8f, #ffa260 60%, #ffd93d); box-shadow:0 18px 40px rgba(255,95,143,0.35); cursor:pointer; transition:transform 0.2s ease, box-shadow 0.2s ease; position:relative; z-index:100; }
+.spin-btn-large:hover:not(:disabled){ transform:translateY(-2px); box-shadow:0 24px 45px rgba(255,95,143,0.4); }
+.spin-btn-large:active:not(:disabled){ transform:translateY(0); }
+.spin-btn-large:disabled{ opacity:0.7; cursor:not-allowed; }
+
+.status-area{ background:var(--panel-bg); border:1px solid rgba(255,255,255,0.08); padding:20px; border-radius:18px; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,0.35); }
+.status-top{ color:rgba(255,255,255,0.65); font-weight:700; font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; }
+.status-main{ color:#fff; font-size:2rem; font-weight:900; margin-top:10px; text-shadow:0 8px 30px rgba(0,0,0,0.45); letter-spacing:0.05em; }
+
+.rules-panel{ margin-top:24px; background:rgba(7,12,24,0.75); border:1px solid rgba(255,255,255,0.08); padding:20px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+.rules-title{ color:var(--accent2); font-weight:800; margin-bottom:10px; letter-spacing:0.15em; }
+.rules-list{ list-style:none; padding:0; margin:0; color:#cfd8e3; font-size:0.95rem; }
+.rules-list li{ display:flex; gap:12px; align-items:flex-start; margin-bottom:10px; }
+.rules-list li span{ display:inline-flex; width:34px; height:34px; border-radius:10px; background:rgba(255,95,143,0.2); color:#fff; font-weight:800; align-items:center; justify-content:center; }
+
+.support-bar{ margin-top:24px; padding:16px 20px; border-radius:14px; background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.1); color:#f8fafc; font-weight:800; display:flex; justify-content:space-between; align-items:center; letter-spacing:0.1em; }
+.support-bar .phone{ color:#ffd93d; font-size:1.2rem; margin-left:12px; }
+
+.spin-btn:disabled{ opacity:0.6; cursor:not-allowed; }
+.status-box{ background:rgba(255,255,255,0.02); padding:12px; border:1px solid rgba(255,255,255,0.04); border-left:4px solid var(--accent); margin-bottom:12px; }
+.status-label{ color:#9ca3af; font-weight:700; margin:0 0 6px 0; }
+.status-prize{ color:var(--accent); margin:0; font-size:1.5rem; text-shadow:0 0 8px rgba(0,168,255,0.2); }
+
+@media (max-width: 1024px){
+  .wheel-column{ max-width:432px; }
+}
+
+@media (max-width: 768px){
+  .wheel-column{ max-width:384px; }
+  .wheel-svg text{ font-size:8px; }
+  .status-main{ font-size:1.6rem; }
+}

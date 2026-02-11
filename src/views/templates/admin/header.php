@@ -44,6 +44,18 @@
           </div>
         </a>
 
+        <a href="/admin/rotation/history" class="flex items-center gap-2 hover:bg-gray-100 rounded-lg p-2 transition duration-300 cursor-pointer">
+          <div class="w-8 h-8 bg-gradient-to-r from-regular-from-blue-cl to-regular-to-blue-cl rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-history-icon text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10a8 8 0 1 0-3 6.32" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <div class="text-sm">
+            <span class="font-medium text-gray-700">Lịch sử vòng quay</span>
+          </div>
+        </a>
+
         <a href="/admin/profile" class="flex items-center gap-3 hover:bg-gray-100 rounded-lg p-2 transition duration-300 cursor-pointer">
           <div class="w-8 h-8 bg-gradient-to-r from-regular-from-blue-cl to-regular-to-blue-cl rounded-full flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-circle-user-icon lucide-circle-user text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -108,6 +120,11 @@
               <span>Vòng quay may mắn</span>
             </a>
           </li>
+            <li>
+              <a href="/admin/rotation/history" class="flex items-center py-2 rounded-lg CSS-neon-text-hover group">
+                <span>Lịch sử vòng quay</span>
+              </a>
+            </li>
           <li>
             <a href="/admin/profile" class="flex items-center py-2 rounded-lg CSS-neon-text-hover group">
               <span>Hồ sơ quản trị viên</span>
