@@ -576,6 +576,71 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function(){
+      // Detect mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      console.log('Is mobile detected:', isMobile, 'Width:', window.innerWidth);
+
+      if (isMobile) {
+        console.log('Applying mobile styles');
+        // Apply mobile-specific styles for nav header
+        const nav = document.querySelector('nav');
+        if (nav) {
+          const navLinks = nav.querySelectorAll('a');
+          navLinks.forEach(link => {
+            const span = link.querySelector('span:last-child');
+            if (span) span.style.display = 'none'; // Hide text on mobile, keep icons
+          });
+          nav.style.height = '3rem'; // Reduce nav height
+          nav.style.padding = '0 1rem'; // Reduce padding
+        }
+
+        // Apply mobile-specific styles for title
+        const title = document.querySelector('h1');
+        if (title) {
+          title.style.fontSize = '2em'; // Reduce title size on mobile
+          title.style.flexDirection = 'column'; // Stack title elements vertically
+          const spans = title.querySelectorAll('span');
+          spans.forEach(span => {
+            span.style.fontSize = '1.2em'; // Adjust span sizes
+          });
+        }
+
+        // Apply mobile-specific styles for pricing cards
+        const cards = document.querySelectorAll('.bg-slate-900\\/30');
+        cards.forEach(card => {
+          const header = card.querySelector('h3');
+          if (header) header.style.fontSize = '1em';
+          const items = card.querySelectorAll('div[style*="font-size"]');
+          items.forEach(item => {
+            item.style.fontSize = '0.7em';
+          });
+        });
+
+        // Stack buttons vertically on mobile
+        const buttonContainer = document.querySelector('.flex.items-center.justify-center.gap-4');
+        if (buttonContainer) {
+          buttonContainer.style.flexDirection = 'column';
+          buttonContainer.style.gap = '0.5rem';
+        }
+
+        // Adjust modal for mobile
+        const modal = document.getElementById('notes-modal');
+        if (modal) {
+          const modalContent = modal.querySelector('.relative');
+          if (modalContent) {
+            modalContent.style.maxWidth = '95vw';
+            modalContent.style.width = '100%';
+            modalContent.style.padding = '1rem';
+          }
+        }
+      } else {
+        console.log('Desktop detected, no changes applied');
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
       const btn = document.getElementById('btn-lucky-wheel');
       if(!btn) return;
       
