@@ -161,6 +161,46 @@ error_reporting(E_ALL);
       </div>
     </div>
   </div>
+
+  <!-- Modal Nhập Số Điện Thoại/Gmail -->
+  <div id="input-modal" class="gaming-modal">
+    <div class="modal-bg"></div>
+    <div class="modal-container">
+      <div class="modal-header-gaming">
+        <div class="header-line"></div>
+        <h2 class="modal-title">NHẬP THÔNG TIN</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="modal-body-gaming">
+        <p class="prize-message">Vui lòng nhập số điện thoại hoặc Gmail để tham gia quay thưởng:</p>
+        <input type="text" id="user-identifier" placeholder="Số điện thoại hoặc Gmail" class="input-field">
+        <div id="input-error" class="error-message" style="display: none;">Vui lòng nhập thông tin hợp lệ!</div>
+      </div>
+      <div class="modal-footer-gaming">
+        <button class="btn-gaming-submit" id="input-submit-btn">XÁC NHẬN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Hết Lượt Quay -->
+  <div id="no-turns-modal" class="gaming-modal">
+    <div class="modal-bg"></div>
+    <div class="modal-container">
+      <div class="modal-header-gaming">
+        <div class="header-line"></div>
+        <h2 class="modal-title">HẾT LƯỢT QUAY</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="modal-body-gaming">
+        <p class="prize-message">Bạn đã hết số lượt quay. Hãy thay đổi Gmail hoặc SĐT để tiếp tục:</p>
+        <input type="text" id="new-user-identifier" placeholder="Số điện thoại hoặc Gmail mới" class="input-field">
+        <div id="no-turns-error" class="error-message" style="display: none;">Vui lòng nhập thông tin hợp lệ!</div>
+      </div>
+      <div class="modal-footer-gaming">
+        <button class="btn-gaming-submit" id="no-turns-submit-btn">XÁC NHẬN</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="<?= queryAssetWithVersion('/pages/rotation/rotation.js') ?>" defer></script>

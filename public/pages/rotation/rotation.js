@@ -55,20 +55,96 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = 'none';
   };
 
+  const showInputModal = () => {
+    const modal = document.getElementById('input-modal');
+    modal.style.display = 'flex';
+  };
+
+  const closeInputModal = () => {
+    const modal = document.getElementById('input-modal');
+    modal.style.display = 'none';
+  };
+
+  const showNoTurnsModal = () => {
+    const modal = document.getElementById('no-turns-modal');
+    modal.style.display = 'flex';
+  };
+
+  const closeNoTurnsModal = () => {
+    const modal = document.getElementById('no-turns-modal');
+    modal.style.display = 'none';
+  };
+
   // Gắn sự kiện đóng modal
   document.getElementById('modal-close-btn').addEventListener('click', closeGamingModal);
 
+  // Gắn sự kiện submit input modal
+  document.getElementById('input-submit-btn').addEventListener('click', () => {
+    const input = document.getElementById('user-identifier');
+    const error = document.getElementById('input-error');
+    const value = input.value.trim();
+    
+    if (!value) {
+      error.style.display = 'block';
+      return;
+    }
+    
+    // Basic validation: check if it's email or phone
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const isPhone = /^[0-9]{10,11}$/.test(value);
+    
+    if (!isEmail && !isPhone) {
+      error.style.display = 'block';
+      return;
+    }
+    
+    error.style.display = 'none';
+    localStorage.setItem('user_identifier', value);
+    closeInputModal();
+    spin(); // Proceed to spin after saving identifier
+  });
+
+  // Gắn sự kiện submit no-turns modal
+  document.getElementById('no-turns-submit-btn').addEventListener('click', () => {
+    const input = document.getElementById('new-user-identifier');
+    const error = document.getElementById('no-turns-error');
+    const value = input.value.trim();
+    
+    if (!value) {
+      error.style.display = 'block';
+      return;
+    }
+    
+    // Basic validation: check if it's email or phone
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const isPhone = /^[0-9]{10,11}$/.test(value);
+    
+    if (!isEmail && !isPhone) {
+      error.style.display = 'block';
+      return;
+    }
+    
+    error.style.display = 'none';
+    localStorage.setItem('user_identifier', value); // Thay đổi identifier
+    closeNoTurnsModal();
+    spin(); // Proceed to spin with new identifier
+  });
+
   const spin = async () => {
     if (isSpinning) return; // Chặn click khi đang quay
+
+    // Kiểm tra identifier
+    let identifier = localStorage.getItem('user_identifier');
+    if (!identifier) {
+      showInputModal();
+      return;
+    }
 
     // Khóa tất cả các nút quay
     isSpinning = true;
     spinBtns.forEach(btn => btn.disabled = true);
     
     if (statusTop) statusTop.textContent = 'TRẠNG THÁI: ĐANG QUAY...';
-
-    // Dùng identifier mặc định hoặc lấy từ input ẩn (nếu có)
-    const identifier = '0399793159'; // TODO: Nên lấy động từ user session
 
     try {
       console.log('Đang gọi API...');
@@ -141,7 +217,13 @@ document.addEventListener("DOMContentLoaded", function () {
       spinBtns.forEach(btn => btn.disabled = false);
       if (statusTop) statusTop.textContent = 'TRẠNG THÁI: LỖI';
       if (statusMain) statusMain.textContent = error.message;
-      alert('Lỗi: ' + error.message);
+      
+      // Nếu lỗi hết lượt, hiển thị modal để thay đổi identifier
+      if (error.message && error.message.toLowerCase().includes('no turns left')) {
+        showNoTurnsModal();
+      } else {
+        alert('Lỗi: ' + error.message);
+      }
     }
   };
 

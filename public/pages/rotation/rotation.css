@@ -328,3 +328,41 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
   transform: translateY(-2px);
   background: linear-gradient(90deg, #004080, #0077be);
 }
+
+/* Input field styles */
+.input-field {
+  width: 100%; padding: 15px; margin: 10px 0;
+  background: rgba(15, 25, 35, 0.8); border: 2px solid #0077be;
+  border-radius: 10px; color: #ece8e1; font-size: 1.2rem;
+  font-family: var(--text-main); outline: none;
+  box-shadow: 0 0 10px rgba(0, 119, 190, 0.3);
+  transition: all 0.3s ease;
+}
+.input-field:focus {
+  border-color: #ff4655; box-shadow: 0 0 20px rgba(255, 70, 85, 0.5);
+}
+.input-field::placeholder {
+  color: #b0c2d6; opacity: 0.7;
+}
+
+/* Error message */
+.error-message {
+  color: #ff4655; font-size: 1rem; margin-top: 10px;
+  text-shadow: 0 0 10px #ff4655;
+}
+
+/* Submit button */
+.btn-gaming-submit {
+  background: linear-gradient(90deg, #ff4655, #cc3333);
+  border: none; color: #fff; padding: 15px 30px;
+  font-family: var(--text-title); font-size: 1.5rem; font-weight: bold;
+  text-transform: uppercase; letter-spacing: 2px;
+  border-radius: 10px; cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 70, 85, 0.6);
+  transition: all 0.3s ease;
+}
+.btn-gaming-submit:hover {
+  box-shadow: 0 0 30px rgba(255, 70, 85, 1);
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #cc3333, #ff4655);
+}

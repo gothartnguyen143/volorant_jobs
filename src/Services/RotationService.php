@@ -91,12 +91,11 @@ class RotationService
       $player = $this->ensurePlayer($identifier);
 
       // Kiểm tra lượt còn hay hết
-
-      // $used = (int)($player['used_turns'] ?? 0);
-      // $total = (int)($player['total_turns'] ?? 0);
-      // if ($used >= $total) {
-      //   throw new \RuntimeException('No turns left', 400);
-      // }
+      $used = (int)($player['used_turns'] ?? 0);
+      $total = (int)($player['total_turns'] ?? 0);
+      if ($used >= $total) {
+        throw new \RuntimeException('No turns left', 400);
+      }
 
       $prizes = $this->getAvailablePrizes();
       $prize = $this->pickPrizeByWeight($prizes);
