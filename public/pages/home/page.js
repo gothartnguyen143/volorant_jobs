@@ -76,6 +76,15 @@ class HomePageManager {
     this.initRentAccountNowBtnListener()
   }
 
+  loadRequirements() {
+    return [
+      { text: 'Dữ liệu 1', highlight: false },
+      { text: 'Dữ liệu 2', highlight: true },
+      { text: 'Dữ liệu 3', highlight: false },
+      { text: 'Dữ liệu 4', highlight: false }
+    ]
+  }
+
   initRentAccountNowBtnListener() {
     document.getElementById("rent-account-now-btn").addEventListener("click", () => {
       document.getElementById("accounts-list-container").scrollIntoView({ behavior: "smooth" })
@@ -151,6 +160,7 @@ class HomePageManager {
 
   renderNewAccounts(accounts) {
     for (const account of accounts) {
+      account.requirements = this.loadRequirements()
       const fragment = LitHTMLHelper.getFragment(AccountCard, account)
       this.accountsList.appendChild(fragment)
     }

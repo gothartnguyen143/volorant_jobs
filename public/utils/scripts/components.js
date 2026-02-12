@@ -2,105 +2,49 @@ import { html } from "https://esm.run/lit-html@1"
 import { AccountHelper, TimeHelper } from "./helpers.js?v=natk"
 
 export const AccountCard = (account) => {
-  const { status, rank, avatar, acc_code, device_type, id, avatar_2, acc_type } = account
+  const { status, rank, avatar, acc_code, device_type, id, avatar_2, acc_type, requirements } = account
   const statusToDisplay = status === "Rảnh" || status === "Check" ? "Rảnh" : status
   return html`
-    <div
-      class="${
+    <div class="account-card">
+      <div class="account-card-main ${
         acc_type === "Đặc biệt" ? "CSS-acc-type-special-shine-animation" : ""
-      } rounded-lg w-full relative flex items-center justify-center p-[10px]"
-    >
-      <div class="w-full CSS-acc-type-special-shine-animation-content bg-regular-acc-card-bgcl">
-        <div class="grid min-[600px]:grid-cols-2 grid-cols-1 gap-2 w-full relative">
-          <div
-            class="flex flex-1 h-full rounded-lg overflow-hidden bg-gradient-to-r from-regular-acc-state-from-cl to-regular-acc-state-to-cl relative"
-          >
-            <div class="w-fit h-fit m-auto">
-              <img
-                src="/images/account/${avatar ?? "default-account-avatar.png"}"
-                alt="Mã account: ${acc_code}"
-                class="QUERY-account-avatar-1 aspect-[16/9] m-auto cursor-pointer rounded-lg transition-transform ease-in-out [transition-property:transform,transform-origin] [transition-duration:400ms,200ms] ${
-                  avatar ? "object-cover" : "object-contain py-6 min-[1242px]:py-0"
-                }"
-              />
-            </div>
-          </div>
-          <div
-            class="flex flex-1 h-full rounded-lg overflow-hidden bg-gradient-to-r from-regular-acc-state-from-cl to-regular-acc-state-to-cl relative"
-          >
-            <div class="w-fit h-fit m-auto">
-              <img
-                src="/images/account/${avatar_2 ?? "default-account-avatar.png"}"
-                alt="Mã account: ${acc_code}"
-                class="QUERY-account-avatar-2 aspect-[16/9] m-auto cursor-pointer rounded-lg transition-transform ease-in-out [transition-property:transform,transform-origin] [transition-duration:400ms,200ms] ${
-                  avatar_2 ? "object-cover" : "object-contain py-6 min-[1242px]:py-0"
-                }"
-              />
-            </div>
-          </div>
-        </div>
-        <div>
-          <h2
-            class="flex items-center gap-2 text-[1.4em] font-bold mt-1.5 text-regular-acc-state-cl"
-          >
-            <svg
-              class="w-[1.2em] h-[1.2em]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              fill="currentColor"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            >
-              <g>
-                <circle
-                  cx="12"
-                  cy="12"
-                  data-name="--Circle"
-                  fill="none"
-                  id="_--Circle"
-                  r="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                ></circle>
-                <line
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  x1="12"
-                  x2="12"
-                  y1="12"
-                  y2="16"
-                ></line>
-                <line
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  x1="12"
-                  x2="12"
-                  y1="8"
-                  y2="8"
-                ></line>
-              </g>
-            </svg>
-            <span>Thông tin tài khoản</span>
-          </h2>
-        </div>
-        <div
-          class="text-[1em] w-full mt-2 grid min-[768px]:grid-cols-3 min-[980px]:grid-cols-6 grid-cols-2 gap-1"
-        >
-          <div class="font-bold border border-regular-acc-state-cl rounded col-span-1">
+      } rounded-lg w-full relative flex items-center justify-center p-[10px]">
+        <div class="w-full CSS-acc-type-special-shine-animation-content bg-regular-acc-card-bgcl">
+          <div class="grid min-[600px]:grid-cols-2 grid-cols-1 gap-2 w-full relative">
             <div
-              class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 bg-regular-acc-state-cl"
+              class="flex flex-1 h-full rounded-lg overflow-hidden bg-gradient-to-r from-regular-acc-state-from-cl to-regular-acc-state-to-cl relative"
+            >
+              <div class="w-fit h-fit m-auto">
+                <img
+                  src="/images/account/${avatar ?? "default-account-avatar.png"}"
+                  alt="Mã account: ${acc_code}"
+                  class="QUERY-account-avatar-1 aspect-[16/9] m-auto cursor-pointer rounded-lg transition-transform ease-in-out [transition-property:transform,transform-origin] [transition-duration:400ms,200ms] ${
+                    avatar ? "object-cover" : "object-contain py-6 min-[1242px]:py-0"
+                  }"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-1 h-full rounded-lg overflow-hidden bg-gradient-to-r from-regular-acc-state-from-cl to-regular-acc-state-to-cl relative"
+            >
+              <div class="w-fit h-fit m-auto">
+                <img
+                  src="/images/account/${avatar_2 ?? "default-account-avatar.png"}"
+                  alt="Mã account: ${acc_code}"
+                  class="QUERY-account-avatar-2 aspect-[16/9] m-auto cursor-pointer rounded-lg transition-transform ease-in-out [transition-property:transform,transform-origin] [transition-duration:400ms,200ms] ${
+                    avatar_2 ? "object-cover" : "object-contain py-6 min-[1242px]:py-0"
+                  }"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2
+              class="flex items-center gap-2 text-[1.4em] font-bold mt-1.5 text-regular-acc-state-cl"
             >
               <svg
-                class="w-[1.2em] h-[1.2em] text-white"
-                viewBox="0 0 16 16"
+                class="w-[1.2em] h-[1.2em]"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
                 fill="currentColor"
@@ -109,142 +53,204 @@ export const AccountCard = (account) => {
                 stroke-linejoin="round"
                 stroke-width="1.5"
               >
-                <g id="SVGRepo_iconCarrier">
-                  <path d="m2.75 10.25h9.5m-8.5-4.5h9.5m-2.5-4-1.5 12.5m-2.5-12.5-1.5 12.5"></path>
+                <g>
+                  <circle
+                    cx="12"
+                    cy="12"
+                    data-name="--Circle"
+                    fill="none"
+                    id="_--Circle"
+                    r="10"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  ></circle>
+                  <line
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    x1="12"
+                    x2="12"
+                    y1="12"
+                    y2="16"
+                  ></line>
+                  <line
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    x1="12"
+                    x2="12"
+                    y1="8"
+                    y2="8"
+                  ></line>
                 </g>
               </svg>
-              <span class="w-max">Mã Account</span>
-            </div>
-            <p class="text-center py-2 px-2 w-max mx-auto">${acc_code}</p>
-          </div>
-          <div class="font-bold border border-regular-acc-state-cl rounded col-span-1">
-            <div
-              class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 bg-regular-acc-state-cl"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-[1.2em] h-[1.2em] text-white fill-current"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-              <span class="w-max">Rank</span>
-            </div>
-            <p class="text-center py-2 px-2 w-max mx-auto">${rank}</p>
-          </div>
-          <div class="text-center font-bold border ${
-            device_type === "Only máy nhà" ? "border-[#facc15]" : "border-regular-acc-state-cl"
-          }" rounded col-span-1">
-            <div
-              class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
-                device_type === "Only máy nhà" ? "bg-[#facc15]" : "bg-regular-acc-state-cl"
-              }"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-[1.2em] h-[1.2em] text-white"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.75 17L6 21h12l-3.75-4M3 4h18v10H3z"
-                />
-              </svg>
-              <span class="w-max">Loại Máy</span>
-            </div>
-            <p class="text-center py-2 px-2 w-max mx-auto">${device_type}</p>
+              <span>Thông tin tài khoản</span>
+            </h2>
           </div>
           <div
-            class="font-bold border rounded col-span-1 ${
-              statusToDisplay === "Bận" ? "border-red-600" : "border-green-600"
-            }"
+            class="text-[1em] w-full mt-2 grid min-[768px]:grid-cols-3 min-[980px]:grid-cols-6 grid-cols-2 gap-1"
           >
-            <div
-              class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
-                statusToDisplay === "Bận" ? "bg-red-600" : "bg-green-600"
-              }"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-chart-no-axes-column-icon lucide-chart-no-axes-column text-white w-[1.2em] h-[1.2em]"
+            <div class="font-bold border border-regular-acc-state-cl rounded col-span-1">
+              <div
+                class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 bg-regular-acc-state-cl"
               >
-                <line x1="18" x2="18" y1="20" y2="10" />
-                <line x1="12" x2="12" y1="20" y2="4" />
-                <line x1="6" x2="6" y1="20" y2="14" />
-              </svg>
-              <span class="w-max">Trạng Thái</span>
+                <svg
+                  class="w-[1.2em] h-[1.2em] text-white"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  version="1.1"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                >
+                  <g id="SVGRepo_iconCarrier">
+                    <path d="m2.75 10.25h9.5m-8.5-4.5h9.5m-2.5-4-1.5 12.5m-2.5-12.5-1.5 12.5"></path>
+                  </g>
+                </svg>
+                <span class="w-max">Mã Account</span>
+              </div>
+              <p class="text-center py-2 px-2 w-max mx-auto">${acc_code}</p>
             </div>
-            <p
-              class="text-center py-2 px-2 w-max mx-auto ${
-                statusToDisplay === "Bận" ? "text-red-600" : ""
-              }"
-            >
-              ${statusToDisplay}
-            </p>
-          </div>
-          <div class="font-bold border ${
-            acc_type === "Đặc biệt" ? "border-pink-600" : "border-regular-acc-state-cl"
-          } rounded col-span-1">
-            <div
-              class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
-                acc_type === "Đặc biệt" ? "bg-pink-400" : "bg-regular-acc-state-cl"
-              }"
-            >
-              <svg
-                class="w-[1.2em] h-[1.2em] text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <div class="font-bold border border-regular-acc-state-cl rounded col-span-1">
+              <div
+                class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 bg-regular-acc-state-cl"
               >
-                <g>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-[1.2em] h-[1.2em] text-white fill-current"
+                  viewBox="0 0 24 24"
+                >
                   <path
-                    d="M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z"
-                    fill="#fff"
-                  ></path>
-                  <path
-                    d="M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z"
-                    fill="#fff"
-                  ></path>
-                  <path
-                    d="M18.6695 13.4297H16.7695C14.5895 13.4297 13.4395 14.5797 13.4395 16.7597V18.6597C13.4395 20.8397 14.5895 21.9897 16.7695 21.9897H18.6695C20.8495 21.9897 21.9995 20.8397 21.9995 18.6597V16.7597C21.9995 14.5797 20.8495 13.4297 18.6695 13.4297Z"
-                    fill="#fff"
-                  ></path>
-                  <path
-                    d="M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z"
-                    fill="#fff"
-                  ></path>
-                </g>
-              </svg>
-              <span class="w-max">Loại Acc</span>
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+                <span class="w-max">Rank</span>
+              </div>
+              <p class="text-center py-2 px-2 w-max mx-auto">${rank}</p>
             </div>
-            <p
-              class="text-center py-2 px-2 w-max mx-auto ${
-                acc_type === "Đặc biệt" ? "CSS-account-card-animate-scaling" : ""
+            <div class="text-center font-bold border ${
+              device_type === "Only máy nhà" ? "border-[#facc15]" : "border-regular-acc-state-cl"
+            }" rounded col-span-1">
+              <div
+                class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
+                  device_type === "Only máy nhà" ? "bg-[#facc15]" : "bg-regular-acc-state-cl"
+                }"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-[1.2em] h-[1.2em] text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.75 17L6 21h12l-3.75-4M3 4h18v10H3z"
+                  />
+                </svg>
+                <span class="w-max">Loại Máy</span>
+              </div>
+              <p class="text-center py-2 px-2 w-max mx-auto">${device_type}</p>
+            </div>
+            <div
+              class="font-bold border rounded col-span-1 ${
+                statusToDisplay === "Bận" ? "border-red-600" : "border-green-600"
               }"
             >
-              ${acc_type}
-            </p>
+              <div
+                class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
+                  statusToDisplay === "Bận" ? "bg-red-600" : "bg-green-600"
+                }"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chart-no-axes-column-icon lucide-chart-no-axes-column text-white w-[1.2em] h-[1.2em]"
+                >
+                  <line x1="18" x2="18" y1="20" y2="10" />
+                  <line x1="12" x2="12" y1="20" y2="4" />
+                  <line x1="6" x2="6" y1="20" y2="14" />
+                </svg>
+                <span class="w-max">Trạng Thái</span>
+              </div>
+              <p
+                class="text-center py-2 px-2 w-max mx-auto ${
+                  statusToDisplay === "Bận" ? "text-red-600" : ""
+                }"
+              >
+                ${statusToDisplay}
+              </p>
+            </div>
+            <div class="font-bold border ${
+              acc_type === "Đặc biệt" ? "border-pink-600" : "border-regular-acc-state-cl"
+            } rounded col-span-1">
+              <div
+                class="flex gap-2 justify-center items-center font-bold text-white text-center p-1 ${
+                  acc_type === "Đặc biệt" ? "bg-pink-400" : "bg-regular-acc-state-cl"
+                }"
+              >
+                <svg
+                  class="w-[1.2em] h-[1.2em] text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z"
+                      fill="#fff"
+                    ></path>
+                    <path
+                      d="M18.6695 2H16.7695C14.5895 2 13.4395 3.15 13.4395 5.33V7.23C13.4395 9.41 14.5895 10.56 16.7695 10.56H18.6695C20.8495 10.56 21.9995 9.41 21.9995 7.23V5.33C21.9995 3.15 20.8495 2 18.6695 2Z"
+                      fill="#fff"
+                    ></path>
+                    <path
+                      d="M18.6695 13.4297H16.7695C14.5895 13.4297 13.4395 14.5797 13.4395 16.7597V18.6597C13.4395 20.8397 14.5895 21.9897 16.7695 21.9897H18.6695C20.8495 21.9897 21.9995 20.8397 21.9995 18.6597V16.7597C21.9995 14.5797 20.8495 13.4297 18.6695 13.4297Z"
+                      fill="#fff"
+                    ></path>
+                    <path
+                      d="M7.24 13.4297H5.34C3.15 13.4297 2 14.5797 2 16.7597V18.6597C2 20.8497 3.15 21.9997 5.33 21.9997H7.23C9.41 21.9997 10.56 20.8497 10.56 18.6697V16.7697C10.57 14.5797 9.42 13.4297 7.24 13.4297Z"
+                      fill="#fff"
+                    ></path>
+                  </g>
+                </svg>
+                <span class="w-max">Loại Acc</span>
+              </div>
+              <p
+                class="text-center py-2 px-2 w-max mx-auto ${
+                  acc_type === "Đặc biệt" ? "CSS-account-card-animate-scaling" : ""
+                }"
+              >
+                ${acc_type}
+              </p>
+            </div>
+            <div class="px-4 col-span-1 flex items-center justify-center h-full">
+              <button
+                data-account-id="${id}"
+                class="QUERY-rent-now-btn CSS-button-shadow-decoration min-w-max w-full py-2 px-6 text-[1.1em] flex items-center justify-center gap-3 active:scale-90 transition duration-200 text-white font-bold rounded-lg bg-regular-acc-state-cl backdrop-blur-md"
+              >
+                <span>THUÊ NGAY</span>
+              </button>
+            </div>
           </div>
-          <div class="px-4 col-span-1 flex items-center justify-center h-full">
-            <button
-              data-account-id="${id}"
-              class="QUERY-rent-now-btn CSS-button-shadow-decoration min-w-max w-full py-2 px-6 text-[1.1em] flex items-center justify-center gap-3 active:scale-90 transition duration-200 text-white font-bold rounded-lg bg-regular-acc-state-cl backdrop-blur-md"
-            >
-              <span>THUÊ NGAY</span>
-            </button>
-          </div>
+        </div>
+      </div>
+      <div class="requirement-section">
+        <div class="requirement-header">Yêu cầu máy</div>
+        <div class="requirement-data">
+          ${requirements.map(req => html`<div class="requirement-item ${req.highlight ? 'highlight' : ''}">${req.text}</div>`)}
         </div>
       </div>
     </div>
