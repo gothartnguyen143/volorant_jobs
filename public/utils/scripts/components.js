@@ -247,10 +247,14 @@ export const AccountCard = (account) => {
           </div>
         </div>
       </div>
-      <div class="requirement-section">
-        <div class="requirement-header">Yêu cầu máy</div>
+     <div class="requirement-section">
+        <div class="requirement-header">Yêu cầu cấu hình</div>
         <div class="requirement-data">
-          ${requirements.map(req => html`<div class="requirement-item ${req.highlight ? 'highlight' : ''}">${req.text}</div>`)}
+          ${requirements.map(req => html`
+            <div class="requirement-item ${req.highlight ? 'highlight' : ''}">
+              ${req.text}
+            </div>
+          `)}
         </div>
       </div>
     </div>
