@@ -304,6 +304,18 @@
         <!-- Display area for notes (buttons will inject content here). Details below kept hidden. -->
         <div id="notes-display" class="mx-auto mt-6 max-w-[900px] w-[90%] bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 p-4 text-white text-[1em] hidden"></div>
 
+        <!-- Modal for notes -->
+        <div id="notes-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div class="relative max-w-[900px] w-[90%] max-h-[80vh] bg-slate-900/95 backdrop-blur-xl rounded-2xl border border-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.3)] p-6 overflow-y-auto">
+            <button id="close-notes-modal" class="absolute top-4 right-4 text-red-400 hover:text-red-300 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+            <div id="modal-content" class="text-white text-[1em]"></div>
+          </div>
+        </div>
+
         <div class="flex flex-col gap-2 mt-2">
           <details id="detail-deduct" style="display:none" class="bg-red-500/10 backdrop-blur-md rounded-2xl px-3 py-2 border border-white/20 flex-1">
             <summary class="text-pink-400 text-[1.51em] font-bold leading-none cursor-pointer hover:text-pink-300 transition-colors duration-300 list-none mb-2 px-2 rounded-lg flex items-center justify-between">
@@ -418,25 +430,18 @@
           });
         </script>
         <script>
-          // Buttons to open/close the details and scroll into view
+          // Buttons to open modal with notes
           document.addEventListener('DOMContentLoaded', function(){
             const btnDeduct = document.getElementById('btn-deduct');
             const btnRent = document.getElementById('btn-rent');
+            const modal = document.getElementById('notes-modal');
+            const modalContent = document.getElementById('modal-content');
+            const closeBtn = document.getElementById('close-notes-modal');
             const detDeduct = document.getElementById('detail-deduct');
             const detRent = document.getElementById('detail-rent');
 
-            function closeOthers(openOne){
-              [detDeduct, detRent].forEach(d => {
-                if(!d) return;
-                if(d !== openOne) d.open = false;
-              });
-            }
-
-            function openAndScroll(detail, id){
-              // Copy the <details> content (excluding the <summary>) into #notes-display.
-              const display = document.getElementById('notes-display');
-              if(!display) return;
-              if(!detail) return;
+            function openModal(detail){
+              if(!modal || !modalContent || !detail) return;
 
               // Build HTML from detail children, skipping the <summary>
               let contentHTML = '';
@@ -447,7 +452,7 @@
                 contentHTML += child.outerHTML || child.innerHTML || '';
               });
 
-              // Fallback: clone and remove summary then use remaining innerHTML
+              // Fallback
               if(!contentHTML.trim()){
                 try{
                   const clone = detail.cloneNode(true);
@@ -459,24 +464,30 @@
                 }
               }
 
-              display.innerHTML = contentHTML;
-              display.classList.remove('hidden');
-              // subtle entry animation
-              display.style.opacity = 0;
-              display.style.transform = 'translateY(6px)';
+              modalContent.innerHTML = contentHTML;
+              modal.classList.remove('hidden');
+              modal.style.opacity = 0;
+              modal.style.transform = 'scale(0.9)';
               requestAnimationFrame(()=>{
-                display.style.transition = 'opacity 220ms ease, transform 220ms ease';
-                display.style.opacity = 1;
-                display.style.transform = 'translateY(0)';
+                modal.style.transition = 'opacity 300ms ease, transform 300ms ease';
+                modal.style.opacity = 1;
+                modal.style.transform = 'scale(1)';
               });
-                // Do not auto-scroll to the injected content — user requested no automatic focus.
-
-              closeOthers(detail);
-              try{ console.log('openAndScroll: injected content length', contentHTML.length); }catch(e){}
             }
 
-            if(btnDeduct) btnDeduct.addEventListener('click', function(e){ openAndScroll(detDeduct, 'deduct'); });
-            if(btnRent) btnRent.addEventListener('click', function(e){ openAndScroll(detRent, 'rent'); });
+            function closeModal(){
+              if(!modal) return;
+              modal.style.opacity = 0;
+              modal.style.transform = 'scale(0.9)';
+              setTimeout(() => {
+                modal.classList.add('hidden');
+              }, 300);
+            }
+
+            if(btnDeduct) btnDeduct.addEventListener('click', function(e){ openModal(detDeduct); });
+            if(btnRent) btnRent.addEventListener('click', function(e){ openModal(detRent); });
+            if(closeBtn) closeBtn.addEventListener('click', closeModal);
+            if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
           });
         </script>
       <div class="flex-col items-center gap-3 min-[1170px]:flex hidden pt-2 absolute bottom-[500px] left-[40px] z-[80]">
