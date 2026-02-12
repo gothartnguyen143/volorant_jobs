@@ -1,5 +1,6 @@
 import { GameAccountService } from "../../services/game-account-services.js?v=1.0.0"
 import { AccountCard } from "../../utils/scripts/components.js?v=1.0.0"
+import { RequirementService } from "../../services/requirement-service.js?v=1.0.0"
 import {
   AxiosErrorHandler,
   LitHTMLHelper,
@@ -37,6 +38,7 @@ class HomePageManager {
     this.isMoreItems = true
     this.gameAccounts = []
     this.selectedAccount = null
+    this.requirements = []
     this.filterHolder = {
       rank: "",
       status: "",
@@ -77,12 +79,12 @@ class HomePageManager {
   }
 
   loadRequirements() {
-    return [
-      { text: 'Dữ liệu 1', highlight: false },
-      { text: 'Dữ liệu 2', highlight: true },
-      { text: 'Dữ liệu 3', highlight: false },
-      { text: 'Dữ liệu 4', highlight: false }
-    ]
+    return RequirementService.fetchRequirements()
+      .then(data => data)
+      .catch(error => {
+        console.error('Failed to load requirements:', error);
+        return { requirements: [], selected: {} };
+      });
   }
 
   initRentAccountNowBtnListener() {
@@ -129,24 +131,24 @@ class HomePageManager {
     return { last_id }
   }
 
-  fetchAccounts() {
+  async fetchAccounts() {
     const { last_id } = this.getLastAccountInfoForFetching()
     const { rank, status, device_type, account_type } = this.filterHolder
     if (this.isFetchingItems) return
     this.isFetchingItems = true
 
     GameAccountService.fetchAccounts(last_id, undefined, rank, status, device_type, account_type)
-      .then((accounts) => {
+      .then(async (accounts) => {
         if (accounts && accounts.length > 0) {
           this.isFetchingItems = false
           const newList = [...this.gameAccounts, ...accounts]
           newList.sort((a, b) => (b.acc_code*1) - (a.acc_code*1))
           this.gameAccounts = newList
           this.accountsList.innerHTML = ''
-          this.renderNewAccounts(this.gameAccounts)
+          await this.renderNewAccounts(this.gameAccounts)
           initUtils.initTooltip()
           this.activateFilterItems()
-          this.fetchAccounts()
+          await this.fetchAccounts()
         } else {
           this.isFetchingItems = false
           this.isMoreItems = false
@@ -158,9 +160,14 @@ class HomePageManager {
       })
   }
 
-  renderNewAccounts(accounts) {
+  async renderNewAccounts(accounts) {
+    const { requirements, selected } = await this.loadRequirements();
     for (const account of accounts) {
-      account.requirements = this.loadRequirements()
+      const accountSelected = selected[account.id] || [];
+      account.requirements = requirements.map(r => ({
+        text: r.name,
+        highlight: accountSelected.includes(r.id)
+      }));
       const fragment = LitHTMLHelper.getFragment(AccountCard, account)
       this.accountsList.appendChild(fragment)
     }
@@ -227,34 +234,34 @@ class HomePageManager {
   }
 
   initFilterByRankListener() {
-    this.accountRankTypesSelect.addEventListener("change", (e) => {
+    this.accountRankTypesSelect.addEventListener("change", async (e) => {
       const rankType = e.target.value
       if (rankType === "ALL") {
-        this.submitFilter("rank=")
+        await this.submitFilter("rank=")
       } else {
-        this.submitFilter(`rank=${rankType}`)
+        await this.submitFilter(`rank=${rankType}`)
       }
     })
   }
 
   initFilterByStatusListener() {
-    this.accountStatusesSelect.addEventListener("change", (e) => {
+    this.accountStatusesSelect.addEventListener("change", async (e) => {
       const status = e.target.value
       if (status === "ALL") {
-        this.submitFilter("status=")
+        await this.submitFilter("status=")
       } else {
-        this.submitFilter(`status=${status}`)
+        await this.submitFilter(`status=${status}`)
       }
     })
   }
 
   initFilterByDeviceTypeListener() {
-    this.accountDeviceTypesSelect.addEventListener("change", (e) => {
+    this.accountDeviceTypesSelect.addEventListener("change", async (e) => {
       const deviceType = e.target.value
       if (deviceType === "ALL") {
-        this.submitFilter("device_type=")
+        await this.submitFilter("device_type=")
       } else {
-        this.submitFilter(`device_type=${deviceType}`)
+        await this.submitFilter(`device_type=${deviceType}`)
         // if (deviceType === "Only máy nhà") {
         //   ThemeHelper.updateAccountStateColor("#facc15", "#facc15", "#fed73a", "#fee580") // màu vàng
         // } else {
@@ -265,12 +272,12 @@ class HomePageManager {
   }
 
   initFilterByAccountTypeListener() {
-    this.accountTypesSelect.addEventListener("change", (e) => {
+    this.accountTypesSelect.addEventListener("change", async (e) => {
       const accountType = e.target.value
       if (accountType === "ALL") {
-        this.submitFilter("account_type=")
+        await this.submitFilter("account_type=")
       } else {
-        this.submitFilter(`account_type=${accountType}`)
+        await this.submitFilter(`account_type=${accountType}`)
       }
     })
   }
@@ -283,14 +290,14 @@ class HomePageManager {
     ThemeHelper.updateAccountStateColor(...this.#defaultAccountStateColors) // màu xanh lam
   }
 
-  submitFilter(keyValuePair = "rank=&status=&device_type=&account_type=") {
+  async submitFilter(keyValuePair = "rank=&status=&device_type=&account_type=") {
     this.resetAccountsList()
     const conditions = keyValuePair.split("&")
     for (const condition of conditions) {
       const [key, value] = condition.split("=")
       this.filterHolder[key] = value || ""
     }
-    this.fetchAccounts()
+    await this.fetchAccounts()
     // NavigationHelper.pureNavigateTo(currentUrl.toString())
   }
 
