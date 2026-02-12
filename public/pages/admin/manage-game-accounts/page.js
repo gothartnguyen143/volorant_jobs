@@ -15,6 +15,8 @@ import { initUtils } from "../../../utils/scripts/init-utils.js?v=1.0.0"
 const sharedData = {
   gameAccounts: [],
   rankTypes: window.APP_DATA.ranks,
+  requirements: [],
+  selectedRequirements: {},
 }
 
 class ManageGameAccountsPageManager {
@@ -31,7 +33,9 @@ class ManageGameAccountsPageManager {
     this.clickedAccountRowId = null
     this.RENT_TIME_INPUT_FORMAT = "YYYY-MM-DD HH:mm:ss"
 
-    this.fetchAccounts()
+    this.fetchRequirements().then(() => {
+      this.fetchAccounts()
+    })
 
     this.watchScrolling()
 
@@ -126,6 +130,22 @@ class ManageGameAccountsPageManager {
       })
   }
 
+  fetchRequirements() {
+    return fetch('/api/v1/cp-requirements')
+      .then(response => response.json())
+      .then(data => {
+        if (data.requirements) {
+          sharedData.requirements = data.requirements
+        }
+        if (data.selected) {
+          sharedData.selectedRequirements = data.selected
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching requirements:', error)
+      })
+  }
+
   initCatchDeleteAndUpdateAccountBtnClick() {
     // khi click lên btn delete hoặc update
     this.accountsTableBody.addEventListener("click", (e) => {
@@ -162,7 +182,9 @@ class ManageGameAccountsPageManager {
         AccountRow,
         account,
         order_number,
-        UIEditor.convertRankTypesToRenderingRanks(sharedData.rankTypes)
+        UIEditor.convertRankTypesToRenderingRanks(sharedData.rankTypes),
+        sharedData.requirements,
+        sharedData.selectedRequirements
       )
       this.accountsTableBody.appendChild(accountRow)
       order_number++
@@ -221,6 +243,84 @@ class ManageGameAccountsPageManager {
 
     this.scrollToTopBtn.addEventListener("click", this.scrollToTop.bind(this))
     this.scrollToBottomBtn.addEventListener("click", this.scrollToBottom.bind(this))
+
+    // Listener for requirement checkboxes
+    this.accountsTableBody.addEventListener("change", function(e) {
+      if (e.target.classList.contains("QUERY-requirement-checkbox")) {
+        const accountId = e.target.dataset.accountId * 1
+        const requirementId = e.target.dataset.requirementId * 1
+        const checked = e.target.checked
+        this.toggleRequirement(accountId, requirementId, checked)
+      }
+    }.bind(this))
+  }
+
+  toggleRequirement(accountId, requirementId, checked) {
+    fetch('/api/v1/cp-requirements/toggle', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ accountId, requirementId, checked }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Update sharedData
+          if (!sharedData.selectedRequirements[accountId]) {
+            sharedData.selectedRequirements[accountId] = []
+          }
+          if (checked) {
+            if (!sharedData.selectedRequirements[accountId].includes(requirementId)) {
+              sharedData.selectedRequirements[accountId].push(requirementId)
+            }
+          } else {
+            sharedData.selectedRequirements[accountId] = sharedData.selectedRequirements[accountId].filter(id => id !== requirementId)
+          }
+          // Update UI classes
+          const label = document.querySelector(`[data-account-id="${accountId}"][data-requirement-id="${requirementId}"]`).closest('label')
+          const input = document.querySelector(`[data-account-id="${accountId}"][data-requirement-id="${requirementId}"]`)
+          if (checked) {
+            label.classList.add('requirement-checked')
+            input.classList.add('requirement-checkbox-checked')
+          } else {
+            label.classList.remove('requirement-checked')
+            input.classList.remove('requirement-checkbox-checked')
+          }
+        } else {
+          Toaster.error('Failed to update requirement')
+          // Revert checkbox
+          const checkbox = document.querySelector(`[data-account-id="${accountId}"][data-requirement-id="${requirementId}"]`)
+          if (checkbox) checkbox.checked = !checked
+          // Revert classes
+          const label = checkbox.closest('label')
+          const input = checkbox
+          if (!checked) {
+            label.classList.add('requirement-checked')
+            input.classList.add('requirement-checkbox-checked')
+          } else {
+            label.classList.remove('requirement-checked')
+            input.classList.remove('requirement-checkbox-checked')
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error toggling requirement:', error)
+        Toaster.error('Error updating requirement')
+        // Revert
+        const checkbox = document.querySelector(`[data-account-id="${accountId}"][data-requirement-id="${requirementId}"]`)
+        if (checkbox) checkbox.checked = !checked
+        // Revert classes
+        const label = checkbox.closest('label')
+        const input = checkbox
+        if (!checked) {
+          label.classList.add('requirement-checked')
+          input.classList.add('requirement-checkbox-checked')
+        } else {
+          label.classList.remove('requirement-checked')
+          input.classList.remove('requirement-checkbox-checked')
+        }
+      })
   }
 
   submitRentTimeFromInput(input) {
@@ -390,12 +490,14 @@ class UIEditor {
     this.accountsTableBody = document.getElementById("accounts-table-body")
   }
 
-  setAccountRow(accountRow, accountData, orderNumber, ranksToRender) {
+  setAccountRow(accountRow, accountData, orderNumber, ranksToRender, requirements, selectedRequirements) {
     const newAccountRow = LitHTMLHelper.getFragment(
       AccountRow,
       accountData,
       orderNumber,
-      ranksToRender
+      ranksToRender,
+      requirements,
+      selectedRequirements
     )
     accountRow.replaceWith(newAccountRow)
   }
@@ -429,7 +531,9 @@ class UIEditor {
                 accountRow,
                 account,
                 accountRow.dataset.accountOrderNumber * 1,
-                UIEditor.convertRankTypesToRenderingRanks(sharedData.rankTypes)
+                UIEditor.convertRankTypesToRenderingRanks(sharedData.rankTypes),
+                sharedData.requirements,
+                sharedData.selectedRequirements
               )
               initUtils.initTooltip()
             }

@@ -21,6 +21,9 @@
           Loại máy
         </th>
         <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+          Yêu cầu
+        </th>
+        <th class="px-3 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
           Thao tác
         </th>
       </tr>

@@ -17,6 +17,8 @@ use Services\SaleAccountService;
 use Controllers\Apis\RotationApiController;
 use Controllers\Apis\RotationPrizesApiController;
 use Services\RotationService;
+use Controllers\CpRequireController;
+use Services\CpRequireService;
 
 // Initialize API controller
 $gameAccountApiController = new GameAccountApiController(new GameAccountService($db), new FileService());
@@ -24,6 +26,8 @@ $adminApiController = new AdminApiController(new UserService($db), new RulesServ
 $authApiController = new AuthApiController(new AuthService($db, new JwtService()));
 $authService = new AuthService($db, new JwtService());
 $saleAccountApiController = new SaleAccountApiController(new SaleAccountService($db), new FileService());
+$cpRequireService = new CpRequireService($db);
+$cpRequireController = new CpRequireController($cpRequireService);
 
 // Initialize middleware
 $authMiddleware = new AuthMiddleware($authService);
@@ -47,6 +51,18 @@ $apiRouter->get('/api/v1/game-accounts/statuses', function () use ($gameAccountA
 
 $apiRouter->get('/api/v1/game-accounts/device-types', function () use ($gameAccountApiController) {
   return $gameAccountApiController->getDeviceTypes();
+});
+
+$apiRouter->get('/api/v1/cp-requirements', function () use ($cpRequireController) {
+  return $cpRequireController->index();
+});
+
+$apiRouter->get('/api/v1/cp-requirements/{accountId}', function ($accountId) use ($cpRequireController) {
+  return $cpRequireController->show($accountId);
+});
+
+$apiRouter->post('/api/v1/cp-requirements/toggle', function () use ($cpRequireController) {
+  return $cpRequireController->toggle();
 });
 
 $apiRouter->post('/api/v1/game-accounts/add-new', function () use ($gameAccountApiController, $authMiddleware) {

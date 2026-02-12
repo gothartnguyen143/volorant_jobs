@@ -335,7 +335,7 @@ export const AccountDeviceType = ({ device_type, isActive }) => {
   `
 }
 
-export const AccountRow = (account, orderNumber, ranksToRender) => {
+export const AccountRow = (account, orderNumber, ranksToRender, requirements, selectedRequirements) => {
   const { rank, status, device_type, id, rent_from_time, rent_to_time, acc_code, acc_username } =
     account
   const lowerCasedStatus = status.toLowerCase()
@@ -535,6 +535,22 @@ export const AccountRow = (account, orderNumber, ranksToRender) => {
         >
           ${device_type}
         </button>
+      </td>
+      <td class="px-3 py-3">
+        <div class="flex flex-col gap-1 max-h-32 overflow-y-auto">
+          ${requirements.map(req => html`
+            <label class="flex items-center gap-2 text-sm ${selectedRequirements[id]?.includes(req.id) ? 'requirement-checked' : ''}">
+              <input
+                type="checkbox"
+                class="QUERY-requirement-checkbox ${selectedRequirements[id]?.includes(req.id) ? 'requirement-checkbox-checked' : ''}"
+                data-requirement-id="${req.id}"
+                data-account-id="${id}"
+                ?checked=${selectedRequirements[id]?.includes(req.id)}
+              />
+              ${req.name}
+            </label>
+          `)}
+        </div>
       </td>
       <td class="px-3 py-3 whitespace-nowrap">
         <div class="flex items-center gap-2">
