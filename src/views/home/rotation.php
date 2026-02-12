@@ -177,6 +177,7 @@ error_reporting(E_ALL);
         <div id="input-error" class="error-message" style="display: none;">Vui lòng nhập thông tin hợp lệ!</div>
       </div>
       <div class="modal-footer-gaming">
+        <button class="btn-gaming-cancel" id="input-cancel-btn">HUỶ</button>
         <button class="btn-gaming-submit" id="input-submit-btn">XÁC NHẬN</button>
       </div>
     </div>
@@ -197,6 +198,7 @@ error_reporting(E_ALL);
         <div id="no-turns-error" class="error-message" style="display: none;">Vui lòng nhập thông tin hợp lệ!</div>
       </div>
       <div class="modal-footer-gaming">
+        <button class="btn-gaming-cancel" id="no-turns-cancel-btn">HUỶ</button>
         <button class="btn-gaming-submit" id="no-turns-submit-btn">XÁC NHẬN</button>
       </div>
     </div>

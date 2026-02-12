@@ -313,6 +313,9 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
 }
 .modal-footer-gaming {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 .btn-gaming-close {
   background: linear-gradient(90deg, #0077be, #004080);
@@ -365,4 +368,20 @@ body { margin: 0; padding: 0; background: #000; font-family: var(--text-main); c
   box-shadow: 0 0 30px rgba(255, 70, 85, 1);
   transform: translateY(-2px);
   background: linear-gradient(90deg, #cc3333, #ff4655);
+}
+
+/* Cancel button */
+.btn-gaming-cancel {
+  background: linear-gradient(90deg, #666, #999);
+  border: none; color: #fff; padding: 15px 30px;
+  font-family: var(--text-title); font-size: 1.5rem; font-weight: bold;
+  text-transform: uppercase; letter-spacing: 2px;
+  border-radius: 10px; cursor: pointer;
+  box-shadow: 0 0 20px rgba(102, 102, 102, 0.6);
+  transition: all 0.3s ease;
+}
+.btn-gaming-cancel:hover {
+  box-shadow: 0 0 30px rgba(102, 102, 102, 1);
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #999, #666);
 }

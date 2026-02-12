@@ -78,6 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Gắn sự kiện đóng modal
   document.getElementById('modal-close-btn').addEventListener('click', closeGamingModal);
 
+  // Gắn sự kiện cancel input modal
+  document.getElementById('input-cancel-btn').addEventListener('click', closeInputModal);
+
+  // Gắn sự kiện cancel no-turns modal
+  document.getElementById('no-turns-cancel-btn').addEventListener('click', closeNoTurnsModal);
+
   // Gắn sự kiện submit input modal
   document.getElementById('input-submit-btn').addEventListener('click', () => {
     const input = document.getElementById('user-identifier');
@@ -216,12 +222,13 @@ document.addEventListener("DOMContentLoaded", function () {
       isSpinning = false;
       spinBtns.forEach(btn => btn.disabled = false);
       if (statusTop) statusTop.textContent = 'TRẠNG THÁI: LỖI';
-      if (statusMain) statusMain.textContent = error.message;
       
-      // Nếu lỗi hết lượt, hiển thị modal để thay đổi identifier
+      // Nếu lỗi hết lượt, hiển thị "Hết lượt" thay vì "No turns left"
       if (error.message && error.message.toLowerCase().includes('no turns left')) {
+        if (statusMain) statusMain.textContent = 'Hết lượt';
         showNoTurnsModal();
       } else {
+        if (statusMain) statusMain.textContent = error.message;
         alert('Lỗi: ' + error.message);
       }
     }
