@@ -114,7 +114,7 @@
 
 /* --- Card Yêu cầu máy (Tông màu sáng, theo website) --- */
 .requirement-section {
-  width: 160px; /* Độ rộng cố định trên Laptop */
+  width: 120px; /* Độ rộng cố định trên Laptop */
   background-color: #f0f9ff; /* Màu xanh nhạt cực sáng (tông blue của web) */
   border: 1px solid var(--vcn-regular-blue-cl, #38bdf8); /* Border theo tone chủ đạo */
   border-radius: 10px;
