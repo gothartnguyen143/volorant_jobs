@@ -102,7 +102,7 @@
 /* Styles for requirement component */
 .account-card {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 20px;
 }
 
@@ -116,6 +116,8 @@
   border-radius: 8px;
   padding: 10px;
   background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
 }
 
 .requirement-header {
@@ -124,12 +126,14 @@
   margin-bottom: 10px;
   text-align: center;
   color: #333;
+  flex-shrink: 0;
 }
 
 .requirement-data {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .requirement-item {
@@ -139,6 +143,10 @@
   border: 1px solid #ccc;
   text-align: center;
   font-size: 0.9em;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .requirement-item.highlight {
