@@ -15,8 +15,6 @@ services:
         composer install &&
         npm install &&
         npm run build &&
-        php create_db.php &&
-        php add_table.php &&
         apache2-foreground
       "
     networks:

@@ -16,7 +16,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS lucky_spin_prizes (
   quantity INTEGER DEFAULT 0,
   is_active INTEGER DEFAULT 1
 );
-)");
+");
 
 $db->exec("CREATE TABLE IF NOT EXISTS lucky_spin_players (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,7 +25,8 @@ $db->exec("CREATE TABLE IF NOT EXISTS lucky_spin_players (
   used_turns INTEGER DEFAULT 0,
   last_spin_time TEXT,
   created_at TEXT DEFAULT (datetime('now'))
-)");
+);
+");
 
 $db->exec("CREATE TABLE IF NOT EXISTS lucky_spin_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,8 +35,8 @@ $db->exec("CREATE TABLE IF NOT EXISTS lucky_spin_history (
   created_at TEXT DEFAULT (datetime('now')),
   FOREIGN KEY (player_id) REFERENCES lucky_spin_players(id),
   FOREIGN KEY (prize_id) REFERENCES lucky_spin_prizes(id)
-)");
-
+);
+");
 // $db->exec("CREATE TABLE IF NOT EXISTS ranks (
 //   id INTEGER PRIMARY KEY AUTOINCREMENT,
 //   [type] TEXT NOT NULL
@@ -68,8 +69,8 @@ $db->exec("CREATE TABLE IF NOT EXISTS account_avatars (
   avatar TEXT,
   account_id INTEGER NOT NULL,
   FOREIGN KEY (account_id) REFERENCES game_accounts(id)
-)");
-
+);
+");
 $accounts = [
   ['account_67_1751351953_2ad45fdec192fe25.jpg', 46],
   ['account_67_1751351953_2ad45fdec192fe25.jpg', 47],

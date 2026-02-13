@@ -53,29 +53,49 @@ class RotationService
    * - Nếu tổng trọng số = 0 thì trả về null (không có giải)
    * - Xử lý quantity: nếu quantity > 0 sẽ giảm 1 khi trúng
    */
-  private function pickPrizeByWeight(array $prizes): ?array
+private function pickPrizeByWeight(array $prizes): ?array
   {
-    $total = 0;
-    foreach ($prizes as $p) {
-      $total += (float)$p['probability'];
+    // 1. Lọc ra danh sách các giải có xác suất >= 70
+    // Lưu ý: Giả định dữ liệu 'probability' của bạn là số thang 100 (ví dụ: 70, 80).
+    // Nếu dữ liệu là 0.7 thì bạn sửa số 70 bên dưới thành 0.7
+    $highPrizes = array_filter($prizes, function ($p) {
+      return (float)$p['probability'] >= 70;
+    });
+
+    // --- TRƯỜNG HỢP 1: Tồn tại giải >= 70% ---
+    if (!empty($highPrizes)) {
+        // Reset lại key của mảng để vòng lặp bên dưới chạy đúng
+        $highPrizes = array_values($highPrizes);
+
+        // Chạy logic Random trong nhóm này (thường thì nhóm này chỉ có 1 giải)
+        $total = 0;
+        foreach ($highPrizes as $p) {
+            $total += (float)$p['probability'];
+        }
+
+        // Quay số trong nhóm này
+        $r = mt_rand() / mt_getrandmax() * $total;
+        $acc = 0.0;
+        foreach ($highPrizes as $p) {
+            $acc += (float)$p['probability'];
+            if ($r <= $acc) {
+                return $p;
+            }
+        }
+        return end($highPrizes);
     }
 
-    if ($total <= 0) {
-      return null;
-    }
+    // --- TRƯỜNG HỢP 2: Không có giải nào >= 60% ---
+    // Yêu cầu: Chọn giải có xác suất cao nhất
+    
+    // Sắp xếp mảng gốc giảm dần theo xác suất
+    usort($prizes, function ($a, $b) {
+        return $b['probability'] <=> $a['probability'];
+    });
 
-    // Sử dụng số ngẫu nhiên từ 0..1 * total để hỗ trợ probability là số thực
-    $r = mt_rand() / mt_getrandmax() * $total;
-    $acc = 0.0;
-    foreach ($prizes as $p) {
-      $acc += (float)$p['probability'];
-      if ($r <= $acc) {
-        return $p;
-      }
-    }
-
-    // Fallback: trả về giải cuối cùng
-    return end($prizes) ?: null;
+    // Trả về phần tử đầu tiên (cao nhất)
+    // Nếu mảng rỗng thì trả về null
+    return $prizes[0] ?? null;
   }
 
   /**
