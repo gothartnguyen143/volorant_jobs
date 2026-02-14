@@ -1,3 +1,0 @@
-- Khi tick vào đó thì logic là thêm giá trị khoá ngoại vào bảng table game_accounts tương ứng , bỏ tick thì ngược lại 
-Hãy cập nhật tương ứng . 
-CHÚ Ý LÀ KHÔNG CẬP NHẬT GAMEACCOUNTSERVICES 
